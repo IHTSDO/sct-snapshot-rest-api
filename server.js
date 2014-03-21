@@ -56,6 +56,7 @@ require('./lib/main');
 require('./lib/command');
 require('./lib/rest');
 require('./lib/snomed');
+require('./lib/snomed-v1');
 
 if (!process.argv[2] || !process.argv[2].indexOf("expresso")) {
     app.listen(config.server.port, config.server.address);
