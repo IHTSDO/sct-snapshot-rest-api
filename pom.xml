@@ -26,8 +26,34 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resource-plugin</artifactId>
+				<version>2.3</version>
+			</plugin>
+			<plugin>
+				<artifactId>exec-maven-plugin</artifactId>
+				<groupId>org.codehaus.mojo</groupId>
+				<executions>
+					<execution>
+						<id>Install node.js modules</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>npm</executable>
+							<arguments>
+								<argument>install</argument>
+							</arguments>
+							<workingDirectory>${project.build.outputDirectory}</workingDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<artifactId>jdeb</artifactId>
 				<groupId>org.vafer</groupId>
+				<version>1.2</version>
 				<!-- Customize deb package -->
 				<configuration>
 					<controlDir>${basedir}/control</controlDir>
@@ -36,9 +62,8 @@
 					<signPackage>false</signPackage>
 					<dataSet>
 						<data>
-							<src>${basedir}</src>
+							<src>${project.build.outputDirectory}</src>
 							<type>directory</type>
-							<excludes>target,control,pom.xml</excludes>
 							<mapper>
 								<type>perm</type>
 								<prefix>/srv/http/${project.artifactId}</prefix>
@@ -48,13 +73,23 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>${basedir}</directory>
+				<excludes>
+					<exclude>pom.xml</exclude>
+					<exclude>target</exclude>
+					<exclude>control</exclude>
+				</excludes>
+			</resource>
+		</resources>
 		<extensions>
 			<extension>
 				<groupId>org.vafer</groupId>
 				<artifactId>jdeb</artifactId>
 				<version>1.2</version>
 			</extension>
-		</extensions>
+		</extensions> 
 	</build>
 
 	<distributionManagement>
