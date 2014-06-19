@@ -1,0 +1,9 @@
+Package: [[artifactId]]
+Version: [[version]]
+Priority: optional
+Architecture: all
+Depends: nginx
+Maintainer: Delivery Development Team <delivery@ihtsdo.org>
+Description: [[name]]
+Distribution: stable
+Section: web
