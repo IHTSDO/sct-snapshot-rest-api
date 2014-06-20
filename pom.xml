@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.ihtsdo.sct</groupId>
-	<artifactId>sct-rest-api</artifactId>
+	<artifactId>sct-snapshot-rest-api</artifactId>
 	<version>0.0.1</version>
 
 	<packaging>deb</packaging>
-	<name>SCT REST API</name>
+	<name>SCT Snapshot REST API</name>
 
 	<properties>
 		<packageName>${project.artifactId}</packageName>
@@ -56,7 +56,7 @@
 				<version>1.2</version>
 				<!-- Customize deb package -->
 				<configuration>
-					<controlDir>${basedir}/control</controlDir>
+					<controlDir>${basedir}/deb/control</controlDir>
 					<snapshotExpand>true</snapshotExpand>
 					<snapshotEnv>BUILD_NUMBER</snapshotEnv>
 					<signPackage>false</signPackage>
@@ -69,6 +69,22 @@
 								<prefix>/opt/${project.artifactId}</prefix>
 							</mapper>
 						</data>
+						<data>
+							<src>${basedir}/deb/supervisor.conf</src>
+							<dst>/etc/supervisor/conf.d/${packageName}.conf</dst>
+							<type>file</type>
+							<conffile>true</conffile>
+						</data>
+						<data>
+							<src>${basedir}/deb/config.json</src>
+							<dst>/opt/${packageName}/config.json</dst>
+							<type>file</type>
+							<conffile>true</conffile>
+							<mapper>
+								<type>perm</type>
+								<filemode>0644</filemode>
+							</mapper>
+						</data>
 					</dataSet>
 				</configuration>
 			</plugin>
@@ -78,8 +94,8 @@
 				<directory>${basedir}</directory>
 				<excludes>
 					<exclude>pom.xml</exclude>
-					<exclude>target</exclude>
-					<exclude>control</exclude>
+					<exclude>target/**</exclude>
+					<exclude>deb/**</exclude>
 				</excludes>
 			</resource>
 		</resources>
@@ -89,7 +105,7 @@
 				<artifactId>jdeb</artifactId>
 				<version>1.2</version>
 			</extension>
-		</extensions> 
+		</extensions>
 	</build>
 
 	<distributionManagement>
