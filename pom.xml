@@ -60,6 +60,7 @@
 					<snapshotExpand>true</snapshotExpand>
 					<snapshotEnv>BUILD_NUMBER</snapshotEnv>
 					<signPackage>false</signPackage>
+					<classifier>all</classifier>
 					<dataSet>
 						<data>
 							<src>${project.build.outputDirectory}</src>
