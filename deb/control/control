@@ -2,7 +2,7 @@ Package: [[artifactId]]
 Version: [[version]]
 Priority: optional
 Architecture: all
-Depends: nodejs (>=0.10.18), mongodb (>=2.4.8), supervisor
+Depends: nodejs (>=0.10.18), supervisor
 Maintainer: Delivery Development Team <delivery@ihtsdo.org>
 Description: [[name]]
 Distribution: stable
