@@ -43,8 +43,8 @@ app.configure(function() {
     app.use(express.static(process.cwd() + '/public'));
     app.use(express.logger());
 
-    app.set('views', __dirname + '/views');
-    app.set('view engine', 'jade');
+    //app.set('views', __dirname + '/views');
+    //app.set('view engine', 'jade');
 
     if (config.accessControl) {
         var accesscontrol = require('./lib/accesscontrol');
