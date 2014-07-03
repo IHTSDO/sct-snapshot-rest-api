@@ -384,9 +384,11 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
     } else if (searchMode == "fullText") {
         MongoClient.connect("mongodb://localhost:27017/" + req.params.db, function (err, db) {
             var collection = db.collection(req.params.collection + 'tx');
+            options.score = { $meta: "textScore" };
             collection.find(query, options, function (err, cursor) {
+                console.log(JSON.stringify(cursor.toArray()));
                 var dbDuration = Date.now() - start;
-                if (e) {
+                if (err) {
                     console.log(e, 'error');
                     var duration = Date.now() - start;
                     //logger.log('error', 'Search for ' + searchTerm + ' ERROR', {searchTerm: searchTerm, database: req.params.db, collection: req.params.collection, searchMode: searchMode, language: lang, statusFilter: statusFilter, duration: duration, dbDuration: dbDuration});
