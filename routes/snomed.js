@@ -460,8 +460,9 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                         res.send(result);
                     }
                 }
+                db.close();
             });
-            db.close();
+
         });
     } else {
         res.status(400);
