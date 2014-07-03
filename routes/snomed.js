@@ -392,10 +392,11 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
             var collection = db.collection(req.params.collection + 'tx');
             console.log(req.params.collection + 'tx');
             console.log(query);
-            //options.score = { $meta: "textScore" };
+            options["score"] = { $meta: "textScore" };
             collection.find(query, options).toArray(function(err, docs) {
                 console.log("Error? : " + err);
                 console.log("Results size: " + docs.length);
+                console.log(JSON.stringify(docs[0]));
                 var dbDuration = Date.now() - start;
                 if (err) {
                     console.log(e, 'error');
@@ -416,9 +417,9 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                         if (a.score < b.score)
                             return 1;
                         if (a.score == b.score) {
-                            if (a.obj.term.length < b.obj.term.length)
+                            if (a.term.length < b.term.length)
                                 return -1;
-                            if (a.obj.term.length > b.obj.term.length)
+                            if (a.term.length > b.term.length)
                                 return 1;
                         }
                         return 0;
