@@ -400,7 +400,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
 //                console.log("score: " + docs[0].score);
                 var dbDuration = Date.now() - start;
                 if (err) {
-                    console.log(e, 'error');
+                    console.log(err, 'error');
                     var duration = Date.now() - start;
                     //logger.log('error', 'Search for ' + searchTerm + ' ERROR', {searchTerm: searchTerm, database: req.params.db, collection: req.params.collection, searchMode: searchMode, language: lang, statusFilter: statusFilter, duration: duration, dbDuration: dbDuration});
                     res.send(501);
