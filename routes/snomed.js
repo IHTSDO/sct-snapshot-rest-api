@@ -390,6 +390,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
     } else if (searchMode == "fullText") {
         MongoClient.connect("mongodb://localhost:27017/" + req.params.db, function (err, db) {
             var collection = db.collection(req.params.collection + 'tx');
+            console.log(query);
 //            console.log(req.params.collection + 'tx');
 //            options["score"] = { $meta: "textScore" };
 //            console.log(options);
@@ -397,7 +398,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
 //                console.log("Error? : " + err);
 //                console.log("Results size: " + docs.length);
 //                console.log(JSON.stringify(docs[0]));
-//                console.log("score: " + docs[0].score);
+                console.log("score: " + docs[0].score);
                 var dbDuration = Date.now() - start;
                 if (err) {
                     console.log(err, 'error');
