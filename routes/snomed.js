@@ -398,7 +398,6 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
 //                console.log("Error? : " + err);
 //                console.log("Results size: " + docs.length);
 //                console.log(JSON.stringify(docs[0]));
-                console.log("score: " + docs[0].score);
                 var dbDuration = Date.now() - start;
                 if (err) {
                     console.log(err, 'error');
@@ -406,6 +405,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                     //logger.log('error', 'Search for ' + searchTerm + ' ERROR', {searchTerm: searchTerm, database: req.params.db, collection: req.params.collection, searchMode: searchMode, language: lang, statusFilter: statusFilter, duration: duration, dbDuration: dbDuration});
                     res.send(501);
                 } else  if (docs) {
+                    console.log("score: " + docs[0].score);
                     var result = {};
                     result.matches = [];
                     result.details = {'total': docs.length, 'skipTo': skipTo, 'returnLimit': returnLimit};
