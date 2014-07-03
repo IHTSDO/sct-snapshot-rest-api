@@ -393,7 +393,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
 //            console.log(req.params.collection + 'tx');
 //            options["score"] = { $meta: "textScore" };
 //            console.log(options);
-            collection.find(query, options).sort( { score: { $meta: "textScore" }, length: 1 } ).toArray(function(err, docs) {
+            collection.find(query, { score: { $meta: "textScore" } }).sort( { score: { $meta: "textScore" }, length: 1 } ).toArray(function(err, docs) {
 //                console.log("Error? : " + err);
 //                console.log("Results size: " + docs.length);
 //                console.log(JSON.stringify(docs[0]));
