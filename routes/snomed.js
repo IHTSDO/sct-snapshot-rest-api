@@ -270,7 +270,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                 } else if (statusFilter == 'activeAndInactive') {
                     query = {"$text": { "$search": searchTerm, "$language": lang } };
                 } else {
-                    query = {"$text": { "$search": searchTerm, "$language": lang }, "$or": [{"active": true},{"conceptActive": true}]};
+                    query = {"$text": { "$search": searchTerm, "$language": lang }, "$and": [{"active": true},{"conceptActive": true}]};
                 }
             } else if (req.query["searchMode"] == "regex") {
                 searchMode = req.query["searchMode"];
@@ -280,7 +280,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                 } else if (statusFilter == 'activeAndInactive') {
                     query = {"term": {"$regex": searchTerm}};
                 } else {
-                    query = {"term": {"$regex": searchTerm}, "active": true, "conceptActive": true};
+                    query = {"term": {"$regex": searchTerm}, "$and": [{"active": true},{"conceptActive": true}]};
                 }
             } else {
                 res.status(400);
@@ -405,7 +405,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                     var duration = Date.now() - start;
                     //logger.log('error', 'Search for ' + searchTerm + ' ERROR', {searchTerm: searchTerm, database: req.params.db, collection: req.params.collection, searchMode: searchMode, language: lang, statusFilter: statusFilter, duration: duration, dbDuration: dbDuration});
                     res.send(501);
-                } else {
+                } else  if (docs) {
                     var result = {};
                     result.matches = [];
                     result.details = {'total': docs.length, 'skipTo': skipTo, 'returnLimit': returnLimit};
@@ -462,6 +462,9 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                         res.status(200);
                         res.send(result);
                     }
+                } else {
+                    res.status(404);
+                    res.send([]);
                 }
                 db.close();
             });
