@@ -390,14 +390,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
     } else if (searchMode == "fullText") {
         MongoClient.connect("mongodb://localhost:27017/" + req.params.db, function (err, db) {
             var collection = db.collection(req.params.collection + 'tx');
-            console.log(query);
-//            console.log(req.params.collection + 'tx');
-//            options["score"] = { $meta: "textScore" };
-//            console.log(options);
             collection.find(query, { score: { $meta: "textScore" } }).sort( { score: { $meta: "textScore" }, length: 1 } ).toArray(function(err, docs) {
-//                console.log("Error? : " + err);
-//                console.log("Results size: " + docs.length);
-//                console.log(JSON.stringify(docs[0]));
                 var dbDuration = Date.now() - start;
                 if (err) {
                     //console.log(err, 'error');
@@ -413,19 +406,6 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                     result.filters.lang = {};
                     result.filters.semTag = {};
                     var matchedDescriptions = docs.slice(0);
-//                    matchedDescriptions.sort(function (a, b) {
-//                        if (a.score > b.score)
-//                            return -1;
-//                        if (a.score < b.score)
-//                            return 1;
-//                        if (a.score == b.score) {
-//                            if (a.term.length < b.term.length)
-//                                return -1;
-//                            if (a.term.length > b.term.length)
-//                                return 1;
-//                        }
-//                        return 0;
-//                    });
                     if (matchedDescriptions.length > 0) {
                         var count = 0;
                         matchedDescriptions.forEach(function (doc) {
