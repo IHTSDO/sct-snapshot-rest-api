@@ -391,8 +391,8 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
         MongoClient.connect("mongodb://localhost:27017/" + req.params.db, function (err, db) {
             var collection = db.collection(req.params.collection + 'tx');
             console.log(req.params.collection + 'tx');
-            console.log(query);
             options["score"] = { $meta: "textScore" };
+            console.log(options);
             collection.find(query, options).toArray(function(err, docs) {
                 console.log("Error? : " + err);
                 console.log("Results size: " + docs.length);
