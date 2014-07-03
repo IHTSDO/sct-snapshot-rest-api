@@ -427,20 +427,20 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                     if (matchedDescriptions.length > 0) {
                         var count = 0;
                         matchedDescriptions.forEach(function (doc) {
-                            if (semanticFilter == "none" || (semanticFilter == doc.obj.semanticTag)) {
-                                if (langFilter == "none" || (langFilter == doc.obj.lang)) {
+                            if (semanticFilter == "none" || (semanticFilter == doc.semanticTag)) {
+                                if (langFilter == "none" || (langFilter == doc.lang)) {
                                     if (count >= skipTo && count < (skipTo + returnLimit)) {
-                                        result.matches.push({"term": doc.obj.term, "conceptId": doc.obj.conceptId, "active": doc.obj.active, "conceptActive": doc.obj.conceptActive, "fsn": doc.obj.fsn});
+                                        result.matches.push({"term": doc.term, "conceptId": doc.conceptId, "active": doc.active, "conceptActive": doc.conceptActive, "fsn": doc.fsn});
                                     }
-                                    if (result.filters.semTag.hasOwnProperty(doc.obj.semanticTag)) {
-                                        result.filters.semTag[doc.obj.semanticTag] = result.filters.semTag[doc.obj.semanticTag] + 1;
+                                    if (result.filters.semTag.hasOwnProperty(doc.semanticTag)) {
+                                        result.filters.semTag[doc.semanticTag] = result.filters.semTag[doc.semanticTag] + 1;
                                     } else {
-                                        result.filters.semTag[doc.obj.semanticTag] = 1;
+                                        result.filters.semTag[doc.semanticTag] = 1;
                                     }
-                                    if (result.filters.lang.hasOwnProperty(doc.obj.lang)) {
-                                        result.filters.lang[doc.obj.lang] = result.filters.lang[doc.obj.lang] + 1;
+                                    if (result.filters.lang.hasOwnProperty(doc.lang)) {
+                                        result.filters.lang[doc.lang] = result.filters.lang[doc.lang] + 1;
                                     } else {
-                                        result.filters.lang[doc.obj.lang] = 1;
+                                        result.filters.lang[doc.lang] = 1;
                                     }
                                     count = count + 1;
                                 }
