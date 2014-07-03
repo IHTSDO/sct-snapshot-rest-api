@@ -261,11 +261,11 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                 searchMode = req.query["searchMode"];
                 searchTerm = req.query["query"];
                 if (statusFilter == 'inactiveOnly') {
-                    query = {"$text": searchTerm, "$language": lang, "$or": [{"active": false},{"conceptActive": false}]};
+                    query = {"$text": { "$search": searchTerm, "$language": lang }, "$or": [{"active": false},{"conceptActive": false}]};
                 } else if (statusFilter == 'activeAndInactive') {
-                    query = {"$text": searchTerm, "$language": lang};
+                    query = {"$text": { "$search": searchTerm, "$language": lang } };
                 } else {
-                    query = {"$text": searchTerm, "$language": lang, "$or": [{"active": true},{"conceptActive": true}]};
+                    query = {"$text": { "$search": searchTerm, "$language": lang }, "$or": [{"active": true},{"conceptActive": true}]};
                 }
             } else if (req.query["searchMode"] == "regex") {
                 searchMode = req.query["searchMode"];
