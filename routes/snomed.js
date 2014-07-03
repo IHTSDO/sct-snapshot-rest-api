@@ -397,6 +397,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                 console.log("Error? : " + err);
                 console.log("Results size: " + docs.length);
                 console.log(JSON.stringify(docs[0]));
+                console.log("score: " + docs[0].score);
                 var dbDuration = Date.now() - start;
                 if (err) {
                     console.log(e, 'error');
