@@ -329,7 +329,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                     result.filters.semTag = {};
                     if (docs.length > 0) {
                         if (idParam == docs[0].descriptionId) {
-                            result.matches.push({"term": docs[0].term, "conceptId": docs[0].conceptId, "active": docs[0].active, "conceptActive": docs[0].conceptActive, "fsn": docs[0].fsn});
+                            result.matches.push({"term": docs[0].term, "conceptId": docs[0].conceptId, "active": docs[0].active, "conceptActive": docs[0].conceptActive, "fsn": docs[0].fsn, "module": docs[0].module});
                             var duration = Date.now() - start;
                             logger.log('info', 'Search for ' + searchTerm + ' result = ' + docs.length, {searchTerm: searchTerm, database: req.params.db, collection: req.params.collection, searchMode: searchMode, language: lang, statusFilter: statusFilter, matches: docs.length, duration: duration, dbduration: dbDuration});
                             res.header('Content-Type', 'application/json');
@@ -351,7 +351,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                                 if (semanticFilter == "none" || (semanticFilter == doc.semanticTag)) {
                                     if (langFilter == "none" || (langFilter == doc.lang)) {
                                         if (count >= skipTo && count < (skipTo + returnLimit)) {
-                                            result.matches.push({"term": doc.term, "conceptId": doc.conceptId, "active": doc.active, "conceptActive": doc.conceptActive, "fsn": doc.fsn});
+                                            result.matches.push({"term": doc.term, "conceptId": doc.conceptId, "active": doc.active, "conceptActive": doc.conceptActive, "fsn": doc.fsn, "module": doc.module});
                                         }
                                         if (result.filters.semTag.hasOwnProperty(doc.semanticTag)) {
                                             result.filters.semTag[doc.semanticTag] = result.filters.semTag[doc.semanticTag] + 1;
@@ -412,7 +412,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                             if (semanticFilter == "none" || (semanticFilter == doc.semanticTag)) {
                                 if (langFilter == "none" || (langFilter == doc.lang)) {
                                     if (count >= skipTo && count < (skipTo + returnLimit)) {
-                                        result.matches.push({"term": doc.term, "conceptId": doc.conceptId, "active": doc.active, "conceptActive": doc.conceptActive, "fsn": doc.fsn});
+                                        result.matches.push({"term": doc.term, "conceptId": doc.conceptId, "active": doc.active, "conceptActive": doc.conceptActive, "fsn": doc.fsn, "module": doc.module});
                                     }
                                     if (result.filters.semTag.hasOwnProperty(doc.semanticTag)) {
                                         result.filters.semTag[doc.semanticTag] = result.filters.semTag[doc.semanticTag] + 1;
