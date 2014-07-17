@@ -147,7 +147,7 @@ router.get('/:db/:collection/concepts/:sctid/children?', function(req, res) {
             options[o] = JSON.parse(req.query[o]);
         }
     }
-    options["fields"] = {"defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1};
+    options["fields"] = {"defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1};
     MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
         var collection = db.collection(req.params.collection);
         collection.find(query, options, function(err, cursor) {
@@ -160,7 +160,7 @@ router.get('/:db/:collection/concepts/:sctid/children?', function(req, res) {
                     res.status(200);
                     res.send(result);
                 } else {
-                    res.status(404);
+                    res.status(200);
                     res.send(result);
                 }
                 db.close();
@@ -191,20 +191,20 @@ router.get('/:db/:collection/concepts/:sctid/parents?', function(req, res) {
                             if (req.query["form"] == "inferred") {
                                 docs[0].relationships.forEach(function(rel) {
                                     if (rel.active == true && rel.type.conceptId == 116680003) {
-                                        result.push({conceptId: rel.target.conceptId, defaultTerm: rel.target.defaultTerm, definitionStatus: rel.target.definitionStatus});
+                                        result.push({conceptId: rel.target.conceptId, defaultTerm: rel.target.defaultTerm, definitionStatus: rel.target.definitionStatus, module: rel.target.module});
                                     }
                                 });
                             } else if (req.query["form"] == "stated") {
                                 docs[0].statedRelationships.forEach(function(rel) {
                                     if (rel.active == true && rel.type.conceptId == 116680003) {
-                                        result.push({conceptId: rel.target.conceptId, defaultTerm: rel.target.defaultTerm, definitionStatus: rel.target.definitionStatus});
+                                        result.push({conceptId: rel.target.conceptId, defaultTerm: rel.target.defaultTerm, definitionStatus: rel.target.definitionStatus, module: rel.target.module});
                                     }
                                 });
                             }
                         } else {
                             docs[0].relationships.forEach(function(rel) {
                                 if (rel.active == true && rel.type.conceptId == 116680003) {
-                                    result.push({conceptId: rel.target.conceptId, defaultTerm: rel.target.defaultTerm, definitionStatus: rel.target.definitionStatus});
+                                    result.push({conceptId: rel.target.conceptId, defaultTerm: rel.target.defaultTerm, definitionStatus: rel.target.definitionStatus, module: rel.target.module});
                                 }
                             });
                         }
@@ -212,7 +212,7 @@ router.get('/:db/:collection/concepts/:sctid/parents?', function(req, res) {
                     res.status(200);
                     res.send(result);
                 } else {
-                    res.status(404);
+                    res.status(200);
                     res.send([]);
                 }
                 db.close();
@@ -443,7 +443,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                         res.send(result);
                     }
                 } else {
-                    res.status(404);
+                    res.status(200);
                     res.send([]);
                 }
                 db.close();
