@@ -11,8 +11,13 @@ router.post('/svg2png', function(req, res) {
         if(err) {
         } else {
             svg2png("public/svg2pngTemp/1.svg", "public/svg2pngTemp/1.png", function (err) {
-                pngLink = "svg2pngTemp/1.png";
-                res.end(pngLink);
+                if (err) {
+                    console.log(err);
+                    res.end("Error");
+                } else {
+                    pngLink = "svg2pngTemp/1.png";
+                    res.end(pngLink);
+                }
             });
 
         }
