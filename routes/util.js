@@ -7,11 +7,11 @@ var fs = require('fs');
 router.post('/svg2png', function(req, res) {
     var pngLink = "";
     var svg = req.body;
-    fs.writeFile("/root/concepts-json/node_modules/sct-snapshot-rest-api/public/svg2pngTemp/1.svg", svg.svgContent, function(err) {
+    fs.writeFile("public/svg2pngTemp/1.svg", svg.svgContent, function(err) {
         if(err) {
             console.log(err);
         } else {
-            svg2png("/root/concepts-json/node_modules/sct-snapshot-rest-api/public/svg2pngTemp/1.svg", "/root/concepts-json/node_modules/sct-snapshot-rest-api/public/svg2pngTemp/1.png", function (err) {
+            svg2png("public/svg2pngTemp/1.svg", "public/svg2pngTemp/1.png", 3, function (err) {
                 if (err) {
                     console.log(err);
                     res.end("Error");
