@@ -12,6 +12,7 @@ fs.writeFile("/var/run/sct-snapshot-rest-api.pid", process.pid);
 
 var routes = require('./routes/index');
 var snomed = require('./routes/snomed');
+var util = require('./routes/util');
 
 var accessControlConfig = {
     "allowOrigin": "*",
@@ -62,6 +63,7 @@ app.use(function(req, res, next) {
 
 app.use('/', routes);
 app.use('/snomed', snomed);
+app.use('/util', util);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -86,12 +88,25 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
+// Adding raw body support
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
         message: err.message,
         error: {}
     });
+
+    var data='';
+    req.setEncoding('utf8');
+    req.on('data', function(chunk) {
+        data += chunk;
+    });
+
+    req.on('end', function() {
+        req.body = data;
+        next();
+    });
+
 });
 
 var port = process.env.PORT || 3000;
