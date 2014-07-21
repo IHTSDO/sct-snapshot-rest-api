@@ -9,6 +9,7 @@ router.post('/svg2png', function(req, res) {
     var svg = req.body;
     fs.writeFile("public/svg2pngTemp/1.svg", svg.svgContent, function(err) {
         if(err) {
+            console.log(err);
         } else {
             svg2png("public/svg2pngTemp/1.svg", "public/svg2pngTemp/1.png", function (err) {
                 if (err) {
