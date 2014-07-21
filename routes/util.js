@@ -11,6 +11,7 @@ router.post('/svg2png', function(req, res) {
         if(err) {
             console.log(err);
         } else {
+            console.log(fs.readdirSync('public/svg2pngTemp'));
             svg2png("public/svg2pngTemp/1.svg", "public/svg2pngTemp/1.png", function (err) {
                 if (err) {
                     console.log(err);
