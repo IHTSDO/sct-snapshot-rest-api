@@ -117,5 +117,4 @@ server.listen(port);
 console.log('Express app started on port '+port);
 
 module.exports = app;
-module.exports.appDir = appDir;
 module.exports.accessControlConfig = accessControlConfig;
