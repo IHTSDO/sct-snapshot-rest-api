@@ -20,7 +20,7 @@ router.post('/svg2png', function(req, res) {
             console.log(err);
         } else {
             svg2png(appDir + "/public/svg2pngTemp/" + id + ".svg", appDir +
-                "/public/svg2pngTemp/" + id + ".png", 3, function (err) {
+                "/public/svg2pngTemp/" + id + ".png", function (err) {
                 if (err) {
                     console.log(err);
                     res.end("Error");
