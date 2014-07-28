@@ -24,6 +24,12 @@ router.get('/:db/:collection/concepts/:sctid?', function(req, res) {
         }
     }
     MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
+        if (err) {
+            console.warn(err.message);
+            res.status(500);
+            res.send(err.message);
+            return;
+        }
         var collection = db.collection(req.params.collection);
         collection.find(query, options).nextObject(function(err, doc) {
             if (err) {
@@ -57,6 +63,12 @@ router.get('/:db/:collection/concepts/:sctid/descriptions/:descriptionId?', func
         }
     }
     MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
+        if (err) {
+            console.warn(err.message);
+            res.status(500);
+            res.send(err.message);
+            return;
+        }
         var collection = db.collection(req.params.collection);
         collection.find(query, options, function(err, cursor) {
             cursor.toArray(function(err, docs) {
@@ -100,6 +112,12 @@ router.get('/:db/:collection/concepts/:sctid/relationships?', function(req, res)
     }
 
     MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
+        if (err) {
+            console.warn(err.message);
+            res.status(500);
+            res.send(err.message);
+            return;
+        }
         var collection = db.collection(req.params.collection);
         collection.find(query, options, function(err, cursor) {
             cursor.toArray(function(err, docs) {
@@ -149,6 +167,12 @@ router.get('/:db/:collection/concepts/:sctid/children?', function(req, res) {
     }
     options["fields"] = {"defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1};
     MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
+        if (err) {
+            console.warn(err.message);
+            res.status(500);
+            res.send(err.message);
+            return;
+        }
         var collection = db.collection(req.params.collection);
         collection.find(query, options, function(err, cursor) {
             cursor.toArray(function(err, docs) {
@@ -181,6 +205,12 @@ router.get('/:db/:collection/concepts/:sctid/parents?', function(req, res) {
     }
     options["fields"] = {"relationships": 1, "statedRelationships": 1};
     MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
+        if (err) {
+            console.warn(err.message);
+            res.status(500);
+            res.send(err.message);
+            return;
+        }
         var collection = db.collection(req.params.collection);
         collection.find(query, options, function(err, cursor) {
             cursor.toArray(function(err, docs) {
@@ -315,6 +345,12 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
     options["limit"] = 10000000;
     if (searchMode == "regex" || searchMode == "partialMatching")  {
         MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
+            if (err) {
+                console.warn(err.message);
+                res.status(500);
+                res.send(err.message);
+                return;
+            }
             var collection = db.collection(req.params.collection + 'tx');
             collection.find(query, options, function(err, cursor) {
                 var dbDuration = Date.now() - start;
@@ -389,6 +425,12 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
         });
     } else if (searchMode == "fullText") {
         MongoClient.connect("mongodb://localhost:27017/" + req.params.db, function (err, db) {
+            if (err) {
+                console.warn(err.message);
+                res.status(500);
+                res.send(err.message);
+                return;
+            }
             var collection = db.collection(req.params.collection + 'tx');
             collection.find(query, { score: { $meta: "textScore" } }).sort( { score: { $meta: "textScore" }, length: 1 } ).toArray(function(err, docs) {
                 var dbDuration = Date.now() - start;
