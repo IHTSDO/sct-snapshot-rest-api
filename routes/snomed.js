@@ -476,7 +476,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                 });
             }
             if (searchMode == "regex" || searchMode == "partialMatching") {
-                collection.find(query, { score: { $meta: "textScore" } }).sort({ score: { $meta: "textScore" }, length: 1 }, function (err, cursor) {
+                collection.find(query, options, function(err, cursor) {
                     if (err) {
                         console.warn(err.message);
                         res.status(500);
@@ -486,7 +486,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                     processMatches(cursor);
                 });
             } else {
-                collection.find(query, options, function(err, cursor) {
+                collection.find(query, { score: { $meta: "textScore" } }).sort({ score: { $meta: "textScore" }, length: 1 }, function (err, cursor) {
                     if (err) {
                         console.warn(err.message);
                         res.status(500);
