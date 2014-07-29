@@ -40,7 +40,7 @@ router.get('/:db/:collection/concepts/:sctid?', function(req, res) {
                 res.header('Content-Type', 'application/json');
                 res.send(doc);
             } else {
-                res.status(404);
+                res.status(200);
                 res.send("Concept not found for ConceptId = " + idParam);
             }
 
@@ -86,7 +86,7 @@ router.get('/:db/:collection/concepts/:sctid/descriptions/:descriptionId?', func
                     res.status(200);
                     res.send(result);
                 } else {
-                    res.status(404);
+                    res.status(200);
                     res.send([]);
                 }
                 db.close();
@@ -136,7 +136,7 @@ router.get('/:db/:collection/concepts/:sctid/relationships?', function(req, res)
                     res.status(200);
                     res.send(result);
                 } else {
-                    res.status(404);
+                    res.status(200);
                     res.send([]);
                 }
                 db.close();
@@ -165,7 +165,7 @@ router.get('/:db/:collection/concepts/:sctid/children?', function(req, res) {
             options[o] = JSON.parse(req.query[o]);
         }
     }
-    options["fields"] = {"defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1};
+    options["fields"] = {"defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1, "isLeafInferred": 1,"isLeafStated": 1};
     MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
         if (err) {
             console.warn(err.message);
@@ -343,7 +343,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
         }
     }
     options["limit"] = 10000000;
-    if (searchMode == "regex" || searchMode == "partialMatching")  {
+    if (searchMode == "regex" || searchMode == "partialMatching" || searchMode == "fullText")  {
         MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
             if (err) {
                 console.warn(err.message);
@@ -373,13 +373,15 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                         } else {
                             var matchedDescriptions = docs.slice(0);
                             //logger.log('info', "Sliced in = " + (Date.now() - start));
-                            matchedDescriptions.sort(function(a, b) {
-                                if (a.term.length < b.term.length)
-                                    return -1;
-                                if (a.term.length > b.term.length)
-                                    return 1;
-                                return 0;
-                            });
+                            if (searchMode == "regex" || searchMode == "partialMatching") {
+                                matchedDescriptions.sort(function (a, b) {
+                                    if (a.term.length < b.term.length)
+                                        return -1;
+                                    if (a.term.length > b.term.length)
+                                        return 1;
+                                    return 0;
+                                });
+                            }
                             //logger.log('info', "Sorted in = " + (Date.now() - start));
                             var count = 0;
 
@@ -422,75 +424,6 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                     db.close();
                 });
             });
-        });
-    } else if (searchMode == "fullText") {
-        MongoClient.connect("mongodb://localhost:27017/" + req.params.db, function (err, db) {
-            if (err) {
-                console.warn(err.message);
-                res.status(500);
-                res.send(err.message);
-                return;
-            }
-            var collection = db.collection(req.params.collection + 'tx');
-            collection.find(query, { score: { $meta: "textScore" } }).sort( { score: { $meta: "textScore" }, length: 1 } ).toArray(function(err, docs) {
-                var dbDuration = Date.now() - start;
-                if (err) {
-                    //console.log(err, 'error');
-                    var duration = Date.now() - start;
-                    //logger.log('error', 'Search for ' + searchTerm + ' ERROR', {searchTerm: searchTerm, database: req.params.db, collection: req.params.collection, searchMode: searchMode, language: lang, statusFilter: statusFilter, duration: duration, dbDuration: dbDuration});
-                    res.send(501);
-                } else if (docs && docs[0]) {
-                    console.log("score: " + docs[0].score);
-                    var result = {};
-                    result.matches = [];
-                    result.details = {'total': docs.length, 'skipTo': skipTo, 'returnLimit': returnLimit};
-                    result.filters = {};
-                    result.filters.lang = {};
-                    result.filters.semTag = {};
-                    var matchedDescriptions = docs.slice(0);
-                    if (matchedDescriptions.length > 0) {
-                        var count = 0;
-                        matchedDescriptions.forEach(function (doc) {
-                            if (semanticFilter == "none" || (semanticFilter == doc.semanticTag)) {
-                                if (langFilter == "none" || (langFilter == doc.lang)) {
-                                    if (count >= skipTo && count < (skipTo + returnLimit)) {
-                                        result.matches.push({"term": doc.term, "conceptId": doc.conceptId, "active": doc.active, "conceptActive": doc.conceptActive, "fsn": doc.fsn, "module": doc.module});
-                                    }
-                                    if (result.filters.semTag.hasOwnProperty(doc.semanticTag)) {
-                                        result.filters.semTag[doc.semanticTag] = result.filters.semTag[doc.semanticTag] + 1;
-                                    } else {
-                                        result.filters.semTag[doc.semanticTag] = 1;
-                                    }
-                                    if (result.filters.lang.hasOwnProperty(doc.lang)) {
-                                        result.filters.lang[doc.lang] = result.filters.lang[doc.lang] + 1;
-                                    } else {
-                                        result.filters.lang[doc.lang] = 1;
-                                    }
-                                    count = count + 1;
-                                }
-                            }
-                        });
-                        result.details.total = count;
-                        var duration = Date.now() - start;
-                        //logger.log('info', 'Search for ' + searchTerm + ' result = ' + cb.results.length, {searchTerm: searchTerm, database: req.params.db, collection: req.params.collection, searchMode: searchMode, language: lang, statusFilter: statusFilter, matches: cb.results.length, duration: duration, dbDuration: dbDuration});
-                        res.header('Content-Type', 'application/json');
-                        res.send(result);
-                    } else {
-                        var duration = Date.now() - start;
-                        //logger.log('info', 'Search for ' + searchTerm + ' result = ' + cb.results.length, {searchTerm: searchTerm, database: req.params.db, collection: req.params.collection, searchMode: searchMode, language: lang, statusFilter: statusFilter, matches: cb.results.length, duration: duration, dbDuration: dbDuration});
-                        var result = {};
-                        result.matches = [];
-                        result.details = {'total': 0, 'skipTo': skipTo, 'returnLimit': returnLimit};
-                        res.status(200);
-                        res.send(result);
-                    }
-                } else {
-                    res.status(200);
-                    res.send([]);
-                }
-                db.close();
-            });
-
         });
     } else {
         res.status(400);
