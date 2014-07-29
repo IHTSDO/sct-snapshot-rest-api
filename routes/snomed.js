@@ -251,6 +251,45 @@ router.get('/:db/:collection/concepts/:sctid/parents?', function(req, res) {
     });
 });
 
+router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
+    var idParam = parseInt(req.params.sctid);
+    var query = {"memberships": {"$elemMatch": {"refset.conceptId": idParam, "active": true}}};
+
+    var options = req.params.options || {};
+    var test = ['limit', 'sort', 'fields', 'skip', 'hint', 'explain', 'snapshot', 'timeout'];
+    for (o in req.query) {
+        if (test.indexOf(o) >= 0) {
+            options[o] = JSON.parse(req.query[o]);
+        }
+    }
+    options["fields"] = {"defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1, "isLeafInferred": 1,"isLeafStated": 1};
+    MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
+        if (err) {
+            console.warn(err.message);
+            res.status(500);
+            res.send(err.message);
+            return;
+        }
+        var collection = db.collection(req.params.collection);
+        collection.find(query, options, function(err, cursor) {
+            cursor.toArray(function(err, docs) {
+                var result = [];
+                if (docs.length > 0) {
+                    docs.forEach(function(doc) {
+                        result.push(doc);
+                    });
+                    res.status(200);
+                    res.send(result);
+                } else {
+                    res.status(200);
+                    res.send(result);
+                }
+                db.close();
+            });
+        });
+    });
+});
+
 router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
     var idParam = null;
     var query = {'descriptions.descriptionId': 0};
@@ -258,6 +297,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
     var searchTerm = null;
     var lang = "english";
     var semanticFilter = "none";
+    var moduleFilter = "none";
     var langFilter = "none";
     var statusFilter;
     var returnLimit = 100;
@@ -325,6 +365,9 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
     if (req.query["semanticFilter"]) {
         semanticFilter = req.query["semanticFilter"];
     }
+    if (req.query["moduleFilter"]) {
+        moduleFilter = req.query["moduleFilter"];
+    }
     if (req.query["langFilter"]) {
         langFilter = req.query["langFilter"];
     }
@@ -352,7 +395,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                 return;
             }
             var collection = db.collection(req.params.collection + 'tx');
-            collection.find(query, options, function(err, cursor) {
+            function processMatches(cursor) {
                 var dbDuration = Date.now() - start;
                 //logger.log('info', "Starting in = " + (Date.now() - start));
                 cursor.toArray(function(err, docs) {
@@ -363,6 +406,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                     result.filters = {};
                     result.filters.lang = {};
                     result.filters.semTag = {};
+                    result.filters.module = {};
                     if (docs.length > 0) {
                         if (idParam == docs[0].descriptionId) {
                             result.matches.push({"term": docs[0].term, "conceptId": docs[0].conceptId, "active": docs[0].active, "conceptActive": docs[0].conceptActive, "fsn": docs[0].fsn, "module": docs[0].module});
@@ -388,27 +432,34 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                             matchedDescriptions.forEach(function(doc) {
                                 if (semanticFilter == "none" || (semanticFilter == doc.semanticTag)) {
                                     if (langFilter == "none" || (langFilter == doc.lang)) {
-                                        if (count >= skipTo && count < (skipTo + returnLimit)) {
-                                            result.matches.push({"term": doc.term, "conceptId": doc.conceptId, "active": doc.active, "conceptActive": doc.conceptActive, "fsn": doc.fsn, "module": doc.module});
+                                        if (moduleFilter == "none" || (moduleFilter == doc.module)) {
+                                            if (count >= skipTo && count < (skipTo + returnLimit)) {
+                                                result.matches.push({"term": doc.term, "conceptId": doc.conceptId, "active": doc.active, "conceptActive": doc.conceptActive, "fsn": doc.fsn, "module": doc.module});
+                                            }
+                                            if (result.filters.semTag.hasOwnProperty(doc.semanticTag)) {
+                                                result.filters.semTag[doc.semanticTag] = result.filters.semTag[doc.semanticTag] + 1;
+                                            } else {
+                                                result.filters.semTag[doc.semanticTag] = 1;
+                                            }
+                                            if (result.filters.lang.hasOwnProperty(doc.lang)) {
+                                                result.filters.lang[doc.lang] = result.filters.lang[doc.lang] + 1;
+                                            } else {
+                                                result.filters.lang[doc.lang] = 1;
+                                            }
+                                            if (result.filters.module.hasOwnProperty(doc.module)) {
+                                                result.filters.module[doc.module] = result.filters.module[doc.module] + 1;
+                                            } else {
+                                                result.filters.module[doc.module] = 1;
+                                            }
+                                            count = count + 1;
                                         }
-                                        if (result.filters.semTag.hasOwnProperty(doc.semanticTag)) {
-                                            result.filters.semTag[doc.semanticTag] = result.filters.semTag[doc.semanticTag] + 1;
-                                        } else {
-                                            result.filters.semTag[doc.semanticTag] = 1;
-                                        }
-                                        if (result.filters.lang.hasOwnProperty(doc.lang)) {
-                                            result.filters.lang[doc.lang] = result.filters.lang[doc.lang] + 1;
-                                        } else {
-                                            result.filters.lang[doc.lang] = 1;
-                                        }
-                                        count = count + 1;
                                     }
                                 }
                             });
                             result.details.total = count;
                             //logger.log('info', "Written in = " + (Date.now() - start));
                             var duration = Date.now() - start;
-                            logger.log('info', 'Search for ' + searchTerm + ' result = ' + docs.length, {searchTerm: searchTerm, database: req.params.db, collection: req.params.collection, searchMode: searchMode, language: lang, statusFilter: statusFilter, matches: docs.length, duration: duration, dbduration: dbDuration});
+                            logger.log('info', 'Search for ' + searchTerm + ' result = ' + docs.length, {searchTerm: searchTerm, database: req.params.db, collection: req.params.collection, searchMode: searchMode, language: lang, statusFilter: statusFilter, moduleFilter: moduleFilter, matches: docs.length, duration: duration, dbduration: dbDuration});
                             res.header('Content-Type', 'application/json');
                             res.status(200);
                             res.send(result);
@@ -423,7 +474,28 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                     }
                     db.close();
                 });
-            });
+            }
+            if (searchMode == "regex" || searchMode == "partialMatching") {
+                collection.find(query, { score: { $meta: "textScore" } }).sort({ score: { $meta: "textScore" }, length: 1 }, function (err, cursor) {
+                    if (err) {
+                        console.warn(err.message);
+                        res.status(500);
+                        res.send(err.message);
+                        return;
+                    }
+                    processMatches(cursor);
+                });
+            } else {
+                collection.find(query, options, function(err, cursor) {
+                    if (err) {
+                        console.warn(err.message);
+                        res.status(500);
+                        res.send(err.message);
+                        return;
+                    }
+                    processMatches(cursor);
+                });
+            }
         });
     } else {
         res.status(400);
