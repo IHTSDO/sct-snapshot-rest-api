@@ -271,12 +271,14 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
             return;
         }
         var collection = db.collection(req.params.collection);
-        collection.find(query, options, function(err, cursor) {
+        collection.find(query, options).sort({defaultTerm: 1}, function(err, cursor) {
             cursor.toArray(function(err, docs) {
-                var result = [];
+                var result = {};
+                result.members = [];
+                result.details = {'total': docs.length, 'refsetId': idParam };
                 if (docs.length > 0) {
                     docs.forEach(function(doc) {
-                        result.push(doc);
+                        result.members.push(doc);
                     });
                     res.status(200);
                     res.send(result);
