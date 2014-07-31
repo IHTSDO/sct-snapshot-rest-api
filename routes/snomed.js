@@ -25,7 +25,7 @@ router.get('/:db/:collection/concepts/:sctid?', function(req, res) {
     }
     MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
         if (err) {
-            console.warn(err.message);
+            console.warn(getTime() + " - " + err.message);
             res.status(500);
             res.send(err.message);
             return;
@@ -64,7 +64,7 @@ router.get('/:db/:collection/concepts/:sctid/descriptions/:descriptionId?', func
     }
     MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
         if (err) {
-            console.warn(err.message);
+            console.warn(getTime() + " - " + err.message);
             res.status(500);
             res.send(err.message);
             return;
@@ -113,7 +113,7 @@ router.get('/:db/:collection/concepts/:sctid/relationships?', function(req, res)
 
     MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
         if (err) {
-            console.warn(err.message);
+            console.warn(getTime() + " - " + err.message);
             res.status(500);
             res.send(err.message);
             return;
@@ -168,7 +168,7 @@ router.get('/:db/:collection/concepts/:sctid/children?', function(req, res) {
     options["fields"] = {"defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1, "isLeafInferred": 1,"isLeafStated": 1};
     MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
         if (err) {
-            console.warn(err.message);
+            console.warn(getTime() + " - " + err.message);
             res.status(500);
             res.send(err.message);
             return;
@@ -206,7 +206,7 @@ router.get('/:db/:collection/concepts/:sctid/parents?', function(req, res) {
     options["fields"] = {"relationships": 1, "statedRelationships": 1};
     MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
         if (err) {
-            console.warn(err.message);
+            console.warn(getTime() + " - " + err.message);
             res.status(500);
             res.send(err.message);
             return;
@@ -265,7 +265,7 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
     options["fields"] = {"defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1, "isLeafInferred": 1,"isLeafStated": 1};
     MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
         if (err) {
-            console.warn(err.message);
+            console.warn(getTime() + " - " + err.message);
             res.status(500);
             res.send(err.message);
             return;
@@ -393,7 +393,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
     if (searchMode == "regex" || searchMode == "partialMatching" || searchMode == "fullText")  {
         MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
             if (err) {
-                console.warn(err.message);
+                console.warn(getTime() + " - " + err.message);
                 res.status(500);
                 res.send(err.message);
                 return;
@@ -482,7 +482,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
             if (searchMode == "regex" || searchMode == "partialMatching") {
                 collection.find(query, options, function(err, cursor) {
                     if (err) {
-                        console.warn(err.message);
+                        console.warn(getTime() + " - " + err.message);
                         res.status(500);
                         res.send(err.message);
                         return;
@@ -492,7 +492,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
             } else {
                 collection.find(query, { score: { $meta: "textScore" } }).sort({ score: { $meta: "textScore" }, length: 1 }, function (err, cursor) {
                     if (err) {
-                        console.warn(err.message);
+                        console.warn(getTime() + " - " + err.message);
                         res.status(500);
                         res.send(err.message);
                         return;
@@ -656,5 +656,16 @@ regExpEscape = function(s) {
     return String(s).replace(/([-()\[\]{}+?*.$\^|,:#<!\\])/g, '\\$1').
         replace(/\x08/g, '\\x08');
 };
+
+var getTime = function() {
+    var currentdate = new Date();
+    var datetime = "Last Sync: " + currentdate.getDate() + "/"
+        + (currentdate.getMonth()+1)  + "/"
+        + currentdate.getFullYear() + " @ "
+        + currentdate.getHours() + ":"
+        + currentdate.getMinutes() + ":"
+        + currentdate.getSeconds();
+    return datetime;
+}
 
 module.exports = router;
