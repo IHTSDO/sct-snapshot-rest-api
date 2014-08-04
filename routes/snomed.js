@@ -99,7 +99,6 @@ router.get('/:db/:collection/concepts/:sctid/descriptions/:descriptionId?', func
                     res.status(200);
                     res.send([]);
                 }
-                db.close();
             });
         });
     });
@@ -143,7 +142,6 @@ router.get('/:db/:collection/concepts/:sctid/relationships?', function(req, res)
                     res.status(200);
                     res.send([]);
                 }
-                db.close();
             });
         });
     });
@@ -185,7 +183,6 @@ router.get('/:db/:collection/concepts/:sctid/children?', function(req, res) {
                     res.status(200);
                     res.send(result);
                 }
-                db.close();
             });
         });
     });
@@ -237,7 +234,6 @@ router.get('/:db/:collection/concepts/:sctid/parents?', function(req, res) {
                     res.status(200);
                     res.send([]);
                 }
-                db.close();
             });
         });
     });
@@ -273,7 +269,6 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
                         res.status(200);
                         res.send(result);
                     }
-                    db.close();
                 });
             });
         });
@@ -460,7 +455,6 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                         result.details = {'total': 0, 'skipTo': skipTo, 'returnLimit': returnLimit};
                         res.send(result);
                     }
-                    db.close();
                 });
             }
             if (searchMode == "regex" || searchMode == "partialMatching") {
