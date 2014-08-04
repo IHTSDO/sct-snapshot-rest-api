@@ -13,6 +13,28 @@ var logger = new (winston.Logger)({
 //var regextxt = "^186^1$1/1";
 //console.log(regextxt + " --> " + util.regExpEscape(regextxt));
 
+var databases = {};
+
+var performMongoDbRequest = function(databaseName, callback) {
+    if (databases[databaseName]) {
+        //console.log("Using cache");
+        callback(databases[databaseName]);
+    } else {
+        //console.log("Connecting");
+        MongoClient.connect("mongodb://localhost:27017/"+databaseName, function(err, db) {
+            if (err) {
+                console.warn(getTime() + " - " + err.message);
+                res.status(500);
+                res.send(err.message);
+                return;
+            }
+            //console.log("Connection OK")
+            databases[databaseName] = db;
+            callback(db);
+        });
+    }
+}
+
 router.get('/:db/:collection/concepts/:sctid?', function(req, res) {
     var idParam = parseInt(req.params.sctid);
     var query = {'conceptId': idParam};
@@ -23,13 +45,7 @@ router.get('/:db/:collection/concepts/:sctid?', function(req, res) {
             options[o] = JSON.parse(req.query[o]);
         }
     }
-    MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
-        if (err) {
-            console.warn(getTime() + " - " + err.message);
-            res.status(500);
-            res.send(err.message);
-            return;
-        }
+    performMongoDbRequest(req.params.db, function(db) {
         var collection = db.collection(req.params.collection);
         collection.find(query, options).nextObject(function(err, doc) {
             if (err) {
@@ -62,18 +78,12 @@ router.get('/:db/:collection/concepts/:sctid/descriptions/:descriptionId?', func
             }
         }
     }
-    MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
-        if (err) {
-            console.warn(getTime() + " - " + err.message);
-            res.status(500);
-            res.send(err.message);
-            return;
-        }
+    performMongoDbRequest(req.params.db, function(db) {
         var collection = db.collection(req.params.collection);
         collection.find(query, options, function(err, cursor) {
             cursor.toArray(function(err, docs) {
                 var result = [];
-                if (docs.length > 0) {
+                if (docs && docs.length > 0) {
                     docs[0].descriptions.forEach(function(desc) {
                         if (req.params.descriptionId) {
                             if (parseInt(req.params.descriptionId) == desc.descriptionId) {
@@ -111,18 +121,12 @@ router.get('/:db/:collection/concepts/:sctid/relationships?', function(req, res)
         }
     }
 
-    MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
-        if (err) {
-            console.warn(getTime() + " - " + err.message);
-            res.status(500);
-            res.send(err.message);
-            return;
-        }
+    performMongoDbRequest(req.params.db, function(db) {
         var collection = db.collection(req.params.collection);
         collection.find(query, options, function(err, cursor) {
             cursor.toArray(function(err, docs) {
                 var result = [];
-                if (docs.length > 0) {
+                if (docs && docs.length > 0) {
                     if (form == "all" || form == "inferred") {
                         docs[0].relationships.forEach(function(desc) {
                             result.push(desc);
@@ -166,18 +170,12 @@ router.get('/:db/:collection/concepts/:sctid/children?', function(req, res) {
         }
     }
     options["fields"] = {"defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1, "isLeafInferred": 1,"isLeafStated": 1};
-    MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
-        if (err) {
-            console.warn(getTime() + " - " + err.message);
-            res.status(500);
-            res.send(err.message);
-            return;
-        }
+    performMongoDbRequest(req.params.db, function(db) {
         var collection = db.collection(req.params.collection);
         collection.find(query, options, function(err, cursor) {
             cursor.toArray(function(err, docs) {
                 var result = [];
-                if (docs.length > 0) {
+                if (docs && docs.length > 0) {
                     docs.forEach(function(doc) {
                         result.push(doc);
                     });
@@ -204,17 +202,11 @@ router.get('/:db/:collection/concepts/:sctid/parents?', function(req, res) {
         }
     }
     options["fields"] = {"relationships": 1, "statedRelationships": 1};
-    MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
-        if (err) {
-            console.warn(getTime() + " - " + err.message);
-            res.status(500);
-            res.send(err.message);
-            return;
-        }
+    performMongoDbRequest(req.params.db, function(db) {
         var collection = db.collection(req.params.collection);
         collection.find(query, options, function(err, cursor) {
             cursor.toArray(function(err, docs) {
-                if (docs.length > 0) {
+                if (docs && docs.length > 0) {
                     var result = [];
                     if (typeof docs[0].relationships != 'undefined') {
                         if (req.query["form"]) {
@@ -263,13 +255,7 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
         }
     }
     options["fields"] = {"defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1, "isLeafInferred": 1,"isLeafStated": 1};
-    MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
-        if (err) {
-            console.warn(getTime() + " - " + err.message);
-            res.status(500);
-            res.send(err.message);
-            return;
-        }
+    performMongoDbRequest(req.params.db, function(db) {
         var collection = db.collection(req.params.collection);
         collection.find(query, options).count(function (err, total) {
             collection.find(query, options).sort({defaultTerm: 1}, function (err, cursor) {
@@ -277,7 +263,7 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
                     var result = {};
                     result.members = [];
                     result.details = {'total': total, 'refsetId': idParam };
-                    if (docs.length > 0) {
+                    if (docs && docs.length > 0) {
                         docs.forEach(function (doc) {
                             result.members.push(doc);
                         });
@@ -360,6 +346,9 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                 res.status(400);
                 res.send("Error: Search mode not supported (" + req.query["searchMode"] + ")");
             }
+        } else {
+            res.status(400);
+            res.send("Error: Missing Query and missing SCTID, no search parameters.");
         }
     }
 
@@ -391,13 +380,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
     }
     options["limit"] = 10000000;
     if (searchMode == "regex" || searchMode == "partialMatching" || searchMode == "fullText")  {
-        MongoClient.connect("mongodb://localhost:27017/"+req.params.db, function(err, db) {
-            if (err) {
-                console.warn(getTime() + " - " + err.message);
-                res.status(500);
-                res.send(err.message);
-                return;
-            }
+        performMongoDbRequest(req.params.db, function(db) {
             var collection = db.collection(req.params.collection + 'tx');
             function processMatches(cursor) {
                 var dbDuration = Date.now() - start;
@@ -406,12 +389,13 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                     //logger.log('info', "Arrayed in = " + (Date.now() - start) + " Array: " + docs.length);
                     var result = {};
                     result.matches = [];
-                    result.details = {'total': docs.length, 'skipTo': skipTo, 'returnLimit': returnLimit};
+                    result.details = {'total': 0, 'skipTo': skipTo, 'returnLimit': returnLimit};
                     result.filters = {};
                     result.filters.lang = {};
                     result.filters.semTag = {};
                     result.filters.module = {};
-                    if (docs.length > 0) {
+                    if (docs && docs.length > 0) {
+                        result.details = {'total': docs.length, 'skipTo': skipTo, 'returnLimit': returnLimit};
                         if (idParam == docs[0].descriptionId) {
                             result.matches.push({"term": docs[0].term, "conceptId": docs[0].conceptId, "active": docs[0].active, "conceptActive": docs[0].conceptActive, "fsn": docs[0].fsn, "module": docs[0].module});
                             var duration = Date.now() - start;

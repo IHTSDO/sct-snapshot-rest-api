@@ -25,7 +25,7 @@ module.exports = router;
 // Manifest model
 var sampleManifest = {
     id: "4b7865c0-18e0-11e4-8c21-0800200c9a66",
-    editionName: "International Edition",
+    resourceSetName: "International Edition",
     effectiveTime: "20140731",
     databaseName: "en-edition",
     collectionName: "20140731",
