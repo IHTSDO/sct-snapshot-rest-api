@@ -207,20 +207,20 @@ router.get('/:db/:collection/concepts/:sctid/parents?', function(req, res) {
                     var result = [];
                     if (typeof docs[0].relationships != 'undefined') {
                         if (req.query["form"]) {
-                            if (req.query["form"] == "inferred") {
+                            if (req.query["form"] == "inferred" && docs[0].relationships) {
                                 docs[0].relationships.forEach(function(rel) {
                                     if (rel.active == true && rel.type.conceptId == 116680003) {
                                         result.push({conceptId: rel.target.conceptId, defaultTerm: rel.target.defaultTerm, definitionStatus: rel.target.definitionStatus, module: rel.target.module});
                                     }
                                 });
-                            } else if (req.query["form"] == "stated") {
+                            } else if (req.query["form"] == "stated" && docs[0].statedRelationships) {
                                 docs[0].statedRelationships.forEach(function(rel) {
                                     if (rel.active == true && rel.type.conceptId == 116680003) {
                                         result.push({conceptId: rel.target.conceptId, defaultTerm: rel.target.defaultTerm, definitionStatus: rel.target.definitionStatus, module: rel.target.module});
                                     }
                                 });
                             }
-                        } else {
+                        } else if (docs[0].relationships) {
                             docs[0].relationships.forEach(function(rel) {
                                 if (rel.active == true && rel.type.conceptId == 116680003) {
                                     result.push({conceptId: rel.target.conceptId, defaultTerm: rel.target.defaultTerm, definitionStatus: rel.target.definitionStatus, module: rel.target.module});
