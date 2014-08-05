@@ -1,22 +1,62 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs');
+var MongoClient = require('mongodb').MongoClient;
+var ObjectID = require('mongodb').ObjectID;
 
-var path = require('path');
-// find the first module to be loaded
-var topModule = module;
-while(topModule.parent)
-    topModule = topModule.parent;
-var appDir = path.dirname(topModule.filename);
+var serverDb;
+var resourcesCol;
 
-
-router.get('/releases', function(req, res) {
-    //TODO: retrieve manifests from db and return the list
+MongoClient.connect("mongodb://localhost:27017/server", function(err, db) {
+    if (err) {
+        console.warn(getTime() + " - " + err.message);
+        res.status(500);
+        res.send(err.message);
+        return;
+    }
+    serverDb = db;
+    resourcesCol = db.collection("resources");
+    console.log("Connected to server/resources db.")
 });
 
-router.get('/releases:id', function(req, res) {
-    var idParam = parseInt(req.params.id);
-    //TODO: retrieve single manifest using id
+router.get('/releases', function(req, res) {
+    resourcesCol.find().toArray(function(err, doc) {
+        if (err) {
+            console.log(err.message);
+        }
+        if (doc) {
+            res.status(200);
+            res.header('Content-Type', 'application/json');
+            res.send(doc);
+        } else {
+            res.status(200);
+            res.send("Manifest not found for id = " + idParam);
+        }
+    });
+});
+
+router.get('/releases/:id', function(req, res) {
+    var idParam = ObjectID.createFromHexString(req.params.id);
+    if (idParam) {
+        resourcesCol.find({_id: idParam}).nextObject(function(err, doc) {
+            if (err) {
+                console.log(err.message);
+            }
+            if (doc) {
+                res.status(200);
+                res.header('Content-Type', 'application/json');
+                res.send(doc);
+            } else {
+                res.status(200);
+                res.send("Manifest not found for id = " + idParam);
+            }
+
+        });
+    } else {
+        res.status(200);
+        res.send("Not a valid id");
+    }
+
 });
 
 

@@ -13,6 +13,7 @@ fs.writeFile("/var/run/sct-snapshot-rest-api.pid", process.pid);
 var routes = require('./routes/index');
 var snomed = require('./routes/snomed');
 var util = require('./routes/util');
+var server = require('./routes/server');
 
 var accessControlConfig = {
     "allowOrigin": "*",
@@ -64,6 +65,7 @@ app.use(function(req, res, next) {
 app.use('/', routes);
 app.use('/snomed', snomed);
 app.use('/util', util);
+app.use('/server', server);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
