@@ -313,7 +313,13 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                 }
 
                 words.forEach(function(word) {
-                    var expWord = "^" + removeDiacritics(regExpEscape(word).toLowerCase()) + ".*";
+                    if (req.query["normalize"]) {
+                        var expWord = "^" + removeDiacritics(regExpEscape(word).toLowerCase()) + ".*";
+                        console.log("Normalizing");
+                    } else {
+                        console.log("Not normalizing");
+                        var expWord = "^" + regExpEscape(word).toLowerCase() + ".*";
+                    }
                     query.$and.push({"words": {"$regex": expWord}});
                 });
             } else if (req.query["searchMode"] == "fullText") {
