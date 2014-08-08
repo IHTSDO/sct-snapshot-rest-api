@@ -313,7 +313,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                 }
 
                 words.forEach(function(word) {
-                    if (req.query["normalize"]) {
+                    if (req.query["normalize"] && req.query["normalize"] == "true") {
                         var expWord = "^" + removeDiacritics(regExpEscape(word).toLowerCase()) + ".*";
                         console.log("Normalizing");
                     } else {
