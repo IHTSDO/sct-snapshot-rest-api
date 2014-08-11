@@ -423,7 +423,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                                     if (langFilter == "none" || (langFilter == doc.lang)) {
                                         if (moduleFilter == "none" || (moduleFilter == doc.module)) {
                                             if (count >= skipTo && count < (skipTo + returnLimit)) {
-                                                result.matches.push({"term": doc.term, "conceptId": doc.conceptId, "active": doc.active, "conceptActive": doc.conceptActive, "fsn": doc.fsn, "module": doc.module});
+                                                result.matches.push({"term": doc.term, "conceptId": doc.conceptId, "active": doc.active, "conceptActive": doc.conceptActive, "fsn": doc.fsn, "module": doc.module, "definitionStatus": doc.definitionStatus});
                                             }
                                             if (result.filters.semTag.hasOwnProperty(doc.semanticTag)) {
                                                 result.filters.semTag[doc.semanticTag] = result.filters.semTag[doc.semanticTag] + 1;
