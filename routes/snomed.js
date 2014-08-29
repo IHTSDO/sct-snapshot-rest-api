@@ -469,11 +469,13 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
 
                             matchedDescriptions.forEach(function(doc) {
                                 var refsetOk = false;
-                                doc.refsetIds.forEach(function (refset){
-                                    if (refset == refsetFilter){
-                                        refsetOk = true;
-                                    }
-                                });
+                                if (doc.refsetIds){
+                                    doc.refsetIds.forEach(function (refset){
+                                        if (refset == refsetFilter){
+                                            refsetOk = true;
+                                        }
+                                    });
+                                }
                                 if (semanticFilter == "none" || (semanticFilter == doc.semanticTag)) {
                                     if (langFilter == "none" || (langFilter == doc.lang)) {
                                         if (moduleFilter == "none" || (moduleFilter == doc.module)) {
@@ -496,11 +498,13 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                                                 } else {
                                                     result.filters.module[doc.module] = 1;
                                                 }
-                                                doc.refsetIds.forEach(function (refset){
-                                                    if (result.filters.refsetId.hasOwnProperty(refset)){
-                                                        result.filters.refsetId[refset] = result.filters.refsetId[refset] + 1;
-                                                    }
-                                                });
+                                                if (doc.refsetIds){
+                                                    doc.refsetIds.forEach(function (refset){
+                                                        if (result.filters.refsetId.hasOwnProperty(refset)){
+                                                            result.filters.refsetId[refset] = result.filters.refsetId[refset] + 1;
+                                                        }
+                                                    });
+                                                }
 //                                                if (result.filters.refsetId.hasOwnProperty(doc))
                                                 count = count + 1;
                                             }
