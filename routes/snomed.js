@@ -188,6 +188,48 @@ router.get('/:db/:collection/concepts/:sctid/children?', function(req, res) {
     });
 });
 
+router.get('/:db/:collection/concepts/:sctid/references?', function(req, res) {
+    var idParam = parseInt(req.params.sctid);
+    var query = {"relationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}};
+    if (req.query["form"]) {
+        if (req.query["form"] == "inferred") {
+            query = {"relationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}},{"relationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}};
+        }
+        if (req.query["form"] == "stated") {
+            query = {"statedRelationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}},{"statedRelationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}};
+        }
+    }
+
+//    .findOne({"relationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}},{"relationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}
+
+    var options = req.params.options || {};
+    var test = ['limit', 'sort', 'fields', 'skip', 'hint', 'explain', 'snapshot', 'timeout'];
+    for (o in req.query) {
+        if (test.indexOf(o) >= 0) {
+            options[o] = JSON.parse(req.query[o]);
+        }
+    }
+    options["fields"] = {"defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "effectiveTime": 1, "module": 1};
+    performMongoDbRequest(req.params.db, function(db) {
+        var collection = db.collection(req.params.collection);
+        collection.find(query, options, function(err, cursor) {
+            cursor.toArray(function(err, docs) {
+                var result = [];
+                if (docs && docs.length > 0) {
+                    docs.forEach(function(doc) {
+                        result.push(doc);
+                    });
+                    res.status(200);
+                    res.send(result);
+                } else {
+                    res.status(200);
+                    res.send(result);
+                }
+            });
+        });
+    });
+});
+
 router.get('/:db/:collection/concepts/:sctid/parents?', function(req, res) {
     var idParam = parseInt(req.params.sctid);
     var query = {'conceptId': idParam};
