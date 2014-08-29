@@ -202,8 +202,8 @@ router.get('/:db/:collection/concepts/:sctid/references?', function(req, res) {
     if (req.query["form"]) {
         if (req.query["form"] == "inferred") {
             query = {"relationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}};
-            options["relationships"] = {"$elemMatch": {"target.conceptId": idParam, "active": true}};
-            options["fields"] = {"defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "effectiveTime": 1, "module": 1};
+//            options["relationships"] = {"$elemMatch": {"target.conceptId": idParam, "active": true}};
+            options["fields"] = {"relationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}, "defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "effectiveTime": 1, "module": 1};
         }
         if (req.query["form"] == "stated") {
             query = {"statedRelationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}};
