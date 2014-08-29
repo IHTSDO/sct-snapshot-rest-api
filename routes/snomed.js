@@ -496,6 +496,12 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                                                 } else {
                                                     result.filters.module[doc.module] = 1;
                                                 }
+                                                doc.refsetIds.forEach(function (refset){
+                                                    if (result.filters.refsetId.hasOwnProperty(refset)){
+                                                        result.filters.refsetId[refset] = result.filters.refsetId[refset] + 1;
+                                                    }
+                                                });
+//                                                if (result.filters.refsetId.hasOwnProperty(doc))
                                                 count = count + 1;
                                             }
                                         }
