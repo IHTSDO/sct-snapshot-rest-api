@@ -191,17 +191,6 @@ router.get('/:db/:collection/concepts/:sctid/children?', function(req, res) {
 router.get('/:db/:collection/concepts/:sctid/references?', function(req, res) {
     var idParam = parseInt(req.params.sctid);
     var query = {"relationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}};
-    if (req.query["form"]) {
-        if (req.query["form"] == "inferred") {
-            query = {"relationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}},{"relationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}};
-        }
-        if (req.query["form"] == "stated") {
-            query = {"statedRelationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}},{"statedRelationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}};
-        }
-    }
-
-//    .findOne({"relationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}},{"relationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}
-
     var options = req.params.options || {};
     var test = ['limit', 'sort', 'fields', 'skip', 'hint', 'explain', 'snapshot', 'timeout'];
     for (o in req.query) {
@@ -209,7 +198,20 @@ router.get('/:db/:collection/concepts/:sctid/references?', function(req, res) {
             options[o] = JSON.parse(req.query[o]);
         }
     }
-    options["fields"] = {"defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "effectiveTime": 1, "module": 1};
+
+    if (req.query["form"]) {
+        if (req.query["form"] == "inferred") {
+            query = {"relationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}};
+            options["fields"] = {"relationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}, "defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "effectiveTime": 1, "module": 1};
+        }
+        if (req.query["form"] == "stated") {
+            query = {"statedRelationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}};
+            options["fields"] = {"statedRelationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}, "defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "effectiveTime": 1, "module": 1};
+        }
+    }
+
+//    .findOne({"relationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}},{"relationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}
+
     performMongoDbRequest(req.params.db, function(db) {
         var collection = db.collection(req.params.collection);
         collection.find(query, options, function(err, cursor) {
