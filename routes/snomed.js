@@ -329,6 +329,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
     var semanticFilter = "none";
     var moduleFilter = "none";
     var langFilter = "none";
+    var refsetFilter = "none";
     var statusFilter;
     var returnLimit = 100;
     var skipTo = 0;
@@ -410,6 +411,9 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
     if (req.query["langFilter"]) {
         langFilter = req.query["langFilter"];
     }
+    if (req.query["refsetFilter"]) {
+        refsetFilter = req.query["refsetFilter"];
+    }
     if (req.query["returnLimit"]) {
         returnLimit = parseInt(req.query["returnLimit"]);
     }
@@ -464,28 +468,36 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                             var count = 0;
 
                             matchedDescriptions.forEach(function(doc) {
+                                var refsetOk = false;
+                                doc.refsetIds.forEach(function (refset){
+                                    if (refset == refsetFilter){
+                                        refsetOk = true;
+                                    }
+                                });
                                 if (semanticFilter == "none" || (semanticFilter == doc.semanticTag)) {
                                     if (langFilter == "none" || (langFilter == doc.lang)) {
                                         if (moduleFilter == "none" || (moduleFilter == doc.module)) {
-                                            if (count >= skipTo && count < (skipTo + returnLimit)) {
-                                                result.matches.push({"term": doc.term, "conceptId": doc.conceptId, "active": doc.active, "conceptActive": doc.conceptActive, "fsn": doc.fsn, "module": doc.module, "definitionStatus": doc.definitionStatus});
+                                            if (refsetFilter == "none" || refsetOk){
+                                                if (count >= skipTo && count < (skipTo + returnLimit)) {
+                                                    result.matches.push({"term": doc.term, "conceptId": doc.conceptId, "active": doc.active, "conceptActive": doc.conceptActive, "fsn": doc.fsn, "module": doc.module, "definitionStatus": doc.definitionStatus});
+                                                }
+                                                if (result.filters.semTag.hasOwnProperty(doc.semanticTag)) {
+                                                    result.filters.semTag[doc.semanticTag] = result.filters.semTag[doc.semanticTag] + 1;
+                                                } else {
+                                                    result.filters.semTag[doc.semanticTag] = 1;
+                                                }
+                                                if (result.filters.lang.hasOwnProperty(doc.lang)) {
+                                                    result.filters.lang[doc.lang] = result.filters.lang[doc.lang] + 1;
+                                                } else {
+                                                    result.filters.lang[doc.lang] = 1;
+                                                }
+                                                if (result.filters.module.hasOwnProperty(doc.module)) {
+                                                    result.filters.module[doc.module] = result.filters.module[doc.module] + 1;
+                                                } else {
+                                                    result.filters.module[doc.module] = 1;
+                                                }
+                                                count = count + 1;
                                             }
-                                            if (result.filters.semTag.hasOwnProperty(doc.semanticTag)) {
-                                                result.filters.semTag[doc.semanticTag] = result.filters.semTag[doc.semanticTag] + 1;
-                                            } else {
-                                                result.filters.semTag[doc.semanticTag] = 1;
-                                            }
-                                            if (result.filters.lang.hasOwnProperty(doc.lang)) {
-                                                result.filters.lang[doc.lang] = result.filters.lang[doc.lang] + 1;
-                                            } else {
-                                                result.filters.lang[doc.lang] = 1;
-                                            }
-                                            if (result.filters.module.hasOwnProperty(doc.module)) {
-                                                result.filters.module[doc.module] = result.filters.module[doc.module] + 1;
-                                            } else {
-                                                result.filters.module[doc.module] = 1;
-                                            }
-                                            count = count + 1;
                                         }
                                     }
                                 }
