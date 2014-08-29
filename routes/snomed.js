@@ -444,6 +444,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                     result.filters.lang = {};
                     result.filters.semTag = {};
                     result.filters.module = {};
+                    result.filters.refsetId = {};
                     if (docs && docs.length > 0) {
                         result.details = {'total': docs.length, 'skipTo': skipTo, 'returnLimit': returnLimit};
                         if (idParam == docs[0].descriptionId) {
@@ -502,6 +503,8 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                                                     doc.refsetIds.forEach(function (refset){
                                                         if (result.filters.refsetId.hasOwnProperty(refset)){
                                                             result.filters.refsetId[refset] = result.filters.refsetId[refset] + 1;
+                                                        }else{
+                                                            result.filters.refsetId[refset] = 1;
                                                         }
                                                     });
                                                 }
