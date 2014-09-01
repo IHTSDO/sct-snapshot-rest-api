@@ -88,7 +88,7 @@ router.get('/:db/:collection/concepts/:sctid/descriptions/:descriptionId?', func
                 if (docs && docs.length > 0) {
                     docs[0].descriptions.forEach(function(desc) {
                         if (req.params.descriptionId) {
-                            if (parseInt(req.params.descriptionId) == desc.descriptionId) {
+                            if (parseInt(req.params.descriptionId) == desc.descriptionId || req.params.descriptionId == desc.descriptionId) {
                                 result.push(desc);
                             }
                         } else {
