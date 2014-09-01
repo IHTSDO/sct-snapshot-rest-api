@@ -37,7 +37,8 @@ var performMongoDbRequest = function(databaseName, callback) {
 
 router.get('/:db/:collection/concepts/:sctid?', function(req, res) {
     var idParam = parseInt(req.params.sctid);
-    var query = {'conceptId': idParam};
+    var idParamStr = req.params.sctid;
+    var query = { '$or': [ {'conceptId': idParam }, {'conceptId': idParamStr } ]};
     var options = req.params.options || {};
     var test = ['limit', 'sort', 'fields', 'skip', 'hint', 'explain', 'snapshot', 'timeout'];
     for (o in req.query) {
@@ -66,7 +67,8 @@ router.get('/:db/:collection/concepts/:sctid?', function(req, res) {
 
 router.get('/:db/:collection/concepts/:sctid/descriptions/:descriptionId?', function(req, res) {
     var idParam = parseInt(req.params.sctid);
-    var query = {'conceptId': idParam};
+    var idParamStr = req.params.sctid;
+    var query = { '$or': [ {'conceptId': idParam }, {'conceptId': idParamStr } ]};
     var options = req.params.options || {};
     var test = ['limit', 'sort', 'fields', 'skip', 'hint', 'explain', 'snapshot', 'timeout'];
     for (o in req.query) {
@@ -106,7 +108,8 @@ router.get('/:db/:collection/concepts/:sctid/descriptions/:descriptionId?', func
 
 router.get('/:db/:collection/concepts/:sctid/relationships?', function(req, res) {
     var idParam = parseInt(req.params.sctid);
-    var query = {'conceptId': idParam};
+    var idParamStr = req.params.sctid;
+    var query = { '$or': [ {'conceptId': idParam }, {'conceptId': idParamStr } ]};
     var form = "all";
     if (req.query["form"]) {
         form = req.query["form"];
@@ -149,13 +152,14 @@ router.get('/:db/:collection/concepts/:sctid/relationships?', function(req, res)
 
 router.get('/:db/:collection/concepts/:sctid/children?', function(req, res) {
     var idParam = parseInt(req.params.sctid);
-    var query = {"relationships": {"$elemMatch": {"target.conceptId": idParam, "active": true, "type.conceptId": 116680003}}};
+    var idParamStr = req.params.sctid;
+    var query = {"relationships": {"$elemMatch": {"$or": [ {"target.conceptId": idParam }, {"target.conceptId": idParamStr } ], "active": true, "$or": [ {"type.conceptId": 116680003 }, {"type.conceptId": "116680003" } ]}}};
     if (req.query["form"]) {
         if (req.query["form"] == "inferred") {
-            query = {"relationships": {"$elemMatch": {"target.conceptId": idParam, "active": true, "type.conceptId": 116680003}}};
+            query = {"relationships": {"$elemMatch": {"$or": [ {"target.conceptId": idParam }, {"target.conceptId": idParamStr } ], "active": true, "$or": [ {"type.conceptId": 116680003 }, {"type.conceptId": "116680003" } ]}}};
         }
         if (req.query["form"] == "stated") {
-            query = {"statedRelationships": {"$elemMatch": {"target.conceptId": idParam, "active": true, "type.conceptId": 116680003}}};
+            query = {"statedRelationships": {"$elemMatch": {"$or": [ {"target.conceptId": idParam }, {"target.conceptId": idParamStr } ], "active": true, "$or": [ {"type.conceptId": 116680003 }, {"type.conceptId": "116680003" } ]}}};
         }
 
     }
@@ -190,7 +194,8 @@ router.get('/:db/:collection/concepts/:sctid/children?', function(req, res) {
 
 router.get('/:db/:collection/concepts/:sctid/references?', function(req, res) {
     var idParam = parseInt(req.params.sctid);
-    var query = {"relationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}};
+    var idParamStr = req.params.sctid;
+    var query = {"relationships": {"$elemMatch": {"$or": [ {"target.conceptId": idParam }, {"target.conceptId": idParamStr } ], "active": true}}};
     var options = req.params.options || {};
     var test = ['limit', 'sort', 'fields', 'skip', 'hint', 'explain', 'snapshot', 'timeout'];
     for (o in req.query) {
@@ -201,13 +206,13 @@ router.get('/:db/:collection/concepts/:sctid/references?', function(req, res) {
 
     if (req.query["form"]) {
         if (req.query["form"] == "inferred") {
-            query = {"relationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}};
+            query = {"relationships": {"$elemMatch": {"$or": [ {"target.conceptId": idParam }, {"target.conceptId": idParamStr } ], "active": true}}};
 //            options["relationships"] = {"$elemMatch": {"target.conceptId": idParam, "active": true}};
-            options["fields"] = {"relationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}, "defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "effectiveTime": 1, "module": 1};
+            options["fields"] = {"relationships": {"$elemMatch": {"$or": [ {"target.conceptId": idParam }, {"target.conceptId": idParamStr } ], "active": true}}, "defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "effectiveTime": 1, "module": 1};
         }
         if (req.query["form"] == "stated") {
-            query = {"statedRelationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}};
-            options["fields"] = {"statedRelationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}, "defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "effectiveTime": 1, "module": 1};
+            query = {"statedRelationships": {"$elemMatch": {"$or": [ {"target.conceptId": idParam }, {"target.conceptId": idParamStr } ], "active": true}}};
+            options["fields"] = {"statedRelationships": {"$elemMatch": {"$or": [ {"target.conceptId": idParam }, {"target.conceptId": idParamStr } ], "active": true}}, "defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "effectiveTime": 1, "module": 1};
         }
     }
 
@@ -235,7 +240,8 @@ router.get('/:db/:collection/concepts/:sctid/references?', function(req, res) {
 
 router.get('/:db/:collection/concepts/:sctid/parents?', function(req, res) {
     var idParam = parseInt(req.params.sctid);
-    var query = {'conceptId': idParam};
+    var idParamStr = req.params.sctid;
+    var query = {"$or": [ {"conceptId": idParam }, {"conceptId": idParamStr } ]};
     var options = req.params.options || {};
     var test = ['limit', 'sort', 'fields', 'skip', 'hint', 'explain', 'snapshot', 'timeout'];
     for (o in req.query) {
@@ -254,20 +260,20 @@ router.get('/:db/:collection/concepts/:sctid/parents?', function(req, res) {
                         if (req.query["form"]) {
                             if (req.query["form"] == "inferred" && docs[0].relationships) {
                                 docs[0].relationships.forEach(function(rel) {
-                                    if (rel.active == true && rel.type.conceptId == 116680003) {
+                                    if (rel.active == true && (rel.type.conceptId == 116680003 || rel.type.conceptId == "116680003")) {
                                         result.push({conceptId: rel.target.conceptId, defaultTerm: rel.target.defaultTerm, definitionStatus: rel.target.definitionStatus, module: rel.target.module});
                                     }
                                 });
                             } else if (req.query["form"] == "stated" && docs[0].statedRelationships) {
                                 docs[0].statedRelationships.forEach(function(rel) {
-                                    if (rel.active == true && rel.type.conceptId == 116680003) {
+                                    if (rel.active == true && (rel.type.conceptId == 116680003 || rel.type.conceptId == "116680003")) {
                                         result.push({conceptId: rel.target.conceptId, defaultTerm: rel.target.defaultTerm, definitionStatus: rel.target.definitionStatus, module: rel.target.module});
                                     }
                                 });
                             }
                         } else if (docs[0].relationships) {
                             docs[0].relationships.forEach(function(rel) {
-                                if (rel.active == true && rel.type.conceptId == 116680003) {
+                                if (rel.active == true && (rel.type.conceptId == 116680003 || rel.type.conceptId == "116680003")) {
                                     result.push({conceptId: rel.target.conceptId, defaultTerm: rel.target.defaultTerm, definitionStatus: rel.target.definitionStatus, module: rel.target.module});
                                 }
                             });
@@ -286,7 +292,8 @@ router.get('/:db/:collection/concepts/:sctid/parents?', function(req, res) {
 
 router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
     var idParam = parseInt(req.params.sctid);
-    var query = {"memberships": {"$elemMatch": {"refset.conceptId": idParam, "active": true}}};
+    var idParamStr = req.params.sctid;
+    var query = {"memberships": {"$elemMatch": {"$or": [ {"refset.conceptId": idParam }, {"refset.conceptId": idParamStr } ], "active": true}}};
 
     var options = req.params.options || {};
     var test = ['limit', 'sort', 'fields', 'skip', 'hint', 'explain', 'snapshot', 'timeout'];
@@ -322,6 +329,7 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
 
 router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
     var idParam = null;
+    var idParamStr = null;
     var query = {'descriptions.descriptionId': 0};
     var searchMode = "regex";
     var searchTerm = null;
@@ -336,7 +344,8 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
     var start = Date.now();
     if (req.params.sctid) {
         idParam = parseInt(req.params.sctid);
-        query = {'descriptionId': idParam};
+        idParamStr = req.params.sctid;
+        query = {"$or": [ {"descriptionId": idParam }, {"descriptionId": idParamStr } ]};
     } else {
         if (req.query["query"]) {
             if (!req.query["statusFilter"]) {
@@ -447,7 +456,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                     result.filters.refsetId = {};
                     if (docs && docs.length > 0) {
                         result.details = {'total': docs.length, 'skipTo': skipTo, 'returnLimit': returnLimit};
-                        if (idParam == docs[0].descriptionId) {
+                        if (idParam == docs[0].descriptionId || idParamStr == docs[0].descriptionId) {
                             result.matches.push({"term": docs[0].term, "conceptId": docs[0].conceptId, "active": docs[0].active, "conceptActive": docs[0].conceptActive, "fsn": docs[0].fsn, "module": docs[0].module});
                             var duration = Date.now() - start;
                             logger.log('info', 'Search for ' + searchTerm + ' result = ' + docs.length, {searchTerm: searchTerm, database: req.params.db, collection: req.params.collection, searchMode: searchMode, language: lang, statusFilter: statusFilter, matches: docs.length, duration: duration, dbduration: dbDuration});
