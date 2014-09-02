@@ -326,7 +326,6 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
                 });
             });
         } else {
-            options.limit = 100;
             collection.find(query, options, function (err, cursor) {
                 cursor.toArray(function (err, docs) {
                     var result = {};
