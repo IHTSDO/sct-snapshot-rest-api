@@ -326,11 +326,12 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
                 });
             });
         } else {
+            options.limit = 100;
             collection.find(query, options, function (err, cursor) {
                 cursor.toArray(function (err, docs) {
                     var result = {};
                     result.members = [];
-                    result.details = {'total': total, 'refsetId': idParam };
+                    result.details = {'total': options.limit, 'refsetId': idParam };
                     if (docs && docs.length > 0) {
                         docs.forEach(function (doc) {
                             result.members.push(doc);
