@@ -498,6 +498,8 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                             //logger.log('info', "Sorted in = " + (Date.now() - start));
                             var count = 0;
 
+                            var conceptIds = [];
+
                             matchedDescriptions.forEach(function(doc) {
                                 var refsetOk = false;
                                 if (doc.refsetIds){
@@ -510,36 +512,40 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                                 if (semanticFilter == "none" || (semanticFilter == doc.semanticTag)) {
                                     if (langFilter == "none" || (langFilter == doc.lang)) {
                                         if (moduleFilter == "none" || (moduleFilter == doc.module)) {
-                                            if (refsetFilter == "none" || refsetOk){
-                                                if (count >= skipTo && count < (skipTo + returnLimit)) {
-                                                    result.matches.push({"term": doc.term, "conceptId": doc.conceptId, "active": doc.active, "conceptActive": doc.conceptActive, "fsn": doc.fsn, "module": doc.module, "definitionStatus": doc.definitionStatus});
-                                                }
-                                                if (result.filters.semTag.hasOwnProperty(doc.semanticTag)) {
-                                                    result.filters.semTag[doc.semanticTag] = result.filters.semTag[doc.semanticTag] + 1;
-                                                } else {
-                                                    result.filters.semTag[doc.semanticTag] = 1;
-                                                }
-                                                if (result.filters.lang.hasOwnProperty(doc.lang)) {
-                                                    result.filters.lang[doc.lang] = result.filters.lang[doc.lang] + 1;
-                                                } else {
-                                                    result.filters.lang[doc.lang] = 1;
-                                                }
-                                                if (result.filters.module.hasOwnProperty(doc.module)) {
-                                                    result.filters.module[doc.module] = result.filters.module[doc.module] + 1;
-                                                } else {
-                                                    result.filters.module[doc.module] = 1;
-                                                }
-                                                if (doc.refsetIds){
-                                                    doc.refsetIds.forEach(function (refset){
-                                                        if (result.filters.refsetId.hasOwnProperty(refset)){
-                                                            result.filters.refsetId[refset] = result.filters.refsetId[refset] + 1;
-                                                        }else{
-                                                            result.filters.refsetId[refset] = 1;
-                                                        }
-                                                    });
-                                                }
+                                            if (refsetFilter == "none" || refsetOk) {
+                                                if (req.query["groupByConcept"] && conceptIds.indexOf(doc.conceptId) == -1) {
+                                                    conceptIds.push(doc.conceptId);
+
+                                                    if (count >= skipTo && count < (skipTo + returnLimit)) {
+                                                        result.matches.push({"term": doc.term, "conceptId": doc.conceptId, "active": doc.active, "conceptActive": doc.conceptActive, "fsn": doc.fsn, "module": doc.module, "definitionStatus": doc.definitionStatus});
+                                                    }
+                                                    if (result.filters.semTag.hasOwnProperty(doc.semanticTag)) {
+                                                        result.filters.semTag[doc.semanticTag] = result.filters.semTag[doc.semanticTag] + 1;
+                                                    } else {
+                                                        result.filters.semTag[doc.semanticTag] = 1;
+                                                    }
+                                                    if (result.filters.lang.hasOwnProperty(doc.lang)) {
+                                                        result.filters.lang[doc.lang] = result.filters.lang[doc.lang] + 1;
+                                                    } else {
+                                                        result.filters.lang[doc.lang] = 1;
+                                                    }
+                                                    if (result.filters.module.hasOwnProperty(doc.module)) {
+                                                        result.filters.module[doc.module] = result.filters.module[doc.module] + 1;
+                                                    } else {
+                                                        result.filters.module[doc.module] = 1;
+                                                    }
+                                                    if (doc.refsetIds) {
+                                                        doc.refsetIds.forEach(function (refset) {
+                                                            if (result.filters.refsetId.hasOwnProperty(refset)) {
+                                                                result.filters.refsetId[refset] = result.filters.refsetId[refset] + 1;
+                                                            } else {
+                                                                result.filters.refsetId[refset] = 1;
+                                                            }
+                                                        });
+                                                    }
 //                                                if (result.filters.refsetId.hasOwnProperty(doc))
-                                                count = count + 1;
+                                                    count = count + 1;
+                                                }
                                             }
                                         }
                                     }
