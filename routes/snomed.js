@@ -513,7 +513,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
                                     if (langFilter == "none" || (langFilter == doc.lang)) {
                                         if (moduleFilter == "none" || (moduleFilter == doc.module)) {
                                             if (refsetFilter == "none" || refsetOk) {
-                                                if (req.query["groupByConcept"] && conceptIds.indexOf(doc.conceptId) == -1) {
+                                                if (!req.query["groupByConcept"] || conceptIds.indexOf(doc.conceptId) == -1) {
                                                     conceptIds.push(doc.conceptId);
 
                                                     if (count >= skipTo && count < (skipTo + returnLimit)) {
