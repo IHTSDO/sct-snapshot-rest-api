@@ -153,13 +153,13 @@ router.get('/:db/:collection/concepts/:sctid/relationships?', function(req, res)
 router.get('/:db/:collection/concepts/:sctid/children?', function(req, res) {
     var idParam = parseInt(req.params.sctid);
     var idParamStr = req.params.sctid;
-    var query = {"relationships": {"$elemMatch": {"$or": [ {"target.conceptId": idParam }, {"target.conceptId": idParamStr } ], "active": true, "$or": [ {"type.conceptId": 116680003 }, {"type.conceptId": "116680003" } ]}}};
+    var query = {"relationships": {"$elemMatch": {"$or": [ {"target.conceptId": idParam, "type.conceptId": 116680003 }, {"target.conceptId": idParamStr , "type.conceptId": "116680003"} ], "active": true}}};
     if (req.query["form"]) {
         if (req.query["form"] == "inferred") {
-            query = {"relationships": {"$elemMatch": {"$or": [ {"target.conceptId": idParam }, {"target.conceptId": idParamStr } ], "active": true, "$or": [ {"type.conceptId": 116680003 }, {"type.conceptId": "116680003" } ]}}};
+            query = {"relationships": {"$elemMatch": {"$or": [ {"target.conceptId": idParam, "type.conceptId": 116680003 }, {"target.conceptId": idParamStr , "type.conceptId": "116680003"} ], "active": true }}};
         }
         if (req.query["form"] == "stated") {
-            query = {"statedRelationships": {"$elemMatch": {"$or": [ {"target.conceptId": idParam }, {"target.conceptId": idParamStr } ], "active": true, "$or": [ {"type.conceptId": 116680003 }, {"type.conceptId": "116680003" } ]}}};
+            query = {"statedRelationships": {"$elemMatch": {"$or": [ {"target.conceptId": idParam, "type.conceptId": 116680003 }, {"target.conceptId": idParamStr , "type.conceptId": "116680003"} ], "active": true }}};
         }
 
     }
