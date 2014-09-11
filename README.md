@@ -26,7 +26,7 @@ IMPORTANT: This API needs to have local access to the MongoDB server where the t
 Access the server
 -----------------
 
-The server will start listening automatically on port 3000. You can test a rest call by goint to a Web Browsera and navigating to this link:
+The server will start listening automatically on port 3000. You can test a REST call by goint to a Web Browser and navigating to this link:
 
 http://127.0.0.1:3000/snomed/en-edition/v20140731/concepts/404684003
 
