@@ -29,11 +29,11 @@ var config = {"db": {
 
 var app = module.exports.app = express();
 
-try {
-    config = JSON.parse(fs.readFileSync(process.cwd() + "/config.json"));
-} catch (e) {
-    // ignore
-}
+//try {
+//    config = JSON.parse(fs.readFileSync(process.cwd() + "/config.json"));
+//} catch (e) {
+//    console.log("config not found");
+//}
 
 module.exports.config = config;
 
