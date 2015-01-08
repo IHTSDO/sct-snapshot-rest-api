@@ -304,37 +304,16 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
     }
     options["fields"] = {"defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1, "isLeafInferred": 1,"isLeafStated": 1};
     performMongoDbRequest(req.params.db, function(db) {
-        var collection = db.collection(req.params.collection);
-        if (req.query["paginate"]) {
-            collection.find(query, {}).count(function (err, total) {
-                collection.find(query, options).sort({defaultTerm: 1}, function (err, cursor) {
-                    cursor.toArray(function (err, docs) {
-                        var result = {};
-                        result.members = [];
-                        result.details = {'total': total, 'refsetId': idParam };
-                        if (docs && docs.length > 0) {
-                            docs.forEach(function (doc) {
-                                result.members.push(doc);
-                            });
-                            res.status(200);
-                            res.send(result);
-                        } else {
-                            res.status(200);
-                            res.send(result);
-                        }
-                    });
-                });
-            });
-        } else {
+    var collection = db.collection(req.params.collection);
+        collection.find(query, {}).count(function (err, total) {
+            options.sort = {defaultTerm: 1};
             collection.find(query, options, function (err, cursor) {
                 cursor.toArray(function (err, docs) {
                     var result = {};
                     result.members = [];
-                    result.details = {'total': options.limit, 'refsetId': idParam };
+                    result.details = {'total': total, 'refsetId': idParam };
                     if (docs && docs.length > 0) {
-                        docs.forEach(function (doc) {
-                            result.members.push(doc);
-                        });
+                        result.members = docs;
                         res.status(200);
                         res.send(result);
                     } else {
@@ -343,8 +322,7 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
                     }
                 });
             });
-        }
-
+        });
     });
 });
 
