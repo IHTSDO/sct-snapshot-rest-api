@@ -306,7 +306,7 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
     performMongoDbRequest(req.params.db, function(db) {
         var collection = db.collection(req.params.collection);
         if (req.query["paginate"]) {
-            collection.find(query, options).count(function (err, total) {
+            collection.find(query, {}).count(function (err, total) {
                 collection.find(query, options).sort({defaultTerm: 1}, function (err, cursor) {
                     cursor.toArray(function (err, docs) {
                         var result = {};
