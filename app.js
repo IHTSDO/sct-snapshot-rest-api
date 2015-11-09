@@ -6,9 +6,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
 var fs = require('fs');
+var pidFile = process.env.PID_FILE || "/var/sct-snapshot-rest-api.pid";
 
 
-fs.writeFile("/var/run/sct-snapshot-rest-api.pid", process.pid);
+fs.writeFile(pidFile, process.pid);
 
 var routes = require('./routes/index');
 var snomed = require('./routes/snomed');
