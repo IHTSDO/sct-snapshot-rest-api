@@ -22,6 +22,12 @@ sct-snapshot-rest-api: $ node app.js
 ```
 
 IMPORTANT: This API needs to have local access to the MongoDB server where the terminology data has been loaded into.
+The data for the mongo instance is obtained via the National Library of Medicine (info in www.ihtsdo.org).
+
+Once you have the SNOMED CT Files in RF2 format (standard release files) you can create a JSON file for importing into Mongo using this project:
+
+https://github.com/IHTSDO/rf2-to-json-conversion
+
 
 Access the server
 -----------------
@@ -38,5 +44,15 @@ REST API docs
 Browse the interactive documentation of the REST API here:
 
 http://docs.sctsnapshotrestapi.apiary.io
+
+NOTES:
+-------------
+The server will attempt to write a pid file at:
+/var/sct-snapshot-rest-api.pid
+to change this location please set the environment variable
+PID_FILE
+for example (windows):
+set PID_FILE=c:\temp\sct-snapshot-rest-api.pid
+
 
 
