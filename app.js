@@ -15,6 +15,7 @@ var routes = require('./routes/index');
 var snomed = require('./routes/snomed');
 var util = require('./routes/util');
 var server = require('./routes/server');
+var expressions = require('./routes/expressions');
 
 var accessControlConfig = {
     "allowOrigin": "*",
@@ -67,6 +68,7 @@ app.use('/', routes);
 app.use('/snomed', snomed);
 app.use('/util', util);
 app.use('/server', server);
+app.use("/expressions", expressions);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
