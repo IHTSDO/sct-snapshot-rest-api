@@ -178,7 +178,7 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         if (typeof computer[node.rule] == "undefined") {
             exitWithError("Unsupported rule: " + node.rule);
         } else {
-           computer[node.rule](node, ast, queryPart);
+            computer[node.rule](node, ast, queryPart);
         }
     };
     computer.expressionConstraint = function(node, ast, queryPart) {
@@ -230,9 +230,12 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         if (children.length != 3) {
             exitWithError("Problem with exclusionExpressionConstraint: " + node.content);
         }
-        var not = {$not:[]};
-        computer.resolve(children[0], ast, not["$not"]);
-        computer.resolve(children[2], ast, not["$not"]);
+        //var excl = {$and:[]};
+        var excl = queryPart;
+        computer.resolve(children[0], ast, excl);
+        var nor = [];
+        computer.resolve(children[2], ast, nor);
+        var not = {$nor: nor};
         queryPart.push(not);
     };
     computer.disjunctionExpressionConstraint = function(node, ast, queryPart) {
@@ -387,31 +390,6 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
             computer.resolve(condition.targetNode, ast, or["$or"]);
         }
         queryPart.push(and);
-        // Apply comparison, cardinality and reverse
-        //var querySegment;
-        //if (form == "stated") {
-        //    querySegment = {"statedRelationships": { $elemMatch: {}}};
-        //    if (attributeNameResults) {
-        //        querySegment.statedRelationships["$elemMatch"]["type.conceptId"] = {$in: attributeNameResults.array()};
-        //    }
-        //    if (valueResults) {
-        //        querySegment.statedRelationships["$elemMatch"]["target.conceptId"] = {$in: valueResults.array()};
-        //    }
-        //} else {
-        //    querySegment = {"relationships": { $elemMatch: {}}};
-        //    if (attributeNameResults) {
-        //        querySegment.relationships["$elemMatch"]["type.conceptId"] = {$in: attributeNameResults.array()};
-        //    }
-        //    if (valueResults) {
-        //        querySegment.relationships["$elemMatch"]["target.conceptId"] = {$in: valueResults.array()};
-        //    }
-        //    //querySegment = {"relationships": { $elemMatch: {"type.conceptId": {$in: attributeNameResults.array()},"target.conceptId": {$in: valueResults.array()}}}};
-        //}
-        //var docs = syncDatabase.getCollection(collectionName).find(querySegment,{conceptId:1}, {}).toArray();
-        //docs.forEach(function(doc){
-        //    result.add(doc.conceptId);
-        //});
-        //return result;
     };
     var mongoQuery = {$and:[]};
     computer.resolve(root, ast,mongoQuery["$and"]);
