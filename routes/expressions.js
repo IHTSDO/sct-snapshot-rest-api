@@ -5,6 +5,7 @@ var express = require('express');
 var router = express.Router();
 var expressionsParser = require('../grammars/apg/expressionParser');
 var MongoClient = require('mongodb').MongoClient;
+var connectTimeout = require('connect-timeout');
 
 var databases = {};
 
@@ -37,7 +38,7 @@ router.post('/parse/:language', function (req, res) {
     res.send(results);
 });
 
-router.post('/:db/:collection/execute/:language', function (req, res) {
+router.post('/:db/:collection/execute/:language', connectTimeout('120s'), function (req, res) {
     var request = req.body;
     var expression = request.expression.replace(/[^\x00-\x7F]/g, "");
     var language = req.param("language");
@@ -212,6 +213,9 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
             // Not supported right now
         } else if (node.condition.criteria == "ancestorOrSelfOf") {
             queryPart.push({"conceptId": node.condition.conceptId});
+            // Not supported right now
+        } else if (node.condition.criteria == "isMemberOf") {
+            queryPart.push({"memberships.refset.conceptId": node.condition.conceptId});
             // Not supported right now
         }
     };
