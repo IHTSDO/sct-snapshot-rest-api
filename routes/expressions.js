@@ -191,8 +191,7 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         node.condition = readSimpleExpressionConstraint(node, ast);
         if (node.condition.memberOf) {
             queryPart.push({"memberships.refset.conceptId": node.condition.conceptId});
-        }
-        if (node.condition.criteria == "self") {
+        } else if (node.condition.criteria == "self") {
             queryPart.push({"conceptId": node.condition.conceptId});
         } else if (node.condition.criteria == "descendantOf") {
             if (form == "stated") {
@@ -213,9 +212,6 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
             // Not supported right now
         } else if (node.condition.criteria == "ancestorOrSelfOf") {
             queryPart.push({"conceptId": node.condition.conceptId});
-            // Not supported right now
-        } else if (node.condition.criteria == "isMemberOf") {
-            queryPart.push({"memberships.refset.conceptId": node.condition.conceptId});
             // Not supported right now
         }
     };
