@@ -48,6 +48,13 @@ router.post('/:db/:collection/execute/:language', connectTimeout('120s'), functi
         paserResponse: results,
         computeResponse: {}
     };
+    if (!results.validation) {
+        if (expression.charAt(0) == "(" && expression.charAt(expression.length-1) == ")") {
+            expression = expression.substr(1, expression.length - 2);
+            results = expressionsParser.parse(expression, language);
+            responseData.paserResponse = results;
+        }
+    }
     if (results.validation) {
         // Execute query
         computeGrammarQuery3(results, request.form, req.params.db, collectionName, request.skip, request.limit, function(err, results) {
