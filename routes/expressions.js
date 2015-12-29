@@ -391,17 +391,18 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         //TODO: update for nested definitions in attributes
         if (condition.targetNode) {
             console.log(JSON.stringify(condition.targetNode));
-            elemMatch.target = {};
-            if (condition.targetNode.condition.criteria == "descendantOrSelfOf") {
-                elemMatch.target.conceptId = condition.targetNode.condition.conceptId;
-                elemMatch.targetInferredAncestors = condition.targetNode.condition.conceptId;
-            } else if (condition.targetNode.condition.criteria == "descendantOf") {
-                elemMatch.targetInferredAncestors = condition.targetNode.condition.conceptId;
-            } else {
-                elemMatch.target.conceptId = condition.targetNode.condition.conceptId;
+            if (condition.targetNode.rule == "simpleExpressionConstraint") {
+                var targetExp = readSimpleExpressionConstraint(node, ast);
+                elemMatch.target = {};
+                if (targetExp.criteria == "descendantOrSelfOf") {
+                    elemMatch.target.conceptId = targetExp.conceptId;
+                    elemMatch.targetInferredAncestors = targetExp.conceptId;
+                } else if (targetExp.criteria == "descendantOf") {
+                    elemMatch.targetInferredAncestors = targetExp.conceptId;
+                } else {
+                    elemMatch.target.conceptId = targetExp.conceptId;
+                }
             }
-        } else {
-            elemMatch.target.conceptId = condition.targetNode.condition.conceptId;
         }
     };
 
