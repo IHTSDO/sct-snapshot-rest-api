@@ -94,6 +94,8 @@ var getRootNode = function(tree) {
 };
 var getChildren = function(node, tree) {
     var result = [];
+    if (!node) return result;
+
     tree.forEach(function(loopNode) {
         var goodChildren = true;
 
