@@ -223,7 +223,7 @@ var createTree = function(parserTrace, input) {
     for (i = 0; i < max; i += 1) {
         var j = parserTrace.parseCircular.replay();
         line = parserTrace.lines[j];
-        if (line.state == APG_MATCH && line.opType == RNM &&
+        if (line && line.state == APG_MATCH && line.opType == RNM &&
             meaningfulTokens.indexOf(parserTrace.rules[line.ruleIndex].rule) > -1) {
             tree.push({
                 depth: line.depth,
