@@ -128,12 +128,14 @@ var getChildren = function(node, tree) {
 };
 
 var getTreeHtml = function(node, tree, html) {
-    var tab = new Array((node.depth*2) + 1).join( "-" );
-    html+=node.depth + " " + tab + "<b><span class='text-primary'>" + node.rule + "</span></b>" + "&nbsp;:&nbsp;" + "<span class='text-success'>" + node.content + "</span>" + "<br>";
-    var children = getChildren(node, tree);
-    children.forEach(function(loopChild) {
-        html = getTreeHtml(loopChild, tree, html);
-    });
+    if (node) {
+        var tab = new Array((node.depth*2) + 1).join( "-" );
+        html+=node.depth + " " + tab + "<b><span class='text-primary'>" + node.rule + "</span></b>" + "&nbsp;:&nbsp;" + "<span class='text-success'>" + node.content + "</span>" + "<br>";
+        var children = getChildren(node, tree);
+        children.forEach(function(loopChild) {
+            html = getTreeHtml(loopChild, tree, html);
+        });
+    }
     return html;
 };
 
