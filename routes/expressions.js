@@ -401,15 +401,15 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         if (condition.targetNode) {
             if (condition.targetNode.rule == "simpleExpressionConstraint") {
                 var targetExp = readSimpleExpressionConstraint(condition.targetNode, ast);
-                console.log(JSON.stringify(targetExp));
-                if (targetExp.criteria == "descendantOrSelfOf") {
+                //console.log(JSON.stringify(targetExp));
+                if (targetExp.memberOf) {
+                    elemMatch["targetMemberships"] = targetExp.conceptId;
+                } else if (targetExp.criteria == "descendantOrSelfOf") {
                     elemMatch["$or"] = [];
                     elemMatch["$or"].push({"target.conceptId" : targetExp.conceptId});
                     elemMatch["$or"].push({"targetInferredAncestors" : targetExp.conceptId});
                 } else if (targetExp.criteria == "descendantOf") {
                     elemMatch["targetInferredAncestors"] = targetExp.conceptId;
-                } else if (targetExp.criteria == "memberOf") {
-                    elemMatch["targetMemberships"] = targetExp.conceptId;
                 } else {
                     elemMatch["target.conceptId"] = targetExp.conceptId;
                 }
