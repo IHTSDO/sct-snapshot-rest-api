@@ -261,10 +261,10 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         if (children.length != 2) {
             exitWithError("Problem with refinedExpressionConstraint: " + node.content);
         }
-        var and = {$and:[]};
-        computer.resolve(children[0], ast, and["$and"]);
-        computer.resolve(children[1], ast, and["$and"]);
-        queryPart.push(and);
+        //var and = {$and:[]};
+        computer.resolve(children[0], ast, queryPart);
+        computer.resolve(children[1], ast, queryPart);
+        //queryPart.push(and);
     };
     computer.refinement = function(node, ast, queryPart) {
         var children = ast.getChildren(node, ast.nodes);
@@ -303,11 +303,11 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         queryPart.push(and);
     };
     computer.subRefinement = function(node, ast, queryPart) {
-        var or = {$or:[]};
+        //var or = {$or:[]};
         ast.getChildren(node, ast.nodes).forEach(function(child) {
-            computer.resolve(child, ast, or["$or"]);
+            computer.resolve(child, ast, queryPart);
         });
-        queryPart.push(or);
+        //queryPart.push(or);
     };
     computer.attributeSet = function(node, ast, queryPart) {
         var children = ast.getChildren(node, ast.nodes);
@@ -346,13 +346,13 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         queryPart.push(or);
     };
     computer.subAttributeSet = function(node, ast, queryPart) {
-        var or = {$or:[]};
+        //var or = {$or:[]};
         ast.getChildren(node, ast.nodes).forEach(function(child) {
             if (child.rule == "attribute" || child.rule == "attributeSet") {
-                computer.resolve(child, ast, or["$or"]);
+                computer.resolve(child, ast, queryPart);
             }
         });
-        queryPart.push(or);
+        //queryPart.push(or);
     };
     computer.attributeGroup = function(node, ast, queryPart) {
         //TODO: Implement cardinality
@@ -365,32 +365,43 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         queryPart.push(or);
     };
     computer.attribute = function(node, ast, queryPart) {
-        var and = {$and:[]};
+        var elemMatch = {};
         var condition = readAttribute(node, ast);
         // Process attribute name
         var attributeNameResults = false;
         if (condition.typeId != "*") {
             if (condition.attributeOperator) {
-                var querySegment = {statedAncestors: condition.typeId};
                 if (condition.attributeOperator == "descendantOrSelfOf") {
-                    //{"relationships.type.conceptId":"' + relType
-                    and["$and"].push({$or:[{"relationships.type.conceptId":condition.typeId},{"relationships.typeInferredAncestors":condition.typeId}]});
+                    elemMatch.type.conceptId = condition.typeId;
+                    elemMatch.typeInferredAncestors = condition.typeId;
                 } else {
-                    and["$and"].push({"relationships.type.conceptId":condition.typeId});
+                    elemMatch.type.conceptId = condition.typeId;
                 }
             } else {
-                and["$and"].push({"relationships.type.conceptId":condition.typeId});
+                elemMatch.type.conceptId = condition.typeId;
             }
         }
         // Process attribute value
-        if (condition.targetNode.content != "*") {
-            var or = {$or:[]};
-            var targetPart = {"relationships.target":or};
-            and["$and"].push(targetPart);
-            computer.resolve(condition.targetNode, ast, or["$or"]);
+        //if (condition.targetNode.content != "*") {
+        //    var temp = [];
+        //    computer.resolve(condition.targetNode, ast, temp;
+        //}
+        //queryPart.push({relationships: {"$elemMatch": elemMatch}});
+        //TODO: update for nested definitions in attributes
+        if (condition.targetNode) {
+            if (condition.targetNode.condition.criteria == "descendantOrSelfOf") {
+                elemMatch.target.conceptId = condition.targetNode.condition.conceptId;
+                elemMatch.targetInferredAncestors = condition.targetNode.condition.conceptId;
+            } else if (condition.targetNode.condition.criteria == "descendantOf") {
+                elemMatch.targetInferredAncestors = condition.targetNode.condition.conceptId;
+            } else {
+                elemMatch.target.conceptId = condition.targetNode.condition.conceptId;
+            }
+        } else {
+            elemMatch.target.conceptId = condition.targetNode.condition.conceptId;
         }
-        queryPart.push(and);
     };
+
     var mongoQuery = {$and:[]};
     computer.resolve(root, ast,mongoQuery["$and"]);
     console.log(JSON.stringify(mongoQuery));
