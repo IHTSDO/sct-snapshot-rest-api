@@ -370,16 +370,15 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         // Process attribute name
         var attributeNameResults = false;
         if (condition.typeId != "*") {
-            elemMatch.type = {};
             if (condition.attributeOperator) {
                 if (condition.attributeOperator == "descendantOrSelfOf") {
-                    elemMatch.type.conceptId = condition.typeId;
-                    elemMatch.typeInferredAncestors = condition.typeId;
+                    elemMatch["type.conceptId"] = condition.typeId;
+                    elemMatch["typeInferredAncestors"] = condition.typeId;
                 } else {
-                    elemMatch.type.conceptId = condition.typeId;
+                    elemMatch["type.conceptId"] = condition.typeId;
                 }
             } else {
-                elemMatch.type.conceptId = condition.typeId;
+                elemMatch["type.conceptId"] = condition.typeId;
             }
         }
         // Process attribute value
@@ -390,17 +389,15 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         //queryPart.push({relationships: {"$elemMatch": elemMatch}});
         //TODO: update for nested definitions in attributes
         if (condition.targetNode) {
-            console.log(JSON.stringify(condition.targetNode));
             if (condition.targetNode.rule == "simpleExpressionConstraint") {
                 var targetExp = readSimpleExpressionConstraint(condition.targetNode, ast);
-                elemMatch.target = {};
                 if (targetExp.criteria == "descendantOrSelfOf") {
-                    elemMatch.target.conceptId = targetExp.conceptId;
-                    elemMatch.targetInferredAncestors = targetExp.conceptId;
+                    elemMatch["target.conceptId"] = targetExp.conceptId;
+                    elemMatch["targetInferredAncestors"] = targetExp.conceptId;
                 } else if (targetExp.criteria == "descendantOf") {
-                    elemMatch.targetInferredAncestors = targetExp.conceptId;
+                    elemMatch["targetInferredAncestors"] = targetExp.conceptId;
                 } else {
-                    elemMatch.target.conceptId = targetExp.conceptId;
+                    elemMatch["target.conceptId"] = targetExp.conceptId;
                 }
             }
         }
