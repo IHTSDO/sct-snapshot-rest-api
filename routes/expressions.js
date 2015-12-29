@@ -401,6 +401,7 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         if (condition.targetNode) {
             if (condition.targetNode.rule == "simpleExpressionConstraint") {
                 var targetExp = readSimpleExpressionConstraint(condition.targetNode, ast);
+                console.log(JSON.stringify(targetExp));
                 if (targetExp.criteria == "descendantOrSelfOf") {
                     elemMatch["$or"] = [];
                     elemMatch["$or"].push({"target.conceptId" : targetExp.conceptId});
