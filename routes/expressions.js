@@ -372,8 +372,9 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         if (condition.typeId != "*") {
             if (condition.attributeOperator) {
                 if (condition.attributeOperator == "descendantOrSelfOf") {
-                    elemMatch["type.conceptId"] = condition.typeId;
-                    elemMatch["typeInferredAncestors"] = condition.typeId;
+                    elemMatch["$or"] = [];
+                    elemMatch["$or"].push({"type.conceptId" : condition.conceptId});
+                    elemMatch["$or"].push({"typeInferredAncestors" : condition.conceptId});
                 } else {
                     elemMatch["type.conceptId"] = condition.typeId;
                 }
@@ -392,8 +393,9 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
             if (condition.targetNode.rule == "simpleExpressionConstraint") {
                 var targetExp = readSimpleExpressionConstraint(condition.targetNode, ast);
                 if (targetExp.criteria == "descendantOrSelfOf") {
-                    elemMatch["target.conceptId"] = targetExp.conceptId;
-                    elemMatch["targetInferredAncestors"] = targetExp.conceptId;
+                    elemMatch["$or"] = [];
+                    elemMatch["$or"].push({"target.conceptId" : targetExp.conceptId});
+                    elemMatch["$or"].push({"targetInferredAncestors" : targetExp.conceptId});
                 } else if (targetExp.criteria == "descendantOf") {
                     elemMatch["targetInferredAncestors"] = targetExp.conceptId;
                 } else {
