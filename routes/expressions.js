@@ -390,6 +390,7 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         //queryPart.push({relationships: {"$elemMatch": elemMatch}});
         //TODO: update for nested definitions in attributes
         if (condition.targetNode) {
+            console.log(JSON.stringify(condition.targetNode));
             elemMatch.target = {};
             if (condition.targetNode.condition.criteria == "descendantOrSelfOf") {
                 elemMatch.target.conceptId = condition.targetNode.condition.conceptId;
