@@ -403,7 +403,10 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
                 }
             }
         }
-        queryPart.push({relationships: {"$elemMatch": elemMatch}});
+        if (Object.keys(elemMatch).length > 0) {
+            elemMatch["active"] = true;
+            queryPart.push({relationships: {"$elemMatch": elemMatch}});
+        }
     };
 
     var mongoQuery = {$and:[]};
