@@ -375,6 +375,8 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
                     elemMatch["$or"] = [];
                     elemMatch["$or"].push({"type.conceptId" : condition.conceptId});
                     elemMatch["$or"].push({"typeInferredAncestors" : condition.conceptId});
+                } else if (condition.attributeOperator == "descendantOf") {
+                    elemMatch["typeInferredAncestors"] = condition.conceptId;
                 } else {
                     elemMatch["type.conceptId"] = condition.typeId;
                 }
@@ -398,6 +400,8 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
                     elemMatch["$or"].push({"targetInferredAncestors" : targetExp.conceptId});
                 } else if (targetExp.criteria == "descendantOf") {
                     elemMatch["targetInferredAncestors"] = targetExp.conceptId;
+                } else if (targetExp.criteria == "memberOf") {
+                    elemMatch["targetMemberships"] = targetExp.conceptId;
                 } else {
                     elemMatch["target.conceptId"] = targetExp.conceptId;
                 }
