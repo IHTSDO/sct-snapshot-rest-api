@@ -370,6 +370,7 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         // Process attribute name
         var attributeNameResults = false;
         if (condition.typeId != "*") {
+            elemMatch.type = {};
             if (condition.attributeOperator) {
                 if (condition.attributeOperator == "descendantOrSelfOf") {
                     elemMatch.type.conceptId = condition.typeId;
@@ -389,6 +390,7 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         //queryPart.push({relationships: {"$elemMatch": elemMatch}});
         //TODO: update for nested definitions in attributes
         if (condition.targetNode) {
+            elemMatch.target = {};
             if (condition.targetNode.condition.criteria == "descendantOrSelfOf") {
                 elemMatch.target.conceptId = condition.targetNode.condition.conceptId;
                 elemMatch.targetInferredAncestors = condition.targetNode.condition.conceptId;
