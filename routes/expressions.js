@@ -198,6 +198,9 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         node.condition = readSimpleExpressionConstraint(node, ast);
         if (node.condition.memberOf) {
             queryPart.push({"memberships.refset.conceptId": node.condition.conceptId});
+            if (node.condition.criteria && node.condition.criteria != "self") {
+                exitWithError("Unsupported condition: combined memberOf and hierarchy criteria");
+            }
         } else if (node.condition.criteria == "self") {
             queryPart.push({"conceptId": node.condition.conceptId});
         } else if (node.condition.criteria == "descendantOf") {
@@ -217,9 +220,11 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
             queryPart.push(or);
         } else if (node.condition.criteria == "ancestorOf") {
             // Not supported right now
+            exitWithError("Unsupported condition: " + condition.criteria);
         } else if (node.condition.criteria == "ancestorOrSelfOf") {
             queryPart.push({"conceptId": node.condition.conceptId});
             // Not supported right now
+            exitWithError("Unsupported condition: " + condition.criteria);
         }
     };
     computer.compoundExpressionConstraint = function(node, ast, queryPart) {
