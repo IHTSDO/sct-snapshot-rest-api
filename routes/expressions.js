@@ -220,11 +220,11 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
             queryPart.push(or);
         } else if (node.condition.criteria == "ancestorOf") {
             // Not supported right now
-            exitWithError("Unsupported condition: " + condition.criteria);
+            exitWithError("Unsupported condition: " +node. condition.criteria);
         } else if (node.condition.criteria == "ancestorOrSelfOf") {
             queryPart.push({"conceptId": node.condition.conceptId});
             // Not supported right now
-            exitWithError("Unsupported condition: " + condition.criteria);
+            exitWithError("Unsupported condition: " + node.condition.criteria);
         }
     };
     computer.compoundExpressionConstraint = function(node, ast, queryPart) {
