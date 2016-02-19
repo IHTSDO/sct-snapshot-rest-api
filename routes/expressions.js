@@ -155,6 +155,10 @@ var readAttribute = function(node, ast) {
                     condition.targetNode = valueChild;
                     //}
                 });
+            } else if (attrChild.rule == "cardinality") {
+                condition.cardinality = true;
+            } else if (attrChild.rule == "reverseFlag") {
+                condition.reverseFlag = true;
             }
         });
     }
@@ -381,6 +385,12 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         var condition = readAttribute(node, ast);
         // Process attribute name
         var attributeNameResults = false;
+        if (condition.cardinality) {
+            exitWithError("Unsupported condition: cardinality");
+        }
+        if (condition.reverseFlag) {
+            exitWithError("Unsupported condition: reverseFlag");
+        }
         if (condition.typeId != "*") {
             if (condition.attributeOperator) {
                 if (condition.attributeOperator == "descendantOrSelfOf") {
