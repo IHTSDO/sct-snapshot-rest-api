@@ -418,6 +418,8 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
                 } else {
                     elemMatch["target.conceptId"] = targetExp.conceptId;
                 }
+            } else {
+                exitWithError("Unsupported condition: Nested definitions");
             }
         }
         if (Object.keys(elemMatch).length > 0) {
