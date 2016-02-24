@@ -1,4 +1,4 @@
-SNOMED CT Snapshot REST API [![Build Status](https://travis-ci.org/IHTSDO/sct-snapshot-rest-api.svg?branch=master)](https://travis-ci.org/IHTSDO/sct-snapshot-rest-api)
+SNOMED CT Snapshot REST API [![Build Status](https://travis-ci.org/IHTSDO/sct-snapshot-rest-api.svg?branch=master)](https://travis-ci.org/IHTSDO/sct-snapshot-rest-api) [![Code Climate](https://codeclimate.com/github/IHTSDO/sct-snapshot-rest-api/badges/gpa.svg)](https://codeclimate.com/github/IHTSDO/sct-snapshot-rest-api)
 ===========================
 
 Rest API for SNOMED CT Snapshot views, powered by Node.js, Express &amp; MongoDB.
