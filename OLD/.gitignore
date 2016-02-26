@@ -15,6 +15,3 @@ node_modules
 npm-debug.log
 .idea
 .DS_Store
-public/svg2pngTemp/*.png
-public/svg2pngTemp/*.svg
-target/

@@ -1,9 +1,7 @@
-!!! 5
+doctype html
 html
   head
-    title MongoDB REST
-    link(rel: "stylesheet", href: "/stylesheets/style.css")
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    #header
-      img(src='/images/logo.png')
-    #content!= body
+    block content
