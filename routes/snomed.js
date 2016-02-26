@@ -306,6 +306,9 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
     if (!options.limit) {
         options.limit = 100;
     }
+    if (!options.skip) {
+        options.skip = 0;
+    }
     performMongoDbRequest(req.params.db, function(db) {
     var collection = db.collection(req.params.collection);
         //collection.find(query, {}).count(function (err, total) {
