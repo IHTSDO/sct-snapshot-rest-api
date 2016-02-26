@@ -308,11 +308,12 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
     }
     performMongoDbRequest(req.params.db, function(db) {
     var collection = db.collection(req.params.collection);
-        collection.find(query, {}).count(function (err, total) {
+        //collection.find(query, {}).count(function (err, total) {
+            var total = options.limit + options.skip;
             // Performance update, only sort small refsets
-            if (total < 1000) {
-                options.sort = {defaultTerm: 1};
-            }
+            //if (total < 1000) {
+            //    options.sort = {defaultTerm: 1};
+            //}
             collection.find(query, options, function (err, cursor) {
                 cursor.toArray(function (err, docs) {
                     var result = {};
@@ -328,7 +329,7 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
                     }
                 });
             });
-        });
+        //});
     });
 });
 
