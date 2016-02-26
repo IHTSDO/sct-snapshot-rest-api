@@ -310,7 +310,7 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
     var collection = db.collection(req.params.collection);
         collection.find(query, {}).count(function (err, total) {
             // Performance update, only sort small refsets
-            if (total > 1000) {
+            if (total < 1000) {
                 options.sort = {defaultTerm: 1};
             }
             collection.find(query, options, function (err, cursor) {
