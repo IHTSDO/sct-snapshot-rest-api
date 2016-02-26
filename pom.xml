@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.ihtsdo.sct</groupId>
+	<artifactId>sct-snapshot-rest-api</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<packaging>deb</packaging>
+	<name>SCT Snapshot REST API</name>
+
+	<properties>
+		<packageName>${project.artifactId}</packageName>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>external.atlassian.jgitflow</groupId>
+				<artifactId>jgitflow-maven-plugin</artifactId>
+				<version>1.0-m1.1</version>
+				<configuration>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<enableSshAgent>true</enableSshAgent>
+					<noDeploy>true</noDeploy>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resource-plugin</artifactId>
+				<version>2.3</version>
+			</plugin>
+			<plugin>
+				<artifactId>exec-maven-plugin</artifactId>
+				<groupId>org.codehaus.mojo</groupId>
+				<executions>
+					<execution>
+						<id>Install node.js modules</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>npm</executable>
+							<arguments>
+								<argument>install</argument>
+							</arguments>
+							<workingDirectory>${project.build.outputDirectory}</workingDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>jdeb</artifactId>
+				<groupId>org.vafer</groupId>
+				<version>1.2</version>
+				<!-- Customize deb package -->
+				<configuration>
+					<controlDir>${basedir}/deb/control</controlDir>
+					<snapshotExpand>true</snapshotExpand>
+					<snapshotEnv>BUILD_NUMBER</snapshotEnv>
+					<signPackage>false</signPackage>
+					<classifier>all</classifier>
+					<dataSet>
+						<data>
+							<src>${project.build.outputDirectory}</src>
+							<type>directory</type>
+							<mapper>
+								<type>perm</type>
+								<prefix>/opt/${project.artifactId}</prefix>
+							</mapper>
+						</data>
+						<data>
+							<src>${basedir}/deb/supervisor.conf</src>
+							<dst>/etc/supervisor/conf.d/${packageName}.conf</dst>
+							<type>file</type>
+							<conffile>true</conffile>
+						</data>
+						<data>
+							<src>${basedir}/deb/config.json</src>
+							<dst>/opt/${packageName}/config.json</dst>
+							<type>file</type>
+							<conffile>true</conffile>
+							<mapper>
+								<type>perm</type>
+								<filemode>0644</filemode>
+							</mapper>
+						</data>
+					</dataSet>
+				</configuration>
+			</plugin>
+		</plugins>
+		<resources>
+			<resource>
+				<directory>${basedir}</directory>
+				<excludes>
+					<exclude>pom.xml</exclude>
+					<exclude>target/**</exclude>
+					<exclude>deb/**</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<extensions>
+			<extension>
+				<groupId>org.vafer</groupId>
+				<artifactId>jdeb</artifactId>
+				<version>1.2</version>
+			</extension>
+		</extensions>
+	</build>
+
+	<distributionManagement>
+		<repository>
+			<id>ihtsdo-public-nexus</id>
+			<name>IHTSDO Public Nexus Releases</name>
+			<url>https://maven.ihtsdotools.org/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>ihtsdo-public-nexus</id>
+			<name>IHTSDO Public Nexus Snapshots</name>
+			<url>https://maven.ihtsdotools.org/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+</project>
