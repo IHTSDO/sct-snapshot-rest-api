@@ -86,11 +86,12 @@ router.post('/:db/:collection/execute/:language', connectTimeout('120s'), functi
                 var elapsed_time = function(note){
                     var precision = 3; // 3 decimal places
                     var elapsed = process.hrtime(start)[1] / 1000000; // divide by a million to get nano to milli
-                    console.log(process.hrtime(start)[0] + " s, " + elapsed.toFixed(precision) + " ms - " + note); // print message + time
+                    //console.log(process.hrtime(start)[0] + " s, " + elapsed.toFixed(precision) + " ms - " + note); // print message + time
                     start = process.hrtime(); // reset the timer
+                    return elapsed.toFixed(precision);
                 };
                 logger.log('info', 'Query execution finished', {
-                    expression: expression,
+                    expression: "\" " + expression + " \"",
                     language: language,
                     time: elapsed_time()
                 });
