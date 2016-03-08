@@ -219,7 +219,7 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         callback({message: message}, {});
     };
     computer.resolve = function(node, ast, queryPart) {
-        console.log(node.rule);
+        //console.log(node.rule);
         if (typeof computer[node.rule] == "undefined") {
             exitWithError("Unsupported rule: " + node.rule);
         } else {
