@@ -6,6 +6,21 @@ var router = express.Router();
 var expressionsParser = require('../grammars/apg/expressionParser');
 var MongoClient = require('mongodb').MongoClient;
 var connectTimeout = require('connect-timeout');
+var winston = require('winston');
+var path = require('path');
+// find the first module to be loaded
+var topModule = module;
+while(topModule.parent)
+    topModule = topModule.parent;
+var appDir = path.dirname(topModule.filename);
+
+var logger = new (winston.Logger)({
+    transports: [
+        new (winston.transports.Console)(),
+        new (winston.transports.File)({ filename: appDir +'/constraints.log' })
+    ]
+});
+
 
 var databases = {};
 
@@ -57,12 +72,28 @@ router.post('/:db/:collection/execute/:language', connectTimeout('120s'), functi
     }
     if (results.validation) {
         // Execute query
+        logger.log('info', 'Query execution started', {
+            expression: expression,
+            language: language
+        });
+        var start = process.hrtime();
         computeGrammarQuery3(results, request.form, req.params.db, collectionName, request.skip, request.limit, function(err, results) {
             if (err) {
                 responseData.computeResponse = err;
                 res.status(500);
                 res.send(responseData);
             } else {
+                var elapsed_time = function(note){
+                    var precision = 3; // 3 decimal places
+                    var elapsed = process.hrtime(start)[1] / 1000000; // divide by a million to get nano to milli
+                    console.log(process.hrtime(start)[0] + " s, " + elapsed.toFixed(precision) + " ms - " + note); // print message + time
+                    start = process.hrtime(); // reset the timer
+                };
+                logger.log('info', 'Query execution finished', {
+                    expression: expression,
+                    language: language,
+                    time: elapsed_time
+                });
                 responseData.computeResponse = results;
                 res.send(responseData);
             }
