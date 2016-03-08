@@ -98,6 +98,7 @@ router.post('/:db/:collection/execute/:language', connectTimeout('120s'), functi
     if (results.validation) {
         // Execute query
         logger.log('info', 'Query execution started', {
+            time: getDateTime(),
             expression: expression,
             language: language
         });
