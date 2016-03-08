@@ -652,3 +652,81 @@ The search results include the matching descriptions plus a filter descriptor ob
                 }
               }
             }
+            
+## Parse Expressions [/expressions/{edition}/{release}/parse/brief]
+Parses a brief syntax expression based on the official IHTSDO Expression constraint language.
+
++ Parameters
+    + edition (required, string, `en-edition`) ... Identifier for the SNOMED CT Edition to browse, for example `en-edition` for the International Edition
+    + release (required, string, `v20160131`) ... Identifier for the release, usually the release effective time preceded with a `v`.
+    
+### Parse Expression [POST]
+
++ Request (application/json)
+
+        {
+            "expression": "< 233604007|Pneumonia (disorder)|"
+        }
+
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "validation":true,
+                 "ast":{},
+                 "treeHtml":"",
+                 "simpleTree": {}
+            }
+        
+## Execute Expressions [/expressions/{edition}/{release}/execute/brief]
+Executes a brief syntax expression based on the official IHTSDO Expression constraint language.
+
++ Parameters
+    + edition (required, string, `en-edition`) ... Identifier for the SNOMED CT Edition to browse, for example `en-edition` for the International Edition
+    + release (required, string, `v20160131`) ... Identifier for the release, usually the release effective time preceded with a `v`.
+    
+### Execute Expression [POST]
+
++ Request (application/json)
+
+        {
+            "expression": "< 233604007|Pneumonia (disorder)|",
+            "limit": 50,
+            "skip": 0,
+            "form": "inferred"
+        }
+
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "paserResponse": {
+                    "validation":true,
+                    "ast":{},
+                    "treeHtml":"",
+                    "simpleTree": {}
+                },
+                "computeResponse":{
+                    "total":221,
+                    "limit":"1",
+                    "skip":"0",
+                    "matches":[
+                         {
+                            "_id":"56bb6a9842a8f25c3b6cd771",
+                            "conceptId":"41381004",
+                            "defaultTerm":"neumonía por Pseudomonas (trastorno)"
+                         }
+                    ],
+                    "query":{
+                        "$and":[
+                            {
+                            "inferredAncestors":"233604007"
+                            }
+                        ]
+                    }
+                }
+            }
