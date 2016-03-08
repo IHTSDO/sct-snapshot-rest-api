@@ -91,7 +91,7 @@ router.post('/:db/:collection/execute/:language', connectTimeout('120s'), functi
                     return elapsed.toFixed(precision) + " ms.";
                 };
                 logger.log('info', 'Query execution finished', {
-                    expression: "\" " + expression + " \"",
+                    expression: expression,
                     language: language,
                     matches: results.total,
                     time: elapsed_time()
