@@ -43,7 +43,7 @@ REST API docs
 
 Browse the interactive documentation of the REST API here:
 
-http://docs.sctsnapshotrestapi.apiary.io
+http://docs.snomedctsnapshotapi.apiary.io/
 
 NOTES:
 -------------
