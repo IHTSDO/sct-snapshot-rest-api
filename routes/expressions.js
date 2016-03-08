@@ -84,15 +84,16 @@ router.post('/:db/:collection/execute/:language', connectTimeout('120s'), functi
                 res.send(responseData);
             } else {
                 var elapsed_time = function(note){
-                    var precision = 3; // 3 decimal places
+                    var precision = 0; // 3 decimal places
                     var elapsed = process.hrtime(start)[1] / 1000000; // divide by a million to get nano to milli
                     //console.log(process.hrtime(start)[0] + " s, " + elapsed.toFixed(precision) + " ms - " + note); // print message + time
                     start = process.hrtime(); // reset the timer
-                    return elapsed.toFixed(precision);
+                    return elapsed.toFixed(precision) + " ms.";
                 };
                 logger.log('info', 'Query execution finished', {
                     expression: "\" " + expression + " \"",
                     language: language,
+                    matches: results.total,
                     time: elapsed_time()
                 });
                 responseData.computeResponse = results;
