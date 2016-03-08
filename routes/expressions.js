@@ -92,7 +92,7 @@ router.post('/:db/:collection/execute/:language', connectTimeout('120s'), functi
                 logger.log('info', 'Query execution finished', {
                     expression: expression,
                     language: language,
-                    time: elapsed_time
+                    time: elapsed_time()
                 });
                 responseData.computeResponse = results;
                 res.send(responseData);
