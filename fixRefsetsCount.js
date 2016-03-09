@@ -48,7 +48,7 @@ performMongoDbRequest("server",function(db){
                                 collection = db.collection("v" + manifest.collectionName);
                                 var findsDone = 0, percentage = 0;
                                 manifest.refsets.forEach(function(refset, indR){
-                                    var idParam = parseInt(refset.conceptId);
+                                    var idParam = refset.conceptId;
                                     var idParamStr = refset.conceptId + "";
                                     var query = {"memberships": {"$elemMatch": {"$or": [ {"refset.conceptId": idParam }, {"refset.conceptId": idParamStr } ], "active": true}}};
                                     collection.count(query, function (err, total) {
