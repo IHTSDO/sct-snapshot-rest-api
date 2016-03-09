@@ -25,15 +25,19 @@ var performMongoDbRequest = function(databaseName, callback) {
 };
 
 performMongoDbRequest("server",function(db){
+    var errorCantContinue = function(err){
+        console.log(err);
+        process.exit();
+    };
     console.log("getting all manifests");
     var collection = db.collection("resources");
     collection.find({"databaseName" : "en-edition"}, {resourceSetName: 1, databaseName: 1, collectionName: 1, refsets: 1}, function(err, cursor) {
         if (err){
-
+            errorCantContinue(err);
         }else{
             cursor.toArray(function(err, docs) {
                 if (err){
-
+                    errorCantContinue(err);
                 }else if (docs && docs.length){
                     //docs.forEach(function(manifest, indM){
                     var manifest = docs[0];
@@ -54,7 +58,7 @@ performMongoDbRequest("server",function(db){
                                             console.log(percentage + " %");
                                         }
                                         if (err){
-
+                                            console.log(err);
                                         }else{
                                             console.log("Replace", refset.count, "with", total);
                                             manifest.refsets[indR].count = total;
@@ -73,6 +77,8 @@ performMongoDbRequest("server",function(db){
                             });
                         }
                     //});
+                }else{
+                    errorCantContinue("No manifests found");
                 }
             });
         }
