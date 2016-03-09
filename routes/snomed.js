@@ -293,7 +293,7 @@ router.get('/:db/:collection/concepts/:sctid/parents?', function(req, res) {
 router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
     var idParam = parseInt(req.params.sctid);
     var idParamStr = req.params.sctid;
-    var query = {"memberships": {"$elemMatch": {"$or": [ {"refset.conceptId": idParam }, {"refset.conceptId": idParamStr } ], "active": true}}};
+    var query = {"memberships": {"$elemMatch": {"refset.conceptId": idParamStr, "active": true}}};
 
     var options = req.params.options || {};
     var test = ['limit', 'sort', 'fields', 'skip', 'hint', 'explain', 'snapshot', 'timeout'];
