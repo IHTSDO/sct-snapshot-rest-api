@@ -46,12 +46,12 @@ performMongoDbRequest("server",function(db){
                     if (err){
                         endWithMessage(err);
                     }else if (docs && docs.length){
-                        console.log(docs.length, "manifests matching params");
+                        console.log(docs.length + "manifests matching params");
                         //docs.forEach(function(manifest, indM){
                         var indM = 0;
                         var updateManifest = function(){
                             var manifest = docs[indM];
-                            console.log("Manifest:", manifest.resourceSetName, manifest.databaseName, manifest.collectionName);
+                            console.log("Manifest: " + manifest.resourceSetName + " " + manifest.databaseName + " " + manifest.collectionName);
                             console.log("getting all the counts of the refsets");
                             if (manifest.refsets && manifest.refsets.length){
                                 performMongoDbRequest(manifest.databaseName, function(db){
@@ -80,7 +80,7 @@ performMongoDbRequest("server",function(db){
                                                     var collection = db.collection("resources");
                                                     collection.update({_id: manifest._id}, {$set: {refsets: manifest.refsets}}, {safe: true, upsert: false}, function (err, obj) {
                                                         indM++;
-                                                        console.log(indM, "of", docs.length, "manifests updated");
+                                                        console.log(indM + " of " + docs.length + " manifests updated");
                                                         if (indM == docs.length){
                                                             if (err){
                                                                 endWithMessage(err);
