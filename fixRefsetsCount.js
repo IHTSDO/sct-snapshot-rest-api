@@ -60,7 +60,7 @@ performMongoDbRequest("server",function(db){
                                         if (err){
                                             console.log(err);
                                         }else{
-                                            console.log("Replace", refset.count, "with", total, idParam);
+                                            console.log("Replace", refset.count, "with", total, idParamStr);
                                             manifest.refsets[indR].count = total;
                                         }
                                         if (findsDone == manifest.refsets.length){
