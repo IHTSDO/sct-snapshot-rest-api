@@ -25,7 +25,7 @@ var performMongoDbRequest = function(databaseName, callback) {
 };
 
 performMongoDbRequest("server",function(db){
-    var errorCantContinue = function(err){
+    var endWithMessage = function(err){
         console.log(err);
         process.exit();
     };
@@ -33,11 +33,11 @@ performMongoDbRequest("server",function(db){
     var collection = db.collection("resources");
     collection.find({"databaseName" : "en-edition"}, {resourceSetName: 1, databaseName: 1, collectionName: 1, refsets: 1}, function(err, cursor) {
         if (err){
-            errorCantContinue(err);
+            endWithMessage(err);
         }else{
             cursor.toArray(function(err, docs) {
                 if (err){
-                    errorCantContinue(err);
+                    endWithMessage(err);
                 }else if (docs && docs.length){
                     //docs.forEach(function(manifest, indM){
                     var manifest = docs[0];
@@ -66,11 +66,16 @@ performMongoDbRequest("server",function(db){
                                         if (findsDone == manifest.refsets.length){
                                             console.log("Updating the manifest");
                                             //_id
-                                            //performMongoDbRequest("server",function(db){
-                                            //    var collection = db.collection("resources");
-                                            //    collection
-                                            //});
-                                            process.exit();
+                                            performMongoDbRequest("server",function(db){
+                                                var collection = db.collection("resources");
+                                                collection.update({_id: manifest._id}, {$set: {refsets: manifest.refsets}}, {safe: true, upsert: false}, function (err, obj) {
+                                                    if (err){
+                                                        endWithMessage(err);
+                                                    }else{
+                                                        endWithMessage("Finish");
+                                                    }
+                                                });
+                                            });
                                         }
                                     });
                                 });
@@ -78,7 +83,7 @@ performMongoDbRequest("server",function(db){
                         }
                     //});
                 }else{
-                    errorCantContinue("No manifests found");
+                    endWithMessage("No manifests found");
                 }
             });
         }
