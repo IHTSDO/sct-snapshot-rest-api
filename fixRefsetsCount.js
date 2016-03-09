@@ -27,7 +27,7 @@ var performMongoDbRequest = function(databaseName, callback) {
 performMongoDbRequest("server",function(db){
     console.log("getting all manifests");
     var collection = db.collection("resources");
-    collection.find({"databaseName" : "en-edition"}, function(err, cursor) {
+    collection.find({"databaseName" : "en-edition"}, {resourceSetName: 1, databaseName: 1, collectionName: 1, refsets: 1}, function(err, cursor) {
         if (err){
 
         }else{
