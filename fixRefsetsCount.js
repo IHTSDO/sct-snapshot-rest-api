@@ -35,20 +35,44 @@ performMongoDbRequest("server",function(db){
                 if (err){
 
                 }else if (docs && docs.length){
-                    docs.forEach(function(manifest, indM){
+                    //docs.forEach(function(manifest, indM){
+                    var manifest = docs[0];
+                    console.log("Manifest:", manifest.resourceSetName, manifest.databaseName, manifest.collectionName);
+                    console.log("getting all the counts of the refsets");
                         if (manifest.refsets && manifest.refsets.length){
                             performMongoDbRequest(manifest.databaseName, function(db){
                                 collection = db.collection("v" + manifest.collectionName);
-                                var idParam = parseInt(req.params.sctid);
-                                var idParamStr = req.params.sctid;
-                                var query = {"memberships": {"$elemMatch": {"$or": [ {"refset.conceptId": idParam }, {"refset.conceptId": idParamStr } ], "active": true}}};
-                                collection.find();
-                            });
-                            manifest.refsets.forEach(function(refset, indR){
+                                var findsDone = 0, percentage = 0;
+                                manifest.refsets.forEach(function(refset, indR){
+                                    var idParam = parseInt(refset.conceptId);
+                                    var idParamStr = refset.conceptId + "";
+                                    var query = {"memberships": {"$elemMatch": {"$or": [ {"refset.conceptId": idParam }, {"refset.conceptId": idParamStr } ], "active": true}}};
+                                    collection.count(query, function (err, total) {
+                                        findsDone++;
+                                        if (percentage != parseInt(findsDone * 100 / manifest.refsets.length)){
+                                            percentage = parseInt(findsDone * 100 / manifest.refsets.length);
+                                            console.log(percentage + " %");
+                                        }
+                                        if (err){
 
+                                        }else{
+                                            console.log("Replace", refset.count, "with", total);
+                                            manifest.refsets[indR].count = total;
+                                        }
+                                        if (findsDone == manifest.refsets.length){
+                                            console.log("Updating the manifest");
+                                            //_id
+                                            //performMongoDbRequest("server",function(db){
+                                            //    var collection = db.collection("resources");
+                                            //    collection
+                                            //});
+                                            process.exit();
+                                        }
+                                    });
+                                });
                             });
                         }
-                    });
+                    //});
                 }
             });
         }
