@@ -45,7 +45,7 @@ performMongoDbRequest("server",function(db){
                     if (err){
                         endWithMessage(err);
                     }else if (docs && docs.length){
-                        console.log(docs.length + "manifests matching params");
+                        console.log(docs.length + " manifests matching the params");
                         //docs.forEach(function(manifest, indM){
                         var indM = 0;
                         var updateManifest = function(){
