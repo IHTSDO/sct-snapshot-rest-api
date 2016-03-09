@@ -293,7 +293,7 @@ router.get('/:db/:collection/concepts/:sctid/parents?', function(req, res) {
 router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
     var idParam = parseInt(req.params.sctid);
     var idParamStr = req.params.sctid;
-    var query = {"memberships": {"$elemMatch": {"$or": [ {"refset.conceptId": idParam }, {"refset.conceptId": idParamStr } ], "active": true}}};
+    var query = {"memberships": {"$elemMatch": {"refset.conceptId": idParamStr, "active": true}}};
 
     var options = req.params.options || {};
     var test = ['limit', 'sort', 'fields', 'skip', 'hint', 'explain', 'snapshot', 'timeout'];
@@ -303,10 +303,20 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
         }
     }
     options["fields"] = {"defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1, "isLeafInferred": 1,"isLeafStated": 1};
+    if (!options.limit) {
+        options.limit = 100;
+    }
+    if (!options.skip) {
+        options.skip = 0;
+    }
     performMongoDbRequest(req.params.db, function(db) {
     var collection = db.collection(req.params.collection);
-        collection.find(query, {}).count(function (err, total) {
-            options.sort = {defaultTerm: 1};
+        //collection.count(query, function (err, total) {
+            var total = options.limit + options.skip;
+            // Performance update, only sort small refsets
+            //if (total < 1000) {
+            //    options.sort = {defaultTerm: 1};
+            //}
             collection.find(query, options, function (err, cursor) {
                 cursor.toArray(function (err, docs) {
                     var result = {};
@@ -322,7 +332,7 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
                     }
                 });
             });
-        });
+        //});
     });
 });
 
