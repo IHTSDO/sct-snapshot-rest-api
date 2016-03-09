@@ -26,7 +26,6 @@ var performMongoDbRequest = function(databaseName, callback) {
 
 var params = [];
 process.argv.forEach(function (val, index, array) {
-    console.log(index + ': ' + val);
     params.push(val);
 });
 
