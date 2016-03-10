@@ -309,10 +309,38 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
     if (!options.skip) {
         options.skip = 0;
     }
-    performMongoDbRequest(req.params.db, function(db) {
-    var collection = db.collection(req.params.collection);
-        //collection.count(query, function (err, total) {
-            var total = options.limit + options.skip;
+    var getTotalOf = function(refsetId, callback){
+        performMongoDbRequest("server",function(db){
+            var collection = db.collection("resources");
+            collection.find({"databaseName" : req.params.db, "collectionName": req.params.collection.replace("v", "")}, {refsets: 1}, function(err, cursor) {
+                if (err){
+                    callback(err);
+                }else{
+                    cursor.toArray(function(err, docs) {
+                        if (err)
+                            callback(err);
+                        else{
+                            var total = 0, error = "No refset matching in the manifest";
+                            docs[0].refsets.forEach(function(refset){
+                                if (refset.conceptId == refsetId){
+                                    error = false;
+                                    total = refset.count;
+                                }
+                            });
+                            callback(error, total);
+                        }
+                    });
+                }
+            });
+        });
+    };
+
+    getTotalOf(idParam, function(err, totalR){
+        performMongoDbRequest(req.params.db, function(db) {
+            var collection = db.collection(req.params.collection);
+            //collection.count(query, function (err, total) {
+            var total = totalR;
+            if (err) total = err;
             // Performance update, only sort small refsets
             //if (total < 1000) {
             //    options.sort = {defaultTerm: 1};
@@ -332,7 +360,8 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
                     }
                 });
             });
-        //});
+            //});
+        });
     });
 });
 
