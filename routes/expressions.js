@@ -6,6 +6,21 @@ var router = express.Router();
 var expressionsParser = require('../grammars/apg/expressionParser');
 var MongoClient = require('mongodb').MongoClient;
 var connectTimeout = require('connect-timeout');
+var winston = require('winston');
+var path = require('path');
+// find the first module to be loaded
+var topModule = module;
+while(topModule.parent)
+    topModule = topModule.parent;
+var appDir = path.dirname(topModule.filename);
+
+var logger = new (winston.Logger)({
+    transports: [
+        new (winston.transports.Console)(),
+        new (winston.transports.File)({ filename: appDir +'/constraints.log' })
+    ]
+});
+
 
 var databases = {};
 
@@ -57,12 +72,30 @@ router.post('/:db/:collection/execute/:language', connectTimeout('120s'), functi
     }
     if (results.validation) {
         // Execute query
+        logger.log('info', 'Query execution started', {
+            expression: expression,
+            language: language
+        });
+        var start = process.hrtime();
         computeGrammarQuery3(results, request.form, req.params.db, collectionName, request.skip, request.limit, function(err, results) {
             if (err) {
                 responseData.computeResponse = err;
                 res.status(500);
                 res.send(responseData);
             } else {
+                var elapsed_time = function(note){
+                    var precision = 0; // 3 decimal places
+                    var elapsed = process.hrtime(start)[1] / 1000000; // divide by a million to get nano to milli
+                    //console.log(process.hrtime(start)[0] + " s, " + elapsed.toFixed(precision) + " ms - " + note); // print message + time
+                    start = process.hrtime(); // reset the timer
+                    return elapsed.toFixed(precision) + " ms.";
+                };
+                logger.log('info', 'Query execution finished', {
+                    expression: expression,
+                    language: language,
+                    matches: results.total,
+                    elapsed: elapsed_time()
+                });
                 responseData.computeResponse = results;
                 res.send(responseData);
             }
@@ -155,6 +188,10 @@ var readAttribute = function(node, ast) {
                     condition.targetNode = valueChild;
                     //}
                 });
+            } else if (attrChild.rule == "cardinality") {
+                condition.cardinality = true;
+            } else if (attrChild.rule == "reverseFlag") {
+                condition.reverseFlag = true;
             }
         });
     }
@@ -182,7 +219,7 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         callback({message: message}, {});
     };
     computer.resolve = function(node, ast, queryPart) {
-        console.log(node.rule);
+        //console.log(node.rule);
         if (typeof computer[node.rule] == "undefined") {
             exitWithError("Unsupported rule: " + node.rule);
         } else {
@@ -198,6 +235,9 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         node.condition = readSimpleExpressionConstraint(node, ast);
         if (node.condition.memberOf) {
             queryPart.push({"memberships.refset.conceptId": node.condition.conceptId});
+            if (node.condition.criteria && node.condition.criteria != "self") {
+                exitWithError("Unsupported condition: combined memberOf and hierarchy criteria");
+            }
         } else if (node.condition.criteria == "self") {
             queryPart.push({"conceptId": node.condition.conceptId});
         } else if (node.condition.criteria == "descendantOf") {
@@ -217,9 +257,11 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
             queryPart.push(or);
         } else if (node.condition.criteria == "ancestorOf") {
             // Not supported right now
+            exitWithError("Unsupported condition: " +node. condition.criteria);
         } else if (node.condition.criteria == "ancestorOrSelfOf") {
             queryPart.push({"conceptId": node.condition.conceptId});
             // Not supported right now
+            exitWithError("Unsupported condition: " + node.condition.criteria);
         }
     };
     computer.compoundExpressionConstraint = function(node, ast, queryPart) {
@@ -376,6 +418,12 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         var condition = readAttribute(node, ast);
         // Process attribute name
         var attributeNameResults = false;
+        if (condition.cardinality) {
+            exitWithError("Unsupported condition: cardinality");
+        }
+        if (condition.reverseFlag) {
+            exitWithError("Unsupported condition: reverseFlag");
+        }
         if (condition.typeId != "*") {
             if (condition.attributeOperator) {
                 if (condition.attributeOperator == "descendantOrSelfOf") {
@@ -413,6 +461,8 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
                 } else {
                     elemMatch["target.conceptId"] = targetExp.conceptId;
                 }
+            } else {
+                exitWithError("Unsupported condition: Nested definitions");
             }
         }
         if (Object.keys(elemMatch).length > 0) {

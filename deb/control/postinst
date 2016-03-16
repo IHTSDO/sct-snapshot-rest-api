@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+#For debugging uncomment these two lines
+set -x
+echo $*
+
+APP_NAME=[[artifactId]]
+
+chmod +x /opt/$APP_NAME/bin/*
+
+supervisorctl update $APP_NAME || true
+supervisorctl start $APP_NAME || true
+
