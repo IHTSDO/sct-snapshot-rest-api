@@ -171,7 +171,7 @@ router.get('/:db/:collection/concepts/:sctid/children?', function(req, res) {
             options[o] = JSON.parse(req.query[o]);
         }
     }
-    options["fields"] = {"defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1, "isLeafInferred": 1,"isLeafStated": 1};
+    options["fields"] = {"defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1, "isLeafInferred": 1,"isLeafStated": 1,"statedDescendants": 1};
     performMongoDbRequest(req.params.db, function(db) {
         var collection = db.collection(req.params.collection);
         collection.find(query, options, function(err, cursor) {
@@ -261,13 +261,13 @@ router.get('/:db/:collection/concepts/:sctid/parents?', function(req, res) {
                             if (req.query["form"] == "inferred" && docs[0].relationships) {
                                 docs[0].relationships.forEach(function(rel) {
                                     if (rel.active == true && (rel.type.conceptId == 116680003 || rel.type.conceptId == "116680003")) {
-                                        result.push({conceptId: rel.target.conceptId, defaultTerm: rel.target.defaultTerm, definitionStatus: rel.target.definitionStatus, module: rel.target.module});
+                                        result.push({conceptId: rel.target.conceptId, defaultTerm: rel.target.defaultTerm, definitionStatus: rel.target.definitionStatus, module: rel.target.module, statedDescendants: rel.target.statedDescendants});
                                     }
                                 });
                             } else if (req.query["form"] == "stated" && docs[0].statedRelationships) {
                                 docs[0].statedRelationships.forEach(function(rel) {
                                     if (rel.active == true && (rel.type.conceptId == 116680003 || rel.type.conceptId == "116680003")) {
-                                        result.push({conceptId: rel.target.conceptId, defaultTerm: rel.target.defaultTerm, definitionStatus: rel.target.definitionStatus, module: rel.target.module});
+                                        result.push({conceptId: rel.target.conceptId, defaultTerm: rel.target.defaultTerm, definitionStatus: rel.target.definitionStatus, module: rel.target.module, statedDescendants: rel.target.statedDescendants});
                                     }
                                 });
                             }
