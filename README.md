@@ -1,7 +1,7 @@
 SNOMED CT Snapshot REST API [![Build Status](https://travis-ci.org/IHTSDO/sct-snapshot-rest-api.svg?branch=master)](https://travis-ci.org/IHTSDO/sct-snapshot-rest-api) [![Code Climate](https://codeclimate.com/github/IHTSDO/sct-snapshot-rest-api/badges/gpa.svg)](https://codeclimate.com/github/IHTSDO/sct-snapshot-rest-api)
 ===========================
 
-Rest API for SNOMED CT Snapshot views, powered by Node.js, Express &amp; MongoDB.
+Rest API for SNOMED CT Snapshot views, powered by the MEAN stack, http://mean.io/, (Node.js, Express &amp; MongoDB).
 
 How to install
 --------------
@@ -22,7 +22,7 @@ sct-snapshot-rest-api: $ node app.js
 ```
 
 IMPORTANT: This API needs to have local access to the MongoDB server where the terminology data has been loaded into.
-The data for the mongo instance is obtained via the National Library of Medicine (info in www.ihtsdo.org).
+The SNOMED CT data for the mongo instance can be obtained via your local National Resource Center (info in http://www.ihtsdo.org/members).
 
 Once you have the SNOMED CT Files in RF2 format (standard release files) you can create a JSON file for importing into Mongo using this project:
 
