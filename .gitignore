@@ -18,3 +18,4 @@ npm-debug.log
 public/svg2pngTemp/*.png
 public/svg2pngTemp/*.svg
 target/
+OLD/

@@ -479,7 +479,7 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         var collection = db.collection(collectionName);
         collection.count(mongoQuery, function(err, count) {
             returnData.total = count;
-            collection.find(mongoQuery,{conceptId:1, defaultTerm:1}, queryOptions, function(err, cursor) {
+            collection.find(mongoQuery,{conceptId:1, defaultTerm:1, fsn:1, active:1}, queryOptions, function(err, cursor) {
                 returnData.limit = queryOptions.limit;
                 returnData.skip = queryOptions.skip;
                 returnData.matches = [];
@@ -499,4 +499,3 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         });
     });
 };
-

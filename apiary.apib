@@ -1,11 +1,13 @@
 FORMAT: 1A
-HOST: http://browser.ihtsdotools.org/api/snomed
+HOST: http://browser.ihtsdotools.org/api
 
 # SNOMED CT Snapshot Browser REST API
 SNOMED CT Snapshot REST API provides access to SNOMED CT content snapshot form (only the latest version for all components, see Snapshot definition in the RF2 format description).
 The API focuses on providing access to **SNOMED CT Concepts**
 
-## Concept [/{edition}/{release}/concepts/{sctid}]
+# Group Concepts
+
+## Concept [/snomed/{edition}/{release}/concepts/{sctid}]
 A single Concept with all its details
 
 + Parameters
@@ -343,7 +345,7 @@ A single Concept with all its details
               "module": "900000000000207008"
             }
 
-## Children [/{edition}/{release}/concepts/{sctid}/children?form={form}]
+## Children [/snomed/{edition}/{release}/concepts/{sctid}/children?form={form}]
 Lists all children of a concept, in the SNOMED CT hierarchy. Each child is retrieved in a summary form, called Concept Descriptor.
 
 + Parameters
@@ -476,7 +478,7 @@ Lists all parents of a concept, in the SNOMED CT hierarchy. Each parent is retri
                }
             ]           
 
-## Members [/{edition}/{release}/concepts/{sctid}/members?limit={limit}&paginate={page}]
+## Members [/snomed/{edition}/{release}/concepts/{sctid}/members?limit={limit}&paginate={page}]
 Lists all reference set members of a concept. Each member is retrieved in a summary form, called Concept Descriptor.
 Only concepts that are reference sets will include members. 
 The concept details describe all the reference sets where a concept is member in, called memberships, and can be retrieved with the /concepts/id call.
@@ -552,7 +554,7 @@ The concept details describe all the reference sets where a concept is member in
               }
             }
 
-## Search [/{edition}/{release}/descriptions?query={query}&searchMode={mode}&lang={language}&statusFilter={statusFilter}&skipTo={skipTo}&returnLimit={returnLimit}&normalize={normalize}]
+## Search [/snomed/{edition}/{release}/descriptions?query={query}&searchMode={mode}&lang={language}&statusFilter={statusFilter}&skipTo={skipTo}&returnLimit={returnLimit}&normalize={normalize}]
 Performs a text search over the database, selecting mode and other limits.
 The search results include the matching descriptions plus a filter descriptor object, allowing to further refining the search by providing new limits.
 
@@ -653,6 +655,8 @@ The search results include the matching descriptions plus a filter descriptor ob
               }
             }
             
+# Group Expressions
+
 ## Parse Expressions [/expressions/{edition}/{release}/parse/brief]
 Parses a brief syntax expression based on the official IHTSDO Expression constraint language.
 
@@ -710,16 +714,25 @@ Executes a brief syntax expression based on the official IHTSDO Expression const
                     "treeHtml":"",
                     "simpleTree": {}
                 },
-                "computeResponse":{
-                    "total":221,
-                    "limit":"1",
-                    "skip":"0",
-                    "matches":[
-                         {
-                            "_id":"56bb6a9842a8f25c3b6cd771",
-                            "conceptId":"41381004",
-                            "defaultTerm":"neumonía por Pseudomonas (trastorno)"
-                         }
+                "computeResponse": {
+                    "total": 220,
+                    "limit": 50,
+                    "skip": 0,
+                    "matches": [
+                      {
+                        "_id": "56c42b407df006c561fd9ee2",
+                        "fsn": "Pneumonia caused by Pseudomonas (disorder)",
+                        "conceptId": "41381004",
+                        "defaultTerm": "Pneumonia caused by Pseudomonas (disorder)",
+                        "active": true
+                      },
+                      {
+                        "_id": "56c42b417df006c561fda207",
+                        "fsn": "Capillaria aerophila chest infection (disorder)",
+                        "conceptId": "240871004",
+                        "defaultTerm": "Capillaria aerophila chest infection (disorder)",
+                        "active": true
+                      }
                     ],
                     "query":{
                         "$and":[
