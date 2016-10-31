@@ -28,7 +28,7 @@ router.get('/metadata', function(req, res) {
     res.send(capabilityStatement);
 });
 
-router.get('/CodeSystem/:system/$lookup', function(req, res) {
+router.get('/CodeSystem/:system/([\$])lookup', function(req, res) {
     var code = "";
     if (!req.query["code"]) {
         // Bad request
@@ -39,7 +39,7 @@ router.get('/CodeSystem/:system/$lookup', function(req, res) {
     res.send({system: req.params.system, code: code});
 });
 
-router.get('/CodeSystem/$lookup', function(req, res) {
+router.get('/CodeSystem/([\$])lookup', function(req, res) {
     var code = "";
     if (!req.query["code"]) {
         // Bad request
