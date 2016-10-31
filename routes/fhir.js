@@ -55,3 +55,5 @@ router.get('/CodeSystem/$lookup', function(req, res) {
     res.status(200);
     res.send({system: system, code: code});
 });
+
+module.exports = router;
