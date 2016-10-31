@@ -13,6 +13,7 @@ fs.writeFile(pidFile, process.pid);
 
 var routes = require('./routes/index');
 var snomed = require('./routes/snomed');
+var fhir = require('./routes/fhir');
 var util = require('./routes/util');
 var server = require('./routes/server');
 var expressions = require('./routes/expressions');
@@ -66,6 +67,7 @@ app.use(function(req, res, next) {
 
 app.use('/', routes);
 app.use('/snomed', snomed);
+app.use('/fhir', fhir);
 app.use('/util', util);
 app.use('/server', server);
 app.use("/expressions", expressions);
