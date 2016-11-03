@@ -171,7 +171,7 @@ router.get('/:db/:collection/concepts/:sctid/children?', function(req, res) {
             options[o] = JSON.parse(req.query[o]);
         }
     }
-    options["fields"] = {"defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1, "isLeafInferred": 1,"isLeafStated": 1};
+    options["fields"] = {"defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1, "isLeafInferred": 1,"isLeafStated": 1,"statedDescendants": 1};
     performMongoDbRequest(req.params.db, function(db) {
         var collection = db.collection(req.params.collection);
         collection.find(query, options, function(err, cursor) {
@@ -261,13 +261,13 @@ router.get('/:db/:collection/concepts/:sctid/parents?', function(req, res) {
                             if (req.query["form"] == "inferred" && docs[0].relationships) {
                                 docs[0].relationships.forEach(function(rel) {
                                     if (rel.active == true && (rel.type.conceptId == 116680003 || rel.type.conceptId == "116680003")) {
-                                        result.push({conceptId: rel.target.conceptId, defaultTerm: rel.target.defaultTerm, definitionStatus: rel.target.definitionStatus, module: rel.target.module});
+                                        result.push({conceptId: rel.target.conceptId, defaultTerm: rel.target.defaultTerm, definitionStatus: rel.target.definitionStatus, module: rel.target.module, statedDescendants: rel.target.statedDescendants});
                                     }
                                 });
                             } else if (req.query["form"] == "stated" && docs[0].statedRelationships) {
                                 docs[0].statedRelationships.forEach(function(rel) {
                                     if (rel.active == true && (rel.type.conceptId == 116680003 || rel.type.conceptId == "116680003")) {
-                                        result.push({conceptId: rel.target.conceptId, defaultTerm: rel.target.defaultTerm, definitionStatus: rel.target.definitionStatus, module: rel.target.module});
+                                        result.push({conceptId: rel.target.conceptId, defaultTerm: rel.target.defaultTerm, definitionStatus: rel.target.definitionStatus, module: rel.target.module, statedDescendants: rel.target.statedDescendants});
                                     }
                                 });
                             }
@@ -674,7 +674,7 @@ var levDist = function(s, t) {
 }
 
 var defaultDiacriticsRemovalMap = [
-    {'base':'a','letters':/[\u00E1\u00E2\u00E3\u00E4\u00E5\u0101\u0103\u0105\u01CE\u01FB\u00C0\u00C4]/g},
+    {'base':'a','letters':/[\u00E0\u00E1\u00E2\u00E3\u00E4\u00E5\u0101\u0103\u0105\u01CE\u01FB\u00C0\u00C4]/g},
     {'base':'ae','letters':/[\u00E6\u01FD]/g},
     {'base':'c','letters':/[\u00E7\u0107\u0109\u010B\u010D]/g},
     {'base':'d','letters':/[\u010F\u0111\u00F0]/g},
@@ -697,7 +697,7 @@ var defaultDiacriticsRemovalMap = [
     {'base':'w','letters':/[\u0175]/g},
     {'base':'y','letters':/[\u00FD\u00FF\u0177]/g},
     {'base':'z','letters':/[\u017A\u017C\u017E]/g},
-    {'base':'A','letters':/[\u00C1\u00C2\u00C3\uCC04\u00C5\u00E0\u0100\u0102\u0104\u01CD\u01FB]/g},
+    {'base':'A','letters':/[\u00C1\u00C2\u00C3\uCC04\u00C5\u0100\u0102\u0104\u01CD\u01FB]/g},
     {'base':'AE','letters':/[\u00C6]/g},
     {'base':'C','letters':/[\u00C7\u0106\u0108\u010A\u010C]/g},
     {'base':'D','letters':/[\u010E\u0110\u00D0]/g},
