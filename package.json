@@ -6,7 +6,6 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "bcrypt": ">= 0.0.0",
     "body-parser": "~1.17.1",
     "connect-timeout": "^1.7.0",
     "cookie-parser": "~1.4.3",
