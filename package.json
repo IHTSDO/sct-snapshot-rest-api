@@ -1,28 +1,27 @@
 {
-  "name": "translation-simple-api",
+  "name": "sct-rest-simple-api",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "bcrypt": ">= 0.0.0",
-    "body-parser": "~1.0.0",
+    "body-parser": "~1.17.1",
     "connect-timeout": "^1.7.0",
-    "cookie-parser": "~1.0.1",
-    "debug": "~0.7.4",
-    "express": "~4.2.0",
-    "jade": "~1.3.0",
-    "jwt-simple": "~0.2.0",
-    "mongodb": "~1.4.5",
-    "mongoose": "~3.8.10",
-    "morgan": "~1.0.0",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.2",
+    "express": "~4.15.2",
+    "jade": "~1.11.0",
+    "jwt-simple": "~0.5.1",
+    "mongodb": "~2.2.24",
+    "mongoose": "~4.8.6",
+    "morgan": "~1.8.1",
     "passport": ">= 0.0.0",
     "passport-local": ">= 0.0.0",
     "path": "^0.12.7",
-    "socket.io": "~1.0.2",
-    "static-favicon": "~1.0.0",
-    "svg2png": "^1.1.0",
+    "serve-favicon": "^2.4.1",
+    "socket.io": "~1.7.3",
+    "svg2png": "^4.1.1",
     "winston": "^2.2.0"
   }
 }
