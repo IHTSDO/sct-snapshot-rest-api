@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var winston = require('winston');
 var MongoClient = require('mongodb').MongoClient;
+var snomedLib = require("../lib/snomed");
 
 var logger = new (winston.Logger)({
     transports: [
@@ -36,9 +37,6 @@ var performMongoDbRequest = function(databaseName, callback) {
 }
 
 router.get('/:db/:collection/concepts/:sctid?', function(req, res) {
-    var idParam = parseInt(req.params.sctid);
-    var idParamStr = req.params.sctid;
-    var query = { '$or': [ {'conceptId': idParam }, {'conceptId': idParamStr } ]};
     var options = req.params.options || {};
     var test = ['limit', 'sort', 'fields', 'skip', 'hint', 'explain', 'snapshot', 'timeout'];
     for (o in req.query) {
@@ -46,29 +44,21 @@ router.get('/:db/:collection/concepts/:sctid?', function(req, res) {
             options[o] = JSON.parse(req.query[o]);
         }
     }
-    performMongoDbRequest(req.params.db, function(db) {
-        var collection = db.collection(req.params.collection);
-        collection.find(query, options).nextObject(function(err, doc) {
-            if (err) {
-                console.log(err.message);
-            }
-            if (doc) {
-                res.status(200);
-                res.header('Content-Type', 'application/json');
-                res.send(doc);
-            } else {
-                res.status(200);
-                res.send("Concept not found for ConceptId = " + idParam);
-            }
-
-        });
+    snomedLib.getConcept(req.params.db, req.params.collection, req.params.sctid, options, function(err, doc){
+        if (doc) {
+            res.status(200);
+            res.header('Content-Type', 'application/json');
+            res.send(doc);
+        } else {
+            res.status(200);
+            res.send(err);
+        }
     });
 });
 
 router.get('/:db/:collection/concepts/:sctid/descriptions/:descriptionId?', function(req, res) {
-    var idParam = parseInt(req.params.sctid);
-    var idParamStr = req.params.sctid;
-    var query = { '$or': [ {'conceptId': idParam }, {'conceptId': idParamStr } ]};
+    var descId = false;
+    if (req.params.descriptionId) descId = req.params.descriptionId;
     var options = req.params.options || {};
     var test = ['limit', 'sort', 'fields', 'skip', 'hint', 'explain', 'snapshot', 'timeout'];
     for (o in req.query) {
@@ -80,41 +70,17 @@ router.get('/:db/:collection/concepts/:sctid/descriptions/:descriptionId?', func
             }
         }
     }
-    performMongoDbRequest(req.params.db, function(db) {
-        var collection = db.collection(req.params.collection);
-        collection.find(query, options, function(err, cursor) {
-            cursor.toArray(function(err, docs) {
-                var result = [];
-                if (docs && docs.length > 0) {
-                    docs[0].descriptions.forEach(function(desc) {
-                        if (req.params.descriptionId) {
-                            if (parseInt(req.params.descriptionId) == desc.descriptionId || req.params.descriptionId == desc.descriptionId) {
-                                result.push(desc);
-                            }
-                        } else {
-                            result.push(desc);
-                        }
-                    });
-                    res.status(200);
-                    res.send(result);
-                } else {
-                    res.status(200);
-                    res.send([]);
-                }
-            });
-        });
+    snomedLib.getDescriptions(req.params.db, req.params.collection, req.params.sctid, descId, options, function(err, docs){
+        res.status(200);
+        res.send(docs);
     });
 });
 
 router.get('/:db/:collection/concepts/:sctid/relationships?', function(req, res) {
-    var idParam = parseInt(req.params.sctid);
-    var idParamStr = req.params.sctid;
-    var query = { '$or': [ {'conceptId': idParam }, {'conceptId': idParamStr } ]};
     var form = "all";
     if (req.query["form"]) {
         form = req.query["form"];
     }
-
     var options = req.params.options || {};
     var test = ['limit', 'sort', 'fields', 'skip', 'hint', 'explain', 'snapshot', 'timeout'];
     for (o in req.query) {
@@ -123,30 +89,9 @@ router.get('/:db/:collection/concepts/:sctid/relationships?', function(req, res)
         }
     }
 
-    performMongoDbRequest(req.params.db, function(db) {
-        var collection = db.collection(req.params.collection);
-        collection.find(query, options, function(err, cursor) {
-            cursor.toArray(function(err, docs) {
-                var result = [];
-                if (docs && docs.length > 0) {
-                    if (form == "all" || form == "inferred") {
-                        docs[0].relationships.forEach(function(desc) {
-                            result.push(desc);
-                        });
-                    }
-                    if (form == "all" || form == "stated") {
-                        docs[0].statedRelationships.forEach(function(desc) {
-                            result.push(desc);
-                        });
-                    }
-                    res.status(200);
-                    res.send(result);
-                } else {
-                    res.status(200);
-                    res.send([]);
-                }
-            });
-        });
+    snomedLib.getRelationShips(req.params.db, req.params.collection, req.params.sctid, form, options, function(err, docs){
+        res.status(200);
+        res.send(docs);
     });
 });
 
@@ -172,23 +117,10 @@ router.get('/:db/:collection/concepts/:sctid/children?', function(req, res) {
         }
     }
     options["fields"] = {"defaultTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1, "isLeafInferred": 1,"isLeafStated": 1,"statedDescendants": 1};
-    performMongoDbRequest(req.params.db, function(db) {
-        var collection = db.collection(req.params.collection);
-        collection.find(query, options, function(err, cursor) {
-            cursor.toArray(function(err, docs) {
-                var result = [];
-                if (docs && docs.length > 0) {
-                    docs.forEach(function(doc) {
-                        result.push(doc);
-                    });
-                    res.status(200);
-                    res.send(result);
-                } else {
-                    res.status(200);
-                    res.send(result);
-                }
-            });
-        });
+    snomedLib.getObject(req.params.db, req.params.collection, query, options, function(err, docs){
+        res.status(200);
+        if (!docs) docs = [];
+        res.send(docs);
     });
 });
 
@@ -217,31 +149,14 @@ router.get('/:db/:collection/concepts/:sctid/references?', function(req, res) {
     }
 
 //    .findOne({"relationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}},{"relationships": {"$elemMatch": {"target.conceptId": idParam, "active": true}}
-
-    performMongoDbRequest(req.params.db, function(db) {
-        var collection = db.collection(req.params.collection);
-        collection.find(query, options, function(err, cursor) {
-            cursor.toArray(function(err, docs) {
-                var result = [];
-                if (docs && docs.length > 0) {
-                    docs.forEach(function(doc) {
-                        result.push(doc);
-                    });
-                    res.status(200);
-                    res.send(result);
-                } else {
-                    res.status(200);
-                    res.send(result);
-                }
-            });
-        });
+    snomedLib.getObject(req.params.db, req.params.collection, query, options, function(err, docs){
+        if (!docs) docs = [];
+        res.status(200);
+        res.send(docs);
     });
 });
 
 router.get('/:db/:collection/concepts/:sctid/parents?', function(req, res) {
-    var idParam = parseInt(req.params.sctid);
-    var idParamStr = req.params.sctid;
-    var query = {"$or": [ {"conceptId": idParam }, {"conceptId": idParamStr } ]};
     var options = req.params.options || {};
     var test = ['limit', 'sort', 'fields', 'skip', 'hint', 'explain', 'snapshot', 'timeout'];
     for (o in req.query) {
@@ -250,51 +165,14 @@ router.get('/:db/:collection/concepts/:sctid/parents?', function(req, res) {
         }
     }
     options["fields"] = {"relationships": 1, "statedRelationships": 1};
-    performMongoDbRequest(req.params.db, function(db) {
-        var collection = db.collection(req.params.collection);
-        collection.find(query, options, function(err, cursor) {
-            cursor.toArray(function(err, docs) {
-                if (docs && docs.length > 0) {
-                    var result = [];
-                    if (typeof docs[0].relationships != 'undefined') {
-                        if (req.query["form"]) {
-                            if (req.query["form"] == "inferred" && docs[0].relationships) {
-                                docs[0].relationships.forEach(function(rel) {
-                                    if (rel.active == true && (rel.type.conceptId == 116680003 || rel.type.conceptId == "116680003")) {
-                                        result.push({conceptId: rel.target.conceptId, defaultTerm: rel.target.defaultTerm, definitionStatus: rel.target.definitionStatus, module: rel.target.module, statedDescendants: rel.target.statedDescendants});
-                                    }
-                                });
-                            } else if (req.query["form"] == "stated" && docs[0].statedRelationships) {
-                                docs[0].statedRelationships.forEach(function(rel) {
-                                    if (rel.active == true && (rel.type.conceptId == 116680003 || rel.type.conceptId == "116680003")) {
-                                        result.push({conceptId: rel.target.conceptId, defaultTerm: rel.target.defaultTerm, definitionStatus: rel.target.definitionStatus, module: rel.target.module, statedDescendants: rel.target.statedDescendants});
-                                    }
-                                });
-                            }
-                        } else if (docs[0].relationships) {
-                            docs[0].relationships.forEach(function(rel) {
-                                if (rel.active == true && (rel.type.conceptId == 116680003 || rel.type.conceptId == "116680003")) {
-                                    result.push({conceptId: rel.target.conceptId, defaultTerm: rel.target.defaultTerm, definitionStatus: rel.target.definitionStatus, module: rel.target.module});
-                                }
-                            });
-                        }
-                    }
-                    res.status(200);
-                    res.send(result);
-                } else {
-                    res.status(200);
-                    res.send([]);
-                }
-            });
-        });
+    snomedLib.getParents(req.params.db, req.params.collection, req.params.sctid, req.query["form"], options, function(err, docs){
+        if (!docs) docs = [];
+        res.status(200);
+        res.send(docs);
     });
 });
 
 router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
-    var idParam = parseInt(req.params.sctid);
-    var idParamStr = req.params.sctid;
-    var query = {"memberships": {"$elemMatch": {"refset.conceptId": idParamStr, "active": true}}};
-
     var options = req.params.options || {};
     var test = ['limit', 'sort', 'fields', 'skip', 'hint', 'explain', 'snapshot', 'timeout'];
     for (o in req.query) {
@@ -309,59 +187,13 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
     if (!options.skip) {
         options.skip = 0;
     }
-    var getTotalOf = function(refsetId, callback){
-        performMongoDbRequest("server",function(db){
-            var collection = db.collection("resources");
-            collection.find({"databaseName" : req.params.db, "collectionName": req.params.collection.replace("v", "")}, {refsets: 1}, function(err, cursor) {
-                if (err){
-                    callback(err);
-                }else{
-                    cursor.toArray(function(err, docs) {
-                        if (err)
-                            callback(err);
-                        else{
-                            var total = 0, error = "No refset matching in the manifest";
-                            docs[0].refsets.forEach(function(refset){
-                                if (refset.conceptId == refsetId){
-                                    error = false;
-                                    total = refset.count;
-                                }
-                            });
-                            callback(error, total);
-                        }
-                    });
-                }
-            });
-        });
-    };
+    snomedLib.getMembers(req.params.db, req.params.collection, req.params.sctid, options, function(err, docs){
+        if (err){
 
-    getTotalOf(idParam, function(err, totalR){
-        performMongoDbRequest(req.params.db, function(db) {
-            var collection = db.collection(req.params.collection);
-            //collection.count(query, function (err, total) {
-            var total = totalR;
-            if (err) total = err;
-            // Performance update, only sort small refsets
-            //if (total < 1000) {
-            //    options.sort = {defaultTerm: 1};
-            //}
-            collection.find(query, options, function (err, cursor) {
-                cursor.toArray(function (err, docs) {
-                    var result = {};
-                    result.members = [];
-                    result.details = {'total': total, 'refsetId': idParam };
-                    if (docs && docs.length > 0) {
-                        result.members = docs;
-                        res.status(200);
-                        res.send(result);
-                    } else {
-                        res.status(200);
-                        res.send(result);
-                    }
-                });
-            });
-            //});
-        });
+        }else{
+            res.status(200);
+            res.send(docs);
+        }
     });
 });
 
@@ -468,6 +300,23 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
         skipTo = parseInt(req.query["skipTo"]);
     }
 
+    var groupByConcept = false;
+    if (req.query["groupByConcept"])
+        groupByConcept = req.query["groupByConcept"];
+
+    var filters = {
+        idParamStr: idParamStr,
+        groupByConcept: groupByConcept,
+        searchMode: searchMode,
+        lang: lang,
+        semanticFilter: semanticFilter,
+        moduleFilter: moduleFilter,
+        langFilter: langFilter,
+        refsetFilter: refsetFilter,
+        skipTo: skipTo,
+        returnLimit: returnLimit
+    };
+
     var options = req.params.options || {};
     var test = ['limit', 'sort', 'fields', 'skip', 'hint', 'explain', 'snapshot', 'timeout'];
     for (o in req.query) {
@@ -476,137 +325,11 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
         }
     }
     options["limit"] = 10000000;
+
     if (searchMode == "regex" || searchMode == "partialMatching" || searchMode == "fullText")  {
-        performMongoDbRequest(req.params.db, function(db) {
-            var collection = db.collection(req.params.collection + 'tx');
-            function processMatches(cursor) {
-                var dbDuration = Date.now() - start;
-                //logger.log('info', "Starting in = " + (Date.now() - start));
-                cursor.toArray(function(err, docs) {
-                    //logger.log('info', "Arrayed in = " + (Date.now() - start) + " Array: " + docs.length);
-                    var result = {};
-                    result.matches = [];
-                    result.details = {'total': 0, 'skipTo': skipTo, 'returnLimit': returnLimit};
-                    result.filters = {};
-                    result.filters.lang = {};
-                    result.filters.semTag = {};
-                    result.filters.module = {};
-                    result.filters.refsetId = {};
-                    if (docs && docs.length > 0) {
-                        result.details = {'total': docs.length, 'skipTo': skipTo, 'returnLimit': returnLimit};
-                        if (idParam == docs[0].descriptionId || idParamStr == docs[0].descriptionId) {
-                            result.matches.push({"term": docs[0].term, "conceptId": docs[0].conceptId, "active": docs[0].active, "conceptActive": docs[0].conceptActive, "fsn": docs[0].fsn, "module": docs[0].module});
-                            var duration = Date.now() - start;
-                            logger.log('info', 'Search for ' + searchTerm + ' result = ' + docs.length, {searchTerm: searchTerm, database: req.params.db, collection: req.params.collection, searchMode: searchMode, language: lang, statusFilter: statusFilter, matches: docs.length, duration: duration, dbduration: dbDuration});
-                            res.header('Content-Type', 'application/json');
-                            res.send(result);
-                        } else {
-                            var matchedDescriptions = docs.slice(0);
-                            //logger.log('info', "Sliced in = " + (Date.now() - start));
-                            if (searchMode == "regex" || searchMode == "partialMatching") {
-                                matchedDescriptions.sort(function (a, b) {
-                                    if (a.term.length < b.term.length)
-                                        return -1;
-                                    if (a.term.length > b.term.length)
-                                        return 1;
-                                    return 0;
-                                });
-                            }
-                            //logger.log('info', "Sorted in = " + (Date.now() - start));
-                            var count = 0;
-
-                            var conceptIds = [];
-
-                            matchedDescriptions.forEach(function(doc) {
-                                var refsetOk = false;
-                                if (doc.refsetIds){
-                                    doc.refsetIds.forEach(function (refset){
-                                        if (refset == refsetFilter){
-                                            refsetOk = true;
-                                        }
-                                    });
-                                }
-                                if (semanticFilter == "none" || (semanticFilter == doc.semanticTag)) {
-                                    if (langFilter == "none" || (langFilter == doc.lang)) {
-                                        if (moduleFilter == "none" || (moduleFilter == doc.module)) {
-                                            if (refsetFilter == "none" || refsetOk) {
-                                                if (!req.query["groupByConcept"] || conceptIds.indexOf(doc.conceptId) == -1) {
-                                                    conceptIds.push(doc.conceptId);
-
-                                                    if (count >= skipTo && count < (skipTo + returnLimit)) {
-                                                        result.matches.push({"term": doc.term, "conceptId": doc.conceptId, "active": doc.active, "conceptActive": doc.conceptActive, "fsn": doc.fsn, "module": doc.module, "definitionStatus": doc.definitionStatus});
-                                                    }
-                                                    if (result.filters.semTag.hasOwnProperty(doc.semanticTag)) {
-                                                        result.filters.semTag[doc.semanticTag] = result.filters.semTag[doc.semanticTag] + 1;
-                                                    } else {
-                                                        result.filters.semTag[doc.semanticTag] = 1;
-                                                    }
-                                                    if (result.filters.lang.hasOwnProperty(doc.lang)) {
-                                                        result.filters.lang[doc.lang] = result.filters.lang[doc.lang] + 1;
-                                                    } else {
-                                                        result.filters.lang[doc.lang] = 1;
-                                                    }
-                                                    if (result.filters.module.hasOwnProperty(doc.module)) {
-                                                        result.filters.module[doc.module] = result.filters.module[doc.module] + 1;
-                                                    } else {
-                                                        result.filters.module[doc.module] = 1;
-                                                    }
-                                                    if (doc.refsetIds) {
-                                                        doc.refsetIds.forEach(function (refset) {
-                                                            if (result.filters.refsetId.hasOwnProperty(refset)) {
-                                                                result.filters.refsetId[refset] = result.filters.refsetId[refset] + 1;
-                                                            } else {
-                                                                result.filters.refsetId[refset] = 1;
-                                                            }
-                                                        });
-                                                    }
-//                                                if (result.filters.refsetId.hasOwnProperty(doc))
-                                                    count = count + 1;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            });
-                            result.details.total = count;
-                            //logger.log('info', "Written in = " + (Date.now() - start));
-                            var duration = Date.now() - start;
-                            logger.log('info', 'Search for ' + searchTerm + ' result = ' + docs.length, {searchTerm: searchTerm, database: req.params.db, collection: req.params.collection, searchMode: searchMode, language: lang, statusFilter: statusFilter, moduleFilter: moduleFilter, matches: docs.length, duration: duration, dbduration: dbDuration});
-                            res.header('Content-Type', 'application/json');
-                            res.status(200);
-                            res.send(result);
-                        }
-                    } else {
-                        var duration = Date.now() - start;
-                        //logger.log('info', 'Search for ' + searchTerm + ' result = ' + docs.length, {searchTerm: searchTerm, database: req.params.db, collection: req.params.collection, searchMode: searchMode, language: lang, statusFilter: statusFilter, matches: docs.length, duration: duration, dbduration: dbDuration});
-                        var result = {};
-                        result.matches = [];
-                        result.details = {'total': 0, 'skipTo': skipTo, 'returnLimit': returnLimit};
-                        res.send(result);
-                    }
-                });
-            }
-            if (searchMode == "regex" || searchMode == "partialMatching") {
-                collection.find(query, options, function(err, cursor) {
-                    if (err) {
-                        console.warn(getTime() + " - " + err.message);
-                        res.status(500);
-                        res.send(err.message);
-                        return;
-                    }
-                    processMatches(cursor);
-                });
-            } else {
-                collection.find(query, { score: { $meta: "textScore" } }).sort({ score: { $meta: "textScore" }, length: 1 }, function (err, cursor) {
-                    if (err) {
-                        console.warn(getTime() + " - " + err.message);
-                        res.status(500);
-                        res.send(err.message);
-                        return;
-                    }
-                    processMatches(cursor);
-                });
-            }
+        snomedLib.searchDescription(req.params.db, req.params.collection, filters, query, options, function(err, docs){
+            res.status(200);
+            res.send(docs);
         });
     } else {
         res.status(400);
@@ -674,7 +397,7 @@ var levDist = function(s, t) {
 }
 
 var defaultDiacriticsRemovalMap = [
-    {'base':'a','letters':/[\u00E0\u00E1\u00E2\u00E3\u00E4\u00E5\u0101\u0103\u0105\u01CE\u01FB\u00C0\u00C4]/g},
+    {'base':'a','letters':/[\u00E1\u00E2\u00E3\u00E4\u00E5\u0101\u0103\u0105\u01CE\u01FB\u00C0\u00C4]/g},
     {'base':'ae','letters':/[\u00E6\u01FD]/g},
     {'base':'c','letters':/[\u00E7\u0107\u0109\u010B\u010D]/g},
     {'base':'d','letters':/[\u010F\u0111\u00F0]/g},
@@ -697,7 +420,7 @@ var defaultDiacriticsRemovalMap = [
     {'base':'w','letters':/[\u0175]/g},
     {'base':'y','letters':/[\u00FD\u00FF\u0177]/g},
     {'base':'z','letters':/[\u017A\u017C\u017E]/g},
-    {'base':'A','letters':/[\u00C1\u00C2\u00C3\uCC04\u00C5\u0100\u0102\u0104\u01CD\u01FB]/g},
+    {'base':'A','letters':/[\u00C1\u00C2\u00C3\uCC04\u00C5\u00E0\u0100\u0102\u0104\u01CD\u01FB]/g},
     {'base':'AE','letters':/[\u00C6]/g},
     {'base':'C','letters':/[\u00C7\u0106\u0108\u010A\u010C]/g},
     {'base':'D','letters':/[\u010E\u0110\u00D0]/g},
@@ -749,7 +472,7 @@ var defaultDiacriticsRemovalMap = [
 ];
 var changes;
 
-removeDiacritics = function(str) {
+var removeDiacritics = function(str) {
     if(!changes) {
         changes = defaultDiacriticsRemovalMap;
     }
@@ -757,9 +480,9 @@ removeDiacritics = function(str) {
         str = str.replace(changes[i].letters, changes[i].base);
     }
     return str;
-}
+};
 
-regExpEscape = function(s) {
+var regExpEscape = function(s) {
     return String(s).replace(/([-()\[\]{}+?*.$\^|,:#<!\\])/g, '\\$1').
         replace(/\x08/g, '\\x08');
 };
@@ -773,6 +496,6 @@ var getTime = function() {
         + currentdate.getMinutes() + ":"
         + currentdate.getSeconds();
     return datetime;
-}
+};
 
 module.exports = router;
