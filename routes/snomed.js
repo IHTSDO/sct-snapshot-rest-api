@@ -36,7 +36,7 @@ var performMongoDbRequest = function(databaseName, callback) {
     }
 }
 
-router.get('/:db/:collection/concepts/:sctid?', function(req, res) {
+router.get('/:db/:collection/concepts/:sctid', function(req, res) {
     var options = req.params.options || {};
     var test = ['limit', 'sort', 'fields', 'skip', 'hint', 'explain', 'snapshot', 'timeout'];
     for (o in req.query) {
@@ -44,6 +44,7 @@ router.get('/:db/:collection/concepts/:sctid?', function(req, res) {
             options[o] = JSON.parse(req.query[o]);
         }
     }
+    console.log(JSON.stringify(req.headers));
     snomedLib.getConcept(req.params.db, req.params.collection, req.params.sctid, options, function(err, doc){
         if (doc) {
             res.status(200);
