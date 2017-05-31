@@ -19,7 +19,7 @@
     "passport": ">= 0.0.0",
     "passport-local": ">= 0.0.0",
     "path": "^0.12.7",
-    "phantomjs-prebuilt": "^2.1.14",
+    "pug": "^2.0.0-rc.1",
     "serve-favicon": "^2.4.1",
     "socket.io": "~1.7.3",
     "svg2png": "^4.1.1",
