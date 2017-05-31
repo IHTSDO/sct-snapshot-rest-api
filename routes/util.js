@@ -25,7 +25,7 @@ router.post('/svg2png', function(req, res) {
                     console.log(err);
                     res.end(err);
                 } else {
-                    var options = { width: 300, height: 400 };
+                    var options = { width: 1024, height: 768 };
                     const outputBuffer = svg2png.sync(sourceBuffer, options);
                     fs.writeFile(appDir +
                         "/public/svg2pngTemp/" + id + ".png", outputBuffer);
