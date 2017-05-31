@@ -18,17 +18,31 @@ router.post('/svg2png', function(req, res) {
     fs.writeFile(appDir + "/public/svg2pngTemp/" + id + ".svg", svg.svgContent, function(err) {
         if(err) {
             console.log(err);
+            res.end(err);
         } else {
-            svg2png(appDir + "/public/svg2pngTemp/" + id + ".svg", appDir +
-                "/public/svg2pngTemp/" + id + ".png", function (err) {
-                if (err) {
+            fs.readFile(appDir + "/public/svg2pngTemp/" + id + ".svg", "utf8", function(err, sourceBuffer) {
+                if(err) {
                     console.log(err);
-                    res.end("Error");
+                    res.end(err);
                 } else {
+                    var options = { width: 300, height: 400 };
+                    const outputBuffer = svg2png.sync(sourceBuffer, options);
+                    fs.writeFile(appDir +
+                        "/public/svg2pngTemp/" + id + ".png", outputBuffer);
                     pngLink = "svg2pngTemp/" + id + ".png";
                     res.end(pngLink);
                 }
             });
+            // svg2png(appDir + "/public/svg2pngTemp/" + id + ".svg", appDir +
+            //     "/public/svg2pngTemp/" + id + ".png", function (err) {
+            //     if (err) {
+            //         console.log(err);
+            //         res.end("Error");
+            //     } else {
+            //         pngLink = "svg2pngTemp/" + id + ".png";
+            //         res.end(pngLink);
+            //     }
+            // });
 
         }
     });
