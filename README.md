@@ -1,6 +1,8 @@
 SNOMED CT Snapshot REST API [![Build Status](https://travis-ci.org/IHTSDO/sct-snapshot-rest-api.svg?branch=master)](https://travis-ci.org/IHTSDO/sct-snapshot-rest-api) [![Code Climate](https://codeclimate.com/github/IHTSDO/sct-snapshot-rest-api/badges/gpa.svg)](https://codeclimate.com/github/IHTSDO/sct-snapshot-rest-api)
 ===========================
 
+[![Join the chat at https://gitter.im/IHTSDO/sct-snapshot-rest-api](https://badges.gitter.im/IHTSDO/sct-snapshot-rest-api.svg)](https://gitter.im/IHTSDO/sct-snapshot-rest-api?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Lightweight mongo server with a rest API for SNOMED CT Snapshot views, powered by the MEAN stack, http://mean.io/, (Node.js, Express &amp; MongoDB). 
 
 The minimum version of Node.js to be used is v4.4.2 onwards and has been tested on v5 and v7.10.0.
