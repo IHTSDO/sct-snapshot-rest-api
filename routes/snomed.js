@@ -47,15 +47,9 @@ router.get('/:db/:collection/concepts/:sctid', function(req, res) {
     }
     snomedLib.getConcept(req.params.db, req.params.collection, req.params.sctid, options, function(err, doc){
         if (doc) {
-            if (req.headers.accept.indexOf("application/vnd.github.v1+json") > -1) {
-                res.status(200);
-                res.header('Content-Type', 'application/json');
-                res.send(apiModelUtility.convertToV1(doc));
-            } else {
-                res.status(200);
-                res.header('Content-Type', 'application/json');
-                res.send(doc);
-            }
+            res.status(200);
+            res.header('Content-Type', 'application/json');
+            res.send(doc);
         } else {
             res.status(200);
             res.send(err);
