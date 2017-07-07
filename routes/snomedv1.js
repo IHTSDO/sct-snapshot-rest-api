@@ -3,6 +3,7 @@ var router = express.Router();
 var winston = require('winston');
 var MongoClient = require('mongodb').MongoClient;
 var snomedLib = require("../lib/snomedv2");
+var transform = require("../lib/transform");
 var apiModelUtility = require("../lib/apiModelUtility");
 
 var logger = new (winston.Logger)({
@@ -45,6 +46,7 @@ router.get('/:db/:collection/concepts/:sctid', function(req, res) {
             options[o] = JSON.parse(req.query[o]);
         }
     }
+    options.v1=true;
     snomedLib.getConcept(req.params.db, req.params.collection, req.params.sctid, options, function(err, doc){
         if (doc) {
             if (req.headers.accept.indexOf("application/vnd.github.v1+json") > -1) {
@@ -77,6 +79,7 @@ router.get('/:db/:collection/concepts/:sctid/descriptions/:descriptionId?', func
             }
         }
     }
+    options.v1=true;
     snomedLib.getDescriptions(req.params.db, req.params.collection, req.params.sctid, descId, options, function(err, docs){
         res.status(200);
         res.send(docs);
@@ -96,6 +99,7 @@ router.get('/:db/:collection/concepts/:sctid/relationships?', function(req, res)
         }
     }
 
+    options.v1=true;
     snomedLib.getRelationShips(req.params.db, req.params.collection, req.params.sctid, form, options, function(err, docs){
         res.status(200);
         res.send(docs);
@@ -130,6 +134,7 @@ router.get('/:db/:collection/concepts/:sctid/children?', function(req, res) {
                 }
             };
         }
+
     }
 
     var options = req.params.options || {};
@@ -141,9 +146,25 @@ router.get('/:db/:collection/concepts/:sctid/children?', function(req, res) {
     }
     options["fields"] = {"preferredTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1, "isLeafInferred": 1,"isLeafStated": 1,"statedDescendants": 1};
     snomedLib.getObject(req.params.db, req.params.collection, query, options, function(err, docs){
-        res.status(200);
-        if (!docs) docs = [];
-        res.send(docs);
+
+        var result = {};
+        if (docs && docs.length > 0) {
+
+            if (!docs[0].v || docs[0].v != "2") {
+
+                res.status(400);
+                res.send("Error: The db isnot version 2. It must be created with the new conversion module.");
+
+            } else {
+                res.status(200);
+                result = transform.getV1ConceptDescriptors(docs);
+                res.send(result);
+            }
+        }else {
+            res.status(200);
+            if (!docs) docs = [];
+            res.send(docs);
+        }
     });
 });
 
@@ -157,24 +178,37 @@ router.get('/:db/:collection/concepts/:sctid/references?', function(req, res) {
             options[o] = JSON.parse(req.query[o]);
         }
     }
+    options["fields"] = { "preferredTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "effectiveTime": 1, "module": 1,"isLeafInferred": 1,"isLeafStated": 1,"statedDescendants": 1};
 
     if (req.query["form"]) {
         if (req.query["form"] == "inferred") {
             query = {"relationships": {"$elemMatch":  {"destination.conceptId": idParamStr, "characteristicType.conceptId": "900000000000011006" , "active": true}}};
-            options["fields"] = { "preferredTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "effectiveTime": 1, "module": 1};
-        }else if (req.query["form"] == "stated") {
+         }else if (req.query["form"] == "stated") {
             query = {"relationships": {"$elemMatch": {"destination.conceptId": idParamStr, "characteristicType.conceptId": "900000000000010007", "active": true}}};
-            options["fields"] = { "preferredTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "effectiveTime": 1, "module": 1};
         }else if (req.query["form"] == "additional") {
             query = {"relationships": {"$elemMatch": {"destination.conceptId": idParamStr, "characteristicType.conceptId": "900000000000227009", "active": true}}};
-            options["fields"] = { "preferredTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "effectiveTime": 1, "module": 1};
         }
     }
-
     snomedLib.getObject(req.params.db, req.params.collection, query, options, function(err, docs){
-        if (!docs) docs = [];
-        res.status(200);
-        res.send(docs);
+
+        var result = {};
+        if (docs && docs.length > 0) {
+
+            if (!docs[0].v || docs[0].v != "2") {
+
+                res.status(400);
+                res.send("Error: The db isnot version 2. It must be created with the new conversion module.");
+
+            } else {
+                res.status(200);
+                result = transform.getV1ConceptDescriptors(docs);
+                res.send(result);
+            }
+        }else {
+            res.status(200);
+            if (!docs) docs = [];
+            res.send(docs);
+        }
     });
 });
 
@@ -187,6 +221,7 @@ router.get('/:db/:collection/concepts/:sctid/parents?', function(req, res) {
         }
     }
     options["fields"] = {"relationships": 1};
+    options.v1=true;
     snomedLib.getParents(req.params.db, req.params.collection, req.params.sctid, req.query["form"], options, function(err, docs){
         if (!docs) docs = [];
         res.status(200);
@@ -209,8 +244,10 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
     if (!options.skip) {
         options.skip = 0;
     }
+    options.v1=true;
     snomedLib.getMembers(req.params.db, req.params.collection, req.params.sctid, options, function(err, docs){
         if (err){
+
             res.status(400);
             if (typeof err == 'boolean'){
                 res.send("Error: " + docs);
@@ -351,6 +388,7 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
     }
     options["limit"] = 10000000;
 
+    options.v1=true;
     if (searchMode == "regex" || searchMode == "partialMatching" || searchMode == "fullText")  {
         snomedLib.searchDescription(req.params.db, req.params.collection, filters, query, options, function(err, docs){
             res.status(200);
