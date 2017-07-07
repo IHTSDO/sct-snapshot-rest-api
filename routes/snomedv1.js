@@ -46,7 +46,7 @@ router.get('/:db/:collection/concepts/:sctid', function(req, res) {
             options[o] = JSON.parse(req.query[o]);
         }
     }
-    options.v1=true;
+    //options.v1=true;
     snomedLib.getConcept(req.params.db, req.params.collection, req.params.sctid, options, function(err, doc){
         if (doc) {
             res.status(200);
