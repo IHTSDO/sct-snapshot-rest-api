@@ -72,6 +72,12 @@ app.use('/v1/snomed',snomedv1);
 app.use('/util', util);
 app.use('/server', server);
 app.use("/expressions", expressions);
+app.use('/v2/util', util);
+app.use('/v2/server', server);
+app.use("/v2/expressions", expressions);
+app.use('/v1/util', util);
+app.use('/v1/server', server);
+app.use("/v1/expressions", expressions);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
