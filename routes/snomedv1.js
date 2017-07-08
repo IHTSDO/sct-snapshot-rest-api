@@ -143,6 +143,7 @@ router.get('/:db/:collection/concepts/:sctid/children?', function(req, res) {
     snomedLib.getObject(req.params.db, req.params.collection, query, options, function(err, docs){
 
         var result = {};
+        console.log("docs.length:" + docs.length);
         if (docs && docs.length > 0) {
 
             if (!docs[0].v || docs[0].v != "2") {
