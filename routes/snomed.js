@@ -151,17 +151,19 @@ router.get('/:db/:collection/concepts/:sctid/references?', function(req, res) {
             options[o] = JSON.parse(req.query[o]);
         }
     }
-    options["fields"] = { "preferredTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "effectiveTime": 1, "module": 1,"isLeafInferred": 1,"isLeafStated": 1,"statedDescendants": 1, "v":1};
+    var typeId="900000000000011006";
 
     if (req.query["form"]) {
-        if (req.query["form"] == "inferred") {
-            query = {"relationships": {"$elemMatch":  {"destination.conceptId": idParamStr, "characteristicType.conceptId": "900000000000011006" , "active": true}}};
-        }else if (req.query["form"] == "stated") {
-            query = {"relationships": {"$elemMatch": {"destination.conceptId": idParamStr, "characteristicType.conceptId": "900000000000010007", "active": true}}};
+        if (req.query["form"] == "stated") {
+            typeId="900000000000010007";
+
         }else if (req.query["form"] == "additional") {
-            query = {"relationships": {"$elemMatch": {"destination.conceptId": idParamStr, "characteristicType.conceptId": "900000000000227009", "active": true}}};
+            typeId="900000000000227009";
+
         }
     }
+    query = {"relationships": {"$elemMatch":  {"destination.conceptId": idParamStr, "characteristicType.conceptId": typeId , "active": true}}};
+    options["fields"] = { "relationships": {"$elemMatch":  {"destination.conceptId": idParamStr, "characteristicType.conceptId": typeId , "active": true}},"preferredTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "effectiveTime": 1, "module": 1,"isLeafInferred": 1,"isLeafStated": 1,"statedDescendants": 1, "v":1};
 
     snomedLib.getObject(req.params.db, req.params.collection, query, options, function(err, docs){
         if (!docs) docs = [];
