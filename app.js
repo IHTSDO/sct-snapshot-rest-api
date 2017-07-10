@@ -16,6 +16,7 @@ var snomed = require('./routes/snomed');
 var snomedv1 = require('./routes/snomedv1');
 var util = require('./routes/util');
 var server = require('./routes/server');
+var serverv1 = require('./routes/serverv1');
 var expressions = require('./routes/expressions');
 
 var accessControlConfig = {
@@ -76,7 +77,7 @@ app.use('/v2/util', util);
 app.use('/v2/server', server);
 app.use("/v2/expressions", expressions);
 app.use('/v1/util', util);
-app.use('/v1/server', server);
+app.use('/v1/server', serverv1);
 app.use("/v1/expressions", expressions);
 
 /// catch 404 and forward to error handler
