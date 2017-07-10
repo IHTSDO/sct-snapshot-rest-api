@@ -8,6 +8,7 @@ var MongoClient = require('mongodb').MongoClient;
 var connectTimeout = require('connect-timeout');
 var winston = require('winston');
 var path = require('path');
+var transform = require("../lib/transform");
 // find the first module to be loaded
 var topModule = module;
 while(topModule.parent)
