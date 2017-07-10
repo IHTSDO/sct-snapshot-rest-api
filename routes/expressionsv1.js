@@ -487,7 +487,8 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
                 cursor.toArray(function (err, docs) {
                     if (docs) {
                         //var page = docs.slice(parseInt(skip), parseInt(skip) + parseInt(limit));
-                        returnData.matches = docs;
+                        var results=transform.getExpressionResultsV1(docs);
+                        returnData.matches = results;
                         callback(null, returnData);
                     } else {
                         returnData.total = 0;
