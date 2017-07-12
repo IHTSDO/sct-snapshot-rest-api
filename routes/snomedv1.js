@@ -155,7 +155,6 @@ router.get('/:db/:collection/concepts/:sctid/children?', function(req, res) {
                 snomedLib.getDefaultTermType(req.params.db, req.params.collection, function(err,defTermType) {
                     if (err) callback(err);
                     else {
-                        console.log("defTermType:" + defTermType);
                         res.status(200);
                         result = transform.getV1ConceptDescriptors(docs, defTermType);
                         res.send(result);
