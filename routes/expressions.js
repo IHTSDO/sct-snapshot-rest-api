@@ -48,7 +48,7 @@ var performMongoDbRequest = function(databaseName, callback) {
  */
 router.post('/parse/:language', function (req, res) {
     var expression = req.body.expression.replace(/[^\x00-\x7F]/g, "");
-    var language = req.param("language");
+    var language = req.params.language;
     var results = expressionsParser.parse(expression, language);
     res.send(results);
 });
@@ -56,7 +56,7 @@ router.post('/parse/:language', function (req, res) {
 router.post('/:db/:collection/execute/:language', connectTimeout('120s'), function (req, res) {
     var request = req.body;
     var expression = request.expression.replace(/[^\x00-\x7F]/g, "");
-    var language = req.param("language");
+    var language = req.params.language;
     var collectionName = req.params.collection;
     var results = expressionsParser.parse(expression, language);
     var responseData = {
