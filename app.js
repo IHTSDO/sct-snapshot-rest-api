@@ -103,8 +103,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 // Adding raw body support
 app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.send('error', {
+    res.status(err.status || 500).send({
         message: err.message,
         error: {}
     });
