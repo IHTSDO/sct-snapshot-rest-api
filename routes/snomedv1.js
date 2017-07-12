@@ -138,7 +138,7 @@ router.get('/:db/:collection/concepts/:sctid/children?', function(req, res) {
             options[o] = JSON.parse(req.query[o]);
         }
     }
-    options["fields"] = {"preferredTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1, "isLeafInferred": 1,"isLeafStated": 1,"statedDescendants": 1, "v":1};
+    options["fields"] = {"fullySpecifiedName":1, "preferredTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1, "isLeafInferred": 1,"isLeafStated": 1,"statedDescendants": 1, "v":1};
 
     snomedLib.getObject(req.params.db, req.params.collection, query, options, function(err, docs){
 
@@ -151,9 +151,15 @@ router.get('/:db/:collection/concepts/:sctid/children?', function(req, res) {
                 res.send("Error: The db isnot version 2. It must be created with the new conversion module.");
 
             } else {
-                res.status(200);
-                result = transform.getV1ConceptDescriptors(docs);
-                res.send(result);
+
+                snomedLib.getDefaultTermType(req.params.db, req.params.collection, function(err,defTermType) {
+                    if (err) callback(err);
+                    else {
+                        res.status(200);
+                        result = transform.getV1ConceptDescriptors(docs, defTermType);
+                        res.send(result);
+                    }
+                });
             }
         }else {
             res.status(200);
@@ -186,20 +192,7 @@ router.get('/:db/:collection/concepts/:sctid/references?', function(req, res) {
         }
     }
     query = {"relationships": {"$elemMatch":  {"destination.conceptId": idParamStr, "characteristicType.conceptId": typeId , "active": true}}};
-    options["fields"] = { "relationships": {"$elemMatch":  {"destination.conceptId": idParamStr, "characteristicType.conceptId": typeId , "active": true}},"preferredTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "effectiveTime": 1, "module": 1,"isLeafInferred": 1,"isLeafStated": 1,"statedDescendants": 1, "v":1};
-
-
-    //options["fields"] = { "preferredTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "effectiveTime": 1, "module": 1,"isLeafInferred": 1,"isLeafStated": 1,"statedDescendants": 1, "v":1};
-    //
-    //if (req.query["form"]) {
-    //    if (req.query["form"] == "inferred") {
-    //        query = {"relationships": {"$elemMatch":  {"destination.conceptId": idParamStr, "characteristicType.conceptId": "900000000000011006" , "active": true}}};
-    //     }else if (req.query["form"] == "stated") {
-    //        query = {"relationships": {"$elemMatch": {"destination.conceptId": idParamStr, "characteristicType.conceptId": "900000000000010007", "active": true}}};
-    //    }else if (req.query["form"] == "additional") {
-    //        query = {"relationships": {"$elemMatch": {"destination.conceptId": idParamStr, "characteristicType.conceptId": "900000000000227009", "active": true}}};
-    //    }
-    //}
+    options["fields"] = { "relationships": {"$elemMatch":  {"destination.conceptId": idParamStr, "characteristicType.conceptId": typeId , "active": true}},"fullySpecifiedName":1, "preferredTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "effectiveTime": 1, "module": 1,"isLeafInferred": 1,"isLeafStated": 1,"statedDescendants": 1, "v":1};
 
     snomedLib.getObject(req.params.db, req.params.collection, query, options, function(err, docs){
 
@@ -212,9 +205,14 @@ router.get('/:db/:collection/concepts/:sctid/references?', function(req, res) {
                 res.send("Error: The db isnot version 2. It must be created with the new conversion module.");
 
             } else {
-                res.status(200);
-                result = transform.getV1ConceptDescriptorsAndRels(docs);
-                res.send(result);
+                snomedLib.getDefaultTermType(req.params.db, req.params.collection, function(err,defTermType) {
+                    if (err) callback(err);
+                    else {
+                        res.status(200);
+                        result = transform.getV1ConceptDescriptorsAndRels(docs, defTermType);
+                        res.send(result);
+                    }
+                });
             }
         }else {
             res.status(200);
@@ -249,7 +247,7 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
             options[o] = JSON.parse(req.query[o]);
         }
     }
-    options["fields"] = {"preferredTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1, "isLeafInferred": 1,"isLeafStated": 1, "statedDescendants":1, "v":1};
+    options["fields"] = {"fullySpecifiedName":1, "preferredTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1, "isLeafInferred": 1,"isLeafStated": 1, "statedDescendants":1, "v":1};
     if (!options.limit) {
         options.limit = 100;
     }
