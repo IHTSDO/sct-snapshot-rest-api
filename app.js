@@ -6,10 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
 var fs = require('fs');
-var pidFile = process.env.PID_FILE || "/var/sct-snapshot-rest-api.pid";
-
-
-fs.writeFile(pidFile, process.pid);
+var pidFile = process.env.PID_FILE || "mongodb-rest.pid";
 
 var routes = require('./routes/index');
 var snomed = require('./routes/snomed');
@@ -129,6 +126,7 @@ var cluster = require('cluster');
 var port = process.env.PORT || 3000;
 
 if(cluster.isMaster) {
+    fs.writeFile(pidFile, process.pid);
     var numWorkers = require('os').cpus().length;
 
     console.log('Master cluster setting up ' + numWorkers + ' workers...');
