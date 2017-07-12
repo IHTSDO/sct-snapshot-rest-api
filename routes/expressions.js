@@ -6,7 +6,7 @@ var router = express.Router();
 var expressionsParser = require('../grammars/apg/expressionParser');
 var MongoClient = require('mongodb').MongoClient;
 var connectTimeout = require('connect-timeout');
-var winston = require('winston');
+//var winston = require('winston');
 var path = require('path');
 // find the first module to be loaded
 var topModule = module;
@@ -14,12 +14,12 @@ while(topModule.parent)
     topModule = topModule.parent;
 var appDir = path.dirname(topModule.filename);
 
-var logger = new (winston.Logger)({
-    transports: [
-        new (winston.transports.Console)(),
-        new (winston.transports.File)({ filename: appDir +'/constraints.log' })
-    ]
-});
+//var logger = new (winston.Logger)({
+//    transports: [
+//        new (winston.transports.Console)(),
+//        new (winston.transports.File)({ filename: appDir +'/constraints.log' })
+//    ]
+//});
 
 
 var databases = {};
@@ -72,10 +72,10 @@ router.post('/:db/:collection/execute/:language', connectTimeout('120s'), functi
     }
     if (results.validation) {
         // Execute query
-        logger.log('info', 'Query execution started', {
-            expression: expression,
-            language: language
-        });
+        //logger.log('info', 'Query execution started', {
+        //    expression: expression,
+        //    language: language
+        //});
         var start = process.hrtime();
         computeGrammarQuery3(results, request.form, req.params.db, collectionName, request.skip, request.limit, function(err, results) {
             if (err) {
@@ -90,12 +90,12 @@ router.post('/:db/:collection/execute/:language', connectTimeout('120s'), functi
                     start = process.hrtime(); // reset the timer
                     return elapsed.toFixed(precision) + " ms.";
                 };
-                logger.log('info', 'Query execution finished', {
-                    expression: expression,
-                    language: language,
-                    matches: results.total,
-                    elapsed: elapsed_time()
-                });
+                //logger.log('info', 'Query execution finished', {
+                //    expression: expression,
+                //    language: language,
+                //    matches: results.total,
+                //    elapsed: elapsed_time()
+                //});
                 responseData.computeResponse = results;
                 res.send(responseData);
             }
@@ -473,7 +473,7 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
 
     var mongoQuery = {$and:[]};
     computer.resolve(root, ast,mongoQuery["$and"]);
-    console.log(JSON.stringify(mongoQuery));
+    //console.log(JSON.stringify(mongoQuery));
     var returnData = {};
     performMongoDbRequest(databaseName, function(db) {
         var collection = db.collection(collectionName);
