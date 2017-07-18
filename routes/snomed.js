@@ -3,6 +3,7 @@ var router = express.Router();
 var winston = require('winston');
 var MongoClient = require('mongodb').MongoClient;
 var snomedLib = require("../lib/snomed");
+var apiModelUtility = require("../lib/apiModelUtility");
 
 var logger = new (winston.Logger)({
     transports: [
@@ -44,12 +45,17 @@ router.get('/:db/:collection/concepts/:sctid', function(req, res) {
             options[o] = JSON.parse(req.query[o]);
         }
     }
-    console.log(JSON.stringify(req.headers.accept));
     snomedLib.getConcept(req.params.db, req.params.collection, req.params.sctid, options, function(err, doc){
         if (doc) {
-            res.status(200);
-            res.header('Content-Type', 'application/json');
-            res.send(doc);
+            if (req.headers.accept.indexOf("application/vnd.github.v1+json") > -1) {
+                res.status(200);
+                res.header('Content-Type', 'application/json');
+                res.send(apiModelUtility.convertToV1(doc));
+            } else {
+                res.status(200);
+                res.header('Content-Type', 'application/json');
+                res.send(doc);
+            }
         } else {
             res.status(200);
             res.send(err);
