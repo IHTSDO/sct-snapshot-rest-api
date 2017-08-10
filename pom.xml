@@ -4,7 +4,7 @@
 
 	<groupId>org.ihtsdo.sct</groupId>
 	<artifactId>sct-snapshot-rest-api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 
 	<packaging>deb</packaging>
 	<name>SCT Snapshot REST API</name>
