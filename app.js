@@ -65,12 +65,12 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', routes);
-app.use('/snomed', snomed);
+app.use('/snomed', snomedv1);
 app.use('/v2/snomed',snomed);
 app.use('/v1/snomed',snomedv1);
 app.use('/util', util);
-app.use('/server', server);
-app.use("/expressions", expressions);
+app.use('/server', serverv1);
+app.use("/expressions", expressionsv1);
 app.use('/v2/util', util);
 app.use('/v2/server', server);
 app.use("/v2/expressions", expressions);
