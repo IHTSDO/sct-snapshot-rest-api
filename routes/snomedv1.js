@@ -3,6 +3,7 @@ var router = express.Router();
 var winston = require('winston');
 var MongoClient = require('mongodb').MongoClient;
 var snomedLib = require("../lib/snomedv2");
+var transform = require("../lib/transform");
 var apiModelUtility = require("../lib/apiModelUtility");
 
 var logger = new (winston.Logger)({
@@ -45,6 +46,7 @@ router.get('/:db/:collection/concepts/:sctid', function(req, res) {
             options[o] = JSON.parse(req.query[o]);
         }
     }
+    options.v1=true;
     snomedLib.getConcept(req.params.db, req.params.collection, req.params.sctid, options, function(err, doc){
         if (doc) {
             res.status(200);
@@ -71,6 +73,7 @@ router.get('/:db/:collection/concepts/:sctid/descriptions/:descriptionId?', func
             }
         }
     }
+    options.v1=true;
     snomedLib.getDescriptions(req.params.db, req.params.collection, req.params.sctid, descId, options, function(err, docs){
         res.status(200);
         res.send(docs);
@@ -90,6 +93,7 @@ router.get('/:db/:collection/concepts/:sctid/relationships?', function(req, res)
         }
     }
 
+    options.v1=true;
     snomedLib.getRelationShips(req.params.db, req.params.collection, req.params.sctid, form, options, function(err, docs){
         res.status(200);
         res.send(docs);
@@ -124,6 +128,7 @@ router.get('/:db/:collection/concepts/:sctid/children?', function(req, res) {
                 }
             };
         }
+
     }
 
     var options = req.params.options || {};
@@ -133,11 +138,34 @@ router.get('/:db/:collection/concepts/:sctid/children?', function(req, res) {
             options[o] = JSON.parse(req.query[o]);
         }
     }
-    options["fields"] = {"preferredTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1, "isLeafInferred": 1,"isLeafStated": 1,"statedDescendants": 1, "v":1};
+    options["fields"] = {"fullySpecifiedName":1, "preferredTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1, "isLeafInferred": 1,"isLeafStated": 1,"statedDescendants": 1, "v":1};
+
     snomedLib.getObject(req.params.db, req.params.collection, query, options, function(err, docs){
-        res.status(200);
-        if (!docs) docs = [];
-        res.send(docs);
+
+        var result = {};
+        if (docs && docs.length > 0) {
+
+            if (!docs[0].v || docs[0].v != "2") {
+
+                res.status(400);
+                res.send("Error: The db isnot version 2. It must be created with the new conversion module.");
+
+            } else {
+
+                snomedLib.getDefaultTermType(req.params.db, req.params.collection, function(err,defTermType) {
+                    if (err) callback(err);
+                    else {
+                        res.status(200);
+                        result = transform.getV1ConceptDescriptors(docs, defTermType);
+                        res.send(result);
+                    }
+                });
+            }
+        }else {
+            res.status(200);
+            if (!docs) docs = [];
+            res.send(docs);
+        }
     });
 });
 
@@ -151,6 +179,7 @@ router.get('/:db/:collection/concepts/:sctid/references?', function(req, res) {
             options[o] = JSON.parse(req.query[o]);
         }
     }
+
     var typeId="900000000000011006";
 
     if (req.query["form"]) {
@@ -163,12 +192,33 @@ router.get('/:db/:collection/concepts/:sctid/references?', function(req, res) {
         }
     }
     query = {"relationships": {"$elemMatch":  {"destination.conceptId": idParamStr, "characteristicType.conceptId": typeId , "active": true}}};
-    options["fields"] = { "relationships": {"$elemMatch":  {"destination.conceptId": idParamStr, "characteristicType.conceptId": typeId , "active": true}},"preferredTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "effectiveTime": 1, "module": 1,"isLeafInferred": 1,"isLeafStated": 1,"statedDescendants": 1, "v":1};
+    options["fields"] = { "relationships": {"$elemMatch":  {"destination.conceptId": idParamStr, "characteristicType.conceptId": typeId , "active": true}},"fullySpecifiedName":1, "preferredTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "effectiveTime": 1, "module": 1,"isLeafInferred": 1,"isLeafStated": 1,"statedDescendants": 1, "v":1};
 
     snomedLib.getObject(req.params.db, req.params.collection, query, options, function(err, docs){
-        if (!docs) docs = [];
-        res.status(200);
-        res.send(docs);
+
+        var result = {};
+        if (docs && docs.length > 0) {
+
+            if (!docs[0].v || docs[0].v != "2") {
+
+                res.status(400);
+                res.send("Error: The db isnot version 2. It must be created with the new conversion module.");
+
+            } else {
+                snomedLib.getDefaultTermType(req.params.db, req.params.collection, function(err,defTermType) {
+                    if (err) callback(err);
+                    else {
+                        res.status(200);
+                        result = transform.getV1ConceptDescriptorsAndRels(docs, defTermType);
+                        res.send(result);
+                    }
+                });
+            }
+        }else {
+            res.status(200);
+            if (!docs) docs = [];
+            res.send(docs);
+        }
     });
 });
 
@@ -181,6 +231,7 @@ router.get('/:db/:collection/concepts/:sctid/parents?', function(req, res) {
         }
     }
     options["fields"] = {"relationships": 1, "v":1};
+    options.v1=true;
     snomedLib.getParents(req.params.db, req.params.collection, req.params.sctid, req.query["form"], options, function(err, docs){
         if (!docs) docs = [];
         res.status(200);
@@ -196,15 +247,17 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
             options[o] = JSON.parse(req.query[o]);
         }
     }
-    options["fields"] = {"preferredTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1, "isLeafInferred": 1,"isLeafStated": 1, "statedDescendants":1, "v":1};
+    options["fields"] = {"fullySpecifiedName":1, "preferredTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1, "isLeafInferred": 1,"isLeafStated": 1, "statedDescendants":1, "v":1};
     if (!options.limit) {
         options.limit = 100;
     }
     if (!options.skip) {
         options.skip = 0;
     }
+    options.v1=true;
     snomedLib.getMembers(req.params.db, req.params.collection, req.params.sctid, options, function(err, docs){
         if (err){
+
             res.status(400);
             if (typeof err == 'boolean'){
                 res.send("Error: " + docs);
