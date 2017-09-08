@@ -1,8 +1,10 @@
 FORMAT: 1A
 HOST: http://browser.ihtsdotools.org/api
 
-# sct-snapshot-rest-api
-SNOMED CT Snapshot REST API provides access to SNOMED CT content snapshot form (only the latest version for all components, see Snapshot definition in the RF2 format description).
+# SNOMED CT Snapshot API v2
+The SNOMED CT Snapshot REST API provides access to SNOMED CT content snapshot form (only the latest version for all components, see Snapshot definition in the RF2 format description).
+
+This API has been developed by SNOMED International to support lightweight deployments of read-only SNOMED CT terminology servers.
 
 # Group Concepts
 Concepts allows access to **SNOMED CT Concepts**
@@ -12,279 +14,355 @@ A single Concept with all its details
 
 + Parameters
     + edition (required, string, `en-edition`) ... Identifier for the SNOMED CT Edition to browse, for example `en-edition` for the International Edition
-    + release (required, string, `v20140731`) ... Identifier for the release, usually the release effective time preceded with a `v`.
-    + sctid (required, number, `404684003`) ... SNOMED CT Identifier of the concept to retrieve.
+    + release (required, string, `v20170731`) ... Identifier for the release, usually the release effective time preceded with a `v`.
+    + sctid (required, number, `79859009`) ... SNOMED CT Identifier of the concept to retrieve.
 
 ### Retrieve a Concept [GET]
 + Response 200 (application/json)
 
     + Body
 
-            {  
-               "_id":"540f65682ae8860193e1cfbc",
-               "memberships":[  
-                  {  
-                     "type":"SIMPLEMAP",
-                     "referencedComponentId":"404684003",
-                     "refset":{  
-                        "conceptId":"900000000000497000",
-                        "defaultTerm":"CTV3 simple map reference set (foundation metadata concept)",
-                        "definitionStatus":"Primitive",
-                        "active":true,
-                        "effectiveTime":"20020131",
-                        "module":"900000000000012004"
-                     },
-                     "otherValue":"XUauZ",
-                     "uuid":"0b6415e4-7c1b-5613-bb77-2fc303889c54",
-                     "active":true,
-                     "effectiveTime":"20040131",
-                     "module":"900000000000207008"
-                  },
-                  {  
-                     "type":"SIMPLEMAP",
-                     "referencedComponentId":"404684003",
-                     "refset":{  
-                        "conceptId":"900000000000498005",
-                        "defaultTerm":"SNOMED RT identifier simple map (foundation metadata concept)",
-                        "definitionStatus":"Primitive",
-                        "active":true,
-                        "effectiveTime":"20020131",
-                        "module":"900000000000012004"
-                     },
-                     "otherValue":"R-005AE",
-                     "uuid":"8f4f4344-9687-515f-8fc8-1cf0934b3642",
-                     "active":true,
-                     "effectiveTime":"20040131",
-                     "module":"900000000000207008"
-                  }
-               ],
-               "descriptions":[  
-                  {  
-                     "descriptionId":"2148514019",
-                     "conceptId":"404684003",
-                     "type":{  
-                        "conceptId":"900000000000003001",
-                        "defaultTerm":"Fully specified name (core metadata concept)",
-                        "definitionStatus":"Primitive",
-                        "active":true,
-                        "effectiveTime":"20020131",
-                        "module":"900000000000012004"
-                     },
-                     "lang":"en",
-                     "term":"Clinical finding (finding)",
-                     "length":26,
-                     "ics":{  
-                        "conceptId":"900000000000020002",
-                        "defaultTerm":"Only initial character case insensitive (core metadata concept)",
-                        "definitionStatus":"Primitive",
-                        "active":true,
-                        "effectiveTime":"20020131",
-                        "module":"900000000000012004"
-                     },
-                     "langMemberships":[  
-                        {  
-                           "descriptionId":"2148514019",
-                           "refset":{  
-                              "conceptId":"900000000000508004",
-                              "defaultTerm":"Great Britain English language reference set (foundation metadata concept)",
-                              "definitionStatus":"Primitive",
-                              "active":true,
-                              "effectiveTime":"20020131",
-                              "module":"900000000000012004"
-                           },
-                           "acceptability":{  
-                              "conceptId":"900000000000548007",
-                              "defaultTerm":"Preferred (foundation metadata concept)",
-                              "definitionStatus":"Primitive",
-                              "active":true,
-                              "effectiveTime":"20020131",
-                              "module":"900000000000012004"
-                           },
-                           "uuid":"6b57716b-e952-5039-a403-b5b25cbab745",
-                           "active":true,
-                           "effectiveTime":"20040131",
-                           "module":"900000000000207008"
+            {
+                "_id": "598bfd01a0e6f2e897a164fc",
+                "memberships": [
+                    {
+                        "type": "SIMPLEMAP",
+                        "referencedComponentId": "79859009",
+                        "refset": {
+                            "conceptId": "900000000000497000",
+                            "preferredTerm": "CTV3 simple map reference set (foundation metadata concept)"
                         },
-                        {  
-                           "descriptionId":"2148514019",
-                           "refset":{  
-                              "conceptId":"900000000000509007",
-                              "defaultTerm":"United States of America English language reference set (foundation metadata concept)",
-                              "definitionStatus":"Primitive",
-                              "active":true,
-                              "effectiveTime":"20020131",
-                              "module":"900000000000012004"
-                           },
-                           "acceptability":{  
-                              "conceptId":"900000000000548007",
-                              "defaultTerm":"Preferred (foundation metadata concept)",
-                              "definitionStatus":"Primitive",
-                              "active":true,
-                              "effectiveTime":"20020131",
-                              "module":"900000000000012004"
-                           },
-                           "uuid":"af0e9809-ca7c-52c3-8b4d-15c1f83ef7dd",
-                           "active":true,
-                           "effectiveTime":"20040131",
-                           "module":"900000000000207008"
+                        "otherValue": "02B3.",
+                        "uuid": "92ca1e61-fff8-51d2-a11c-545d83797bbc",
+                        "active": true,
+                        "effectiveTime": "20020131",
+                        "module": {
+                            "conceptId": "900000000000207008",
+                            "preferredTerm": "SNOMED CT core module (core metadata concept)"
                         }
-                     ],
-                     "active":true,
-                     "effectiveTime":"20040131",
-                     "module":"900000000000207008"
-                  },
-                  {  
-                     "descriptionId":"2156578010",
-                     "conceptId":"404684003",
-                     "type":{  
-                        "conceptId":"900000000000013009",
-                        "defaultTerm":"Synonym (core metadata concept)",
-                        "definitionStatus":"Primitive",
-                        "active":true,
-                        "effectiveTime":"20020131",
-                        "module":"900000000000012004"
-                     },
-                     "lang":"en",
-                     "term":"Clinical finding",
-                     "length":16,
-                     "ics":{  
-                        "conceptId":"900000000000020002",
-                        "defaultTerm":"Only initial character case insensitive (core metadata concept)",
-                        "definitionStatus":"Primitive",
-                        "active":true,
-                        "effectiveTime":"20020131",
-                        "module":"900000000000012004"
-                     },
-                     "langMemberships":[  
-                        {  
-                           "descriptionId":"2156578010",
-                           "refset":{  
-                              "conceptId":"900000000000509007",
-                              "defaultTerm":"United States of America English language reference set (foundation metadata concept)",
-                              "definitionStatus":"Primitive",
-                              "active":true,
-                              "effectiveTime":"20020131",
-                              "module":"900000000000012004"
-                           },
-                           "acceptability":{  
-                              "conceptId":"900000000000548007",
-                              "defaultTerm":"Preferred (foundation metadata concept)",
-                              "definitionStatus":"Primitive",
-                              "active":true,
-                              "effectiveTime":"20020131",
-                              "module":"900000000000012004"
-                           },
-                           "uuid":"2b21585b-b754-5e54-a7ca-6ba64d7e67d4",
-                           "active":true,
-                           "effectiveTime":"20040131",
-                           "module":"900000000000207008"
+                    }
+                ],
+                "descriptions": [
+                    {
+                        "descriptionId": "132493010",
+                        "conceptId": "79859009",
+                        "type": {
+                            "conceptId": "900000000000013009",
+                            "preferredTerm": "Synonym (core metadata concept)"
                         },
-                        {  
-                           "descriptionId":"2156578010",
-                           "refset":{  
-                              "conceptId":"900000000000508004",
-                              "defaultTerm":"Great Britain English language reference set (foundation metadata concept)",
-                              "definitionStatus":"Primitive",
-                              "active":true,
-                              "effectiveTime":"20020131",
-                              "module":"900000000000012004"
-                           },
-                           "acceptability":{  
-                              "conceptId":"900000000000548007",
-                              "defaultTerm":"Preferred (foundation metadata concept)",
-                              "definitionStatus":"Primitive",
-                              "active":true,
-                              "effectiveTime":"20020131",
-                              "module":"900000000000012004"
-                           },
-                           "uuid":"de4a138e-1748-5571-ac60-bdce3073622b",
-                           "active":true,
-                           "effectiveTime":"20040131",
-                           "module":"900000000000207008"
+                        "languageCode": "en",
+                        "term": "Computer programmer",
+                        "length": 19,
+                        "caseSignificance": {
+                            "conceptId": "900000000000448009",
+                            "preferredTerm": "Entire term case insensitive (core metadata concept)"
+                        },
+                        "acceptability": [
+                            {
+                                "descriptionId": "132493010",
+                                "languageReferenceSet": {
+                                    "conceptId": "900000000000508004",
+                                    "preferredTerm": "Great Britain English language reference set (foundation metadata concept)"
+                                },
+                                "acceptability": {
+                                    "conceptId": "900000000000548007",
+                                    "preferredTerm": "Preferred (foundation metadata concept)"
+                                },
+                                "uuid": "599edffd-9492-57c2-a615-212f9916e23d",
+                                "active": true,
+                                "effectiveTime": "20020131",
+                                "module": {
+                                    "conceptId": "900000000000207008",
+                                    "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                                }
+                            },
+                            {
+                                "descriptionId": "132493010",
+                                "languageReferenceSet": {
+                                    "conceptId": "900000000000509007",
+                                    "preferredTerm": "United States of America English language reference set (foundation metadata concept)"
+                                },
+                                "acceptability": {
+                                    "conceptId": "900000000000548007",
+                                    "preferredTerm": "Preferred (foundation metadata concept)"
+                                },
+                                "uuid": "63ea720a-e2c4-5e85-9758-4536606ad0b3",
+                                "active": true,
+                                "effectiveTime": "20080131",
+                                "module": {
+                                    "conceptId": "900000000000207008",
+                                    "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                                }
+                            }
+                        ],
+                        "active": true,
+                        "effectiveTime": "20170731",
+                        "module": {
+                            "conceptId": "900000000000207008",
+                            "preferredTerm": "SNOMED CT core module (core metadata concept)"
                         }
-                     ],
-                     "active":true,
-                     "effectiveTime":"20040131",
-                     "module":"900000000000207008"
-                  }
-               ],
-               "relationships":[  
-                  {  
-                     "type":{  
-                        "conceptId":"116680003",
-                        "defaultTerm":"Is a (attribute)",
-                        "definitionStatus":"Primitive",
-                        "active":true,
-                        "effectiveTime":"20110131",
-                        "module":"900000000000012004"
-                     },
-                     "target":{  
-                        "conceptId":"138875005",
-                        "defaultTerm":"SNOMED CT Concept (SNOMED RT+CTV3)",
-                        "definitionStatus":"Primitive",
-                        "active":true,
-                        "effectiveTime":"20020131",
-                        "module":"900000000000207008"
-                     },
-                     "sourceId":"404684003",
-                     "groupId":0,
-                     "charType":{  
-                        "conceptId":"900000000000011006",
-                        "defaultTerm":"Inferred relationship (core metadata concept)",
-                        "definitionStatus":"Primitive",
-                        "active":true,
-                        "effectiveTime":"20020131",
-                        "module":"900000000000012004"
-                     },
-                     "modifier":"Existential restriction",
-                     "active":true,
-                     "effectiveTime":"20040131",
-                     "module":"900000000000207008"
-                  }
-               ],
-               "statedRelationships":[  
-                  {  
-                     "type":{  
-                        "conceptId":"116680003",
-                        "defaultTerm":"Is a (attribute)",
-                        "definitionStatus":"Primitive",
-                        "active":true,
-                        "effectiveTime":"20110131",
-                        "module":"900000000000012004"
-                     },
-                     "target":{  
-                        "conceptId":"138875005",
-                        "defaultTerm":"SNOMED CT Concept (SNOMED RT+CTV3)",
-                        "definitionStatus":"Primitive",
-                        "active":true,
-                        "effectiveTime":"20020131",
-                        "module":"900000000000207008"
-                     },
-                     "sourceId":"404684003",
-                     "groupId":0,
-                     "charType":{  
-                        "conceptId":"900000000000010007",
-                        "defaultTerm":"Stated relationship (core metadata concept)",
-                        "definitionStatus":"Primitive",
-                        "active":true,
-                        "effectiveTime":"20020131",
-                        "module":"900000000000012004"
-                     },
-                     "modifier":"Existential restriction",
-                     "active":true,
-                     "effectiveTime":"20080731",
-                     "module":"900000000000207008"
-                  }
-               ],
-               "isLeafInferred":false,
-               "isLeafStated":false,
-               "fsn":"Clinical finding (finding)",
-               "conceptId":"404684003",
-               "defaultTerm":"Clinical finding (finding)",
-               "definitionStatus":"Primitive",
-               "active":true,
-               "effectiveTime":"20040131",
-               "module":"900000000000207008"
+                    },
+                    {
+                        "descriptionId": "504232014",
+                        "conceptId": "79859009",
+                        "type": {
+                            "conceptId": "900000000000013009",
+                            "preferredTerm": "Synonym (core metadata concept)"
+                        },
+                        "languageCode": "en",
+                        "term": "Computer programr",
+                        "length": 17,
+                        "caseSignificance": {
+                            "conceptId": "900000000000020002",
+                            "preferredTerm": "Only initial character case insensitive (core metadata concept)"
+                        },
+                        "active": false,
+                        "effectiveTime": "20080131",
+                        "module": {
+                            "conceptId": "900000000000207008",
+                            "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                        }
+                    },
+                    {
+                        "descriptionId": "820955016",
+                        "conceptId": "79859009",
+                        "type": {
+                            "conceptId": "900000000000003001",
+                            "preferredTerm": "Fully specified name (core metadata concept)"
+                        },
+                        "languageCode": "en",
+                        "term": "Computer programmer (occupation)",
+                        "length": 32,
+                        "caseSignificance": {
+                            "conceptId": "900000000000448009",
+                            "preferredTerm": "Entire term case insensitive (core metadata concept)"
+                        },
+                        "acceptability": [
+                            {
+                                "descriptionId": "820955016",
+                                "languageReferenceSet": {
+                                    "conceptId": "900000000000508004",
+                                    "preferredTerm": "Great Britain English language reference set (foundation metadata concept)"
+                                },
+                                "acceptability": {
+                                    "conceptId": "900000000000548007",
+                                    "preferredTerm": "Preferred (foundation metadata concept)"
+                                },
+                                "uuid": "26b45dfb-3d13-52c4-b6c5-f3cab43b5ad6",
+                                "active": true,
+                                "effectiveTime": "20020131",
+                                "module": {
+                                    "conceptId": "900000000000207008",
+                                    "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                                }
+                            },
+                            {
+                                "descriptionId": "820955016",
+                                "languageReferenceSet": {
+                                    "conceptId": "900000000000509007",
+                                    "preferredTerm": "United States of America English language reference set (foundation metadata concept)"
+                                },
+                                "acceptability": {
+                                    "conceptId": "900000000000548007",
+                                    "preferredTerm": "Preferred (foundation metadata concept)"
+                                },
+                                "uuid": "772accf1-7627-5366-b1b8-1f246416521e",
+                                "active": true,
+                                "effectiveTime": "20020131",
+                                "module": {
+                                    "conceptId": "900000000000207008",
+                                    "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                                }
+                            }
+                        ],
+                        "active": true,
+                        "effectiveTime": "20170731",
+                        "module": {
+                            "conceptId": "900000000000207008",
+                            "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                        }
+                    }
+                ],
+                "relationships": [
+                    {
+                        "relationshipId": "4076360022",
+                        "type": {
+                            "conceptId": "116680003",
+                            "preferredTerm": "Is a (attribute)"
+                        },
+                        "destination": {
+                            "conceptId": "106297009",
+                            "preferredTerm": "Statistician, mathematician, systems analyst/related technician (occupation)",
+                            "fullySpecifiedName": "Statistician, mathematician, systems analyst/related technician (occupation)",
+                            "definitionStatus": {
+                                "conceptId": "900000000000074008",
+                                "preferredTerm": "Necessary but not sufficient concept definition status (core metadata concept)"
+                            },
+                            "statedDescendants": 13,
+                            "inferredDescendants": 13,
+                            "active": true,
+                            "effectiveTime": "20020131",
+                            "module": {
+                                "conceptId": "900000000000207008",
+                                "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                            }
+                        },
+                        "sourceId": "79859009",
+                        "relationshipGroup": 0,
+                        "characteristicType": {
+                            "conceptId": "900000000000010007",
+                            "preferredTerm": "Stated relationship (core metadata concept)"
+                        },
+                        "modifier": {
+                            "conceptId": "900000000000451002",
+                            "preferredTerm": "Existential restriction modifier (core metadata concept)"
+                        },
+                        "active": true,
+                        "effectiveTime": "20080731",
+                        "module": {
+                            "conceptId": "900000000000207008",
+                            "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                        }
+                    },
+                    {
+                        "relationshipId": "4076361021",
+                        "type": {
+                            "conceptId": "116680003",
+                            "preferredTerm": "Is a (attribute)"
+                        },
+                        "destination": {
+                            "conceptId": "158832009",
+                            "preferredTerm": "Systems analyst/computer programmer (occupation)",
+                            "fullySpecifiedName": "Systems analyst/computer programmer (occupation)",
+                            "definitionStatus": {
+                                "conceptId": "900000000000074008",
+                                "preferredTerm": "Necessary but not sufficient concept definition status (core metadata concept)"
+                            },
+                            "statedDescendants": 4,
+                            "inferredDescendants": 4,
+                            "active": true,
+                            "effectiveTime": "20020131",
+                            "module": {
+                                "conceptId": "900000000000207008",
+                                "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                            }
+                        },
+                        "sourceId": "79859009",
+                        "relationshipGroup": 0,
+                        "characteristicType": {
+                            "conceptId": "900000000000010007",
+                            "preferredTerm": "Stated relationship (core metadata concept)"
+                        },
+                        "modifier": {
+                            "conceptId": "900000000000451002",
+                            "preferredTerm": "Existential restriction modifier (core metadata concept)"
+                        },
+                        "active": true,
+                        "effectiveTime": "20080731",
+                        "module": {
+                            "conceptId": "900000000000207008",
+                            "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                        }
+                    },
+                    {
+                        "relationshipId": "277869024",
+                        "type": {
+                            "conceptId": "116680003",
+                            "preferredTerm": "Is a (attribute)"
+                        },
+                        "destination": {
+                            "conceptId": "158832009",
+                            "preferredTerm": "Systems analyst/computer programmer (occupation)",
+                            "fullySpecifiedName": "Systems analyst/computer programmer (occupation)",
+                            "definitionStatus": {
+                                "conceptId": "900000000000074008",
+                                "preferredTerm": "Necessary but not sufficient concept definition status (core metadata concept)"
+                            },
+                            "statedDescendants": 4,
+                            "inferredDescendants": 4,
+                            "active": true,
+                            "effectiveTime": "20020131",
+                            "module": {
+                                "conceptId": "900000000000207008",
+                                "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                            }
+                        },
+                        "sourceId": "79859009",
+                        "relationshipGroup": 0,
+                        "characteristicType": {
+                            "conceptId": "900000000000011006",
+                            "preferredTerm": "Inferred relationship (core metadata concept)"
+                        },
+                        "modifier": {
+                            "conceptId": "900000000000451002",
+                            "preferredTerm": "Existential restriction modifier (core metadata concept)"
+                        },
+                        "active": true,
+                        "effectiveTime": "20020131",
+                        "module": {
+                            "conceptId": "900000000000207008",
+                            "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                        }
+                    },
+                    {
+                        "relationshipId": "277870020",
+                        "type": {
+                            "conceptId": "116680003",
+                            "preferredTerm": "Is a (attribute)"
+                        },
+                        "destination": {
+                            "conceptId": "106297009",
+                            "preferredTerm": "Statistician, mathematician, systems analyst/related technician (occupation)",
+                            "fullySpecifiedName": "Statistician, mathematician, systems analyst/related technician (occupation)",
+                            "definitionStatus": {
+                                "conceptId": "900000000000074008",
+                                "preferredTerm": "Necessary but not sufficient concept definition status (core metadata concept)"
+                            },
+                            "statedDescendants": 13,
+                            "inferredDescendants": 13,
+                            "active": true,
+                            "effectiveTime": "20020131",
+                            "module": {
+                                "conceptId": "900000000000207008",
+                                "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                            }
+                        },
+                        "sourceId": "79859009",
+                        "relationshipGroup": 0,
+                        "characteristicType": {
+                            "conceptId": "900000000000011006",
+                            "preferredTerm": "Inferred relationship (core metadata concept)"
+                        },
+                        "modifier": {
+                            "conceptId": "900000000000451002",
+                            "preferredTerm": "Existential restriction modifier (core metadata concept)"
+                        },
+                        "active": true,
+                        "effectiveTime": "20020131",
+                        "module": {
+                            "conceptId": "900000000000207008",
+                            "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                        }
+                    }
+                ],
+                "isLeafInferred": true,
+                "isLeafStated": true,
+                "v": "2",
+                "conceptId": "79859009",
+                "preferredTerm": "Computer programmer (occupation)",
+                "fullySpecifiedName": "Computer programmer (occupation)",
+                "definitionStatus": {
+                    "conceptId": "900000000000074008",
+                    "preferredTerm": "Necessary but not sufficient concept definition status (core metadata concept)"
+                },
+                "statedDescendants": 0,
+                "inferredDescendants": 0,
+                "active": true,
+                "effectiveTime": "20020131",
+                "module": {
+                    "conceptId": "900000000000207008",
+                    "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                }
             }
 
 ## Children [/snomed/{edition}/{release}/concepts/{sctid}/children?form={form}]
@@ -292,7 +370,7 @@ Lists all children of a concept, in the SNOMED CT hierarchy. Each child is retri
 
 + Parameters
     + edition (required, string, `en-edition`) ... Identifier for the SNOMED CT Edition to browse, for example `en-edition` for the International Edition
-    + release (required, string, `v20140731`) ... Identifier for the release, usually the release effective time preceded with a `v`.
+    + release (required, string, `v20170731`) ... Identifier for the release, usually the release effective time preceded with a `v`.
     + sctid (required, number, `123037004`) ... SNOMED CT Identifier of the concept to retrieve.
     + form (required, string, `inferred`) ... Characteristic type of the Is-a hierarchy, either `stated` or `inferred`.
 
@@ -301,96 +379,143 @@ Lists all children of a concept, in the SNOMED CT hierarchy. Each child is retri
 
     + Body
 
-            [  
-               {  
-                  "_id":"540f650e2ae8860193df17f6",
-                  "isLeafInferred":true,
-                  "isLeafStated":true,
-                  "conceptId":"21229009",
-                  "defaultTerm":"Topography not assigned (body structure)",
-                  "definitionStatus":"Primitive",
-                  "active":true,
-                  "module":"900000000000207008"
-               },
-               {  
-                  "_id":"540f65242ae8860193dfc7c6",
-                  "isLeafInferred":false,
-                  "isLeafStated":false,
-                  "conceptId":"442083009",
-                  "defaultTerm":"Anatomical or acquired body structure (body structure)",
-                  "definitionStatus":"Primitive",
-                  "active":true,
-                  "module":"900000000000207008"
-               },
-               {  
-                  "_id":"540f65292ae8860193dff735",
-                  "isLeafInferred":true,
-                  "isLeafStated":true,
-                  "conceptId":"361083003",
-                  "defaultTerm":"Normal anatomy (body structure)",
-                  "definitionStatus":"Primitive",
-                  "active":true,
-                  "module":"900000000000207008"
-               },
-               {  
-                  "_id":"540f655f2ae8860193e18be1",
-                  "isLeafInferred":false,
-                  "isLeafStated":false,
-                  "conceptId":"91832008",
-                  "defaultTerm":"Anatomical organizational pattern (body structure)",
-                  "definitionStatus":"Primitive",
-                  "active":true,
-                  "module":"900000000000207008"
-               },
-               {  
-                  "_id":"540f65882ae8860193e2cb3d",
-                  "isLeafInferred":true,
-                  "isLeafStated":true,
-                  "conceptId":"87100004",
-                  "defaultTerm":"Topography unknown (body structure)",
-                  "definitionStatus":"Primitive",
-                  "active":true,
-                  "module":"900000000000207008"
-               },
-               {  
-                  "_id":"540f65932ae8860193e329b0",
-                  "isLeafInferred":false,
-                  "isLeafStated":false,
-                  "conceptId":"258331007",
-                  "defaultTerm":"Anatomical site notations for tumor staging (body structure)",
-                  "definitionStatus":"Primitive",
-                  "active":true,
-                  "module":"900000000000207008"
-               },
-               {  
-                  "_id":"540f65b52ae8860193e44b59",
-                  "isLeafInferred":true,
-                  "isLeafStated":true,
-                  "conceptId":"278001007",
-                  "defaultTerm":"Nonspecific site (body structure)",
-                  "definitionStatus":"Primitive",
-                  "active":true,
-                  "module":"900000000000207008"
-               },
-               {  
-                  "_id":"540f65bf2ae8860193e49a6c",
-                  "isLeafInferred":false,
-                  "isLeafStated":false,
-                  "conceptId":"118956008",
-                  "defaultTerm":"Body structure, altered from its original anatomical structure (morphologic abnormality)",
-                  "definitionStatus":"Primitive",
-                  "active":true,
-                  "module":"900000000000207008"
-               }
+            [
+                {
+                    "_id": "598bfcdca0e6f2e897a06874",
+                    "isLeafInferred": true,
+                    "isLeafStated": true,
+                    "v": "2",
+                    "conceptId": "159054003",
+                    "preferredTerm": "Process description writer (occupation)",
+                    "definitionStatus": {
+                        "conceptId": "900000000000074008",
+                        "preferredTerm": "Necessary but not sufficient concept definition status (core metadata concept)"
+                    },
+                    "statedDescendants": 0,
+                    "active": true,
+                    "module": {
+                        "conceptId": "900000000000207008",
+                        "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                    }
+                },
+                {
+                    "_id": "598bfce3a0e6f2e897a0996b",
+                    "isLeafInferred": true,
+                    "isLeafStated": true,
+                    "v": "2",
+                    "conceptId": "159053009",
+                    "preferredTerm": "Instruction writer (occupation)",
+                    "definitionStatus": {
+                        "conceptId": "900000000000074008",
+                        "preferredTerm": "Necessary but not sufficient concept definition status (core metadata concept)"
+                    },
+                    "statedDescendants": 0,
+                    "active": true,
+                    "module": {
+                        "conceptId": "900000000000207008",
+                        "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                    }
+                },
+                {
+                    "_id": "598bfcf4a0e6f2e897a10ee0",
+                    "isLeafInferred": true,
+                    "isLeafStated": true,
+                    "v": "2",
+                    "conceptId": "159055002",
+                    "preferredTerm": "Program writer (occupation)",
+                    "definitionStatus": {
+                        "conceptId": "900000000000074008",
+                        "preferredTerm": "Necessary but not sufficient concept definition status (core metadata concept)"
+                    },
+                    "statedDescendants": 0,
+                    "active": true,
+                    "module": {
+                        "conceptId": "900000000000207008",
+                        "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                    }
+                },
+                {
+                    "_id": "598bfcf7a0e6f2e897a12382",
+                    "isLeafInferred": true,
+                    "isLeafStated": true,
+                    "v": "2",
+                    "conceptId": "159059008",
+                    "preferredTerm": "Trainee writer (occupation)",
+                    "definitionStatus": {
+                        "conceptId": "900000000000074008",
+                        "preferredTerm": "Necessary but not sufficient concept definition status (core metadata concept)"
+                    },
+                    "statedDescendants": 0,
+                    "active": true,
+                    "module": {
+                        "conceptId": "900000000000207008",
+                        "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                    }
+                },
+                {
+                    "_id": "598bfd17a0e6f2e897a1fe1c",
+                    "isLeafInferred": true,
+                    "isLeafStated": true,
+                    "v": "2",
+                    "conceptId": "67790005",
+                    "preferredTerm": "Publicity writer (occupation)",
+                    "definitionStatus": {
+                        "conceptId": "900000000000074008",
+                        "preferredTerm": "Necessary but not sufficient concept definition status (core metadata concept)"
+                    },
+                    "statedDescendants": 0,
+                    "active": true,
+                    "module": {
+                        "conceptId": "900000000000207008",
+                        "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                    }
+                },
+                {
+                    "_id": "598bfd25a0e6f2e897a26215",
+                    "isLeafInferred": true,
+                    "isLeafStated": true,
+                    "v": "2",
+                    "conceptId": "89007006",
+                    "preferredTerm": "Technical writer (occupation)",
+                    "definitionStatus": {
+                        "conceptId": "900000000000074008",
+                        "preferredTerm": "Necessary but not sufficient concept definition status (core metadata concept)"
+                    },
+                    "statedDescendants": 0,
+                    "active": true,
+                    "module": {
+                        "conceptId": "900000000000207008",
+                        "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                    }
+                },
+                {
+                    "_id": "598bfd41a0e6f2e897a32952",
+                    "isLeafInferred": true,
+                    "isLeafStated": true,
+                    "v": "2",
+                    "conceptId": "47667004",
+                    "preferredTerm": "Advertising copywriter (occupation)",
+                    "definitionStatus": {
+                        "conceptId": "900000000000074008",
+                        "preferredTerm": "Necessary but not sufficient concept definition status (core metadata concept)"
+                    },
+                    "statedDescendants": 0,
+                    "active": true,
+                    "module": {
+                        "conceptId": "900000000000207008",
+                        "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                    }
+                }
             ]
+
 
 ## Parents [/snomed/{edition}/{release}/concepts/{sctid}/parents?form={form}]
 Lists all parents of a concept, in the SNOMED CT hierarchy. Each parent is retrieved in a summary form, called Concept Descriptor.
 
 + Parameters
     + edition (required, string, `en-edition`) ... Identifier for the SNOMED CT Edition to browse, for example `en-edition` for the International Edition
-    + release (required, string, `v20140731`) ... Identifier for the release, usually the release effective time preceded with a `v`.
-    + sctid (required, number, `105997008`) ... SNOMED CT Identifier of the concept to retrieve.
+    + release (required, string, `v20170731`) ... Identifier for the release, usually the release effective time preceded with a `v`.
+    + sctid (required, number, `79859009`) ... SNOMED CT Identifier of the concept to retrieve.
     + form (required, string, `inferred`) ... Characteristic type of the Is-a hierarchy, either `stated` or `inferred`.
 
 ### Retrieve Parents [GET]
@@ -398,35 +523,74 @@ Lists all parents of a concept, in the SNOMED CT hierarchy. Each parent is retri
 
     + Body
 
-            [  
-               {  
-                  "conceptId":"118948005",
-                  "defaultTerm":"Disorder of abdomen (disorder)",
-                  "definitionStatus":"Fully defined",
-                  "module":"900000000000207008"
-               },
-               {  
-                  "conceptId":"76712006",
-                  "defaultTerm":"Disorder of digestive organ (disorder)",
-                  "definitionStatus":"Fully defined",
-                  "module":"900000000000207008"
-               },
-               {  
-                  "conceptId":"300339003",
-                  "defaultTerm":"Finding of biliary tract (finding)",
-                  "definitionStatus":"Fully defined",
-                  "module":"900000000000207008"
-               }
-            ]           
+            [
+                {
+                    "conceptId": "106297009",
+                    "preferredTerm": "Statistician, mathematician, systems analyst/related technician (occupation)",
+                    "fullySpecifiedName": "Statistician, mathematician, systems analyst/related technician (occupation)",
+                    "definitionStatus": {
+                        "conceptId": "900000000000074008",
+                        "preferredTerm": "Necessary but not sufficient concept definition status (core metadata concept)"
+                    },
+                    "module": {
+                        "conceptId": "900000000000207008",
+                        "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                    },
+                    "statedDescendants": 13
+                },
+                {
+                    "conceptId": "158832009",
+                    "preferredTerm": "Systems analyst/computer programmer (occupation)",
+                    "fullySpecifiedName": "Systems analyst/computer programmer (occupation)",
+                    "definitionStatus": {
+                        "conceptId": "900000000000074008",
+                        "preferredTerm": "Necessary but not sufficient concept definition status (core metadata concept)"
+                    },
+                    "module": {
+                        "conceptId": "900000000000207008",
+                        "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                    },
+                    "statedDescendants": 4
+                },
+                {
+                    "conceptId": "158832009",
+                    "preferredTerm": "Systems analyst/computer programmer (occupation)",
+                    "fullySpecifiedName": "Systems analyst/computer programmer (occupation)",
+                    "definitionStatus": {
+                        "conceptId": "900000000000074008",
+                        "preferredTerm": "Necessary but not sufficient concept definition status (core metadata concept)"
+                    },
+                    "module": {
+                        "conceptId": "900000000000207008",
+                        "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                    },
+                    "statedDescendants": 4
+                },
+                {
+                    "conceptId": "106297009",
+                    "preferredTerm": "Statistician, mathematician, systems analyst/related technician (occupation)",
+                    "fullySpecifiedName": "Statistician, mathematician, systems analyst/related technician (occupation)",
+                    "definitionStatus": {
+                        "conceptId": "900000000000074008",
+                        "preferredTerm": "Necessary but not sufficient concept definition status (core metadata concept)"
+                    },
+                    "module": {
+                        "conceptId": "900000000000207008",
+                        "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                    },
+                    "statedDescendants": 13
+                }
+            ]
+
 
 ## Members [/snomed/{edition}/{release}/concepts/{sctid}/members?limit={limit}&paginate={page}]
 Lists all reference set members of a concept. Each member is retrieved in a summary form, called Concept Descriptor.
-Only concepts that are reference sets will include members. 
+Only concepts that are reference sets will include members.
 The concept details describe all the reference sets where a concept is member in, called memberships, and can be retrieved with the /concepts/id call.
 
 + Parameters
     + edition (required, string, `en-edition`) ... Identifier for the SNOMED CT Edition to browse, for example `en-edition` for the International Edition
-    + release (required, string, `v20140731`) ... Identifier for the release, usually the release effective time preceded with a `v`.
+    + release (required, string, `v20170731`) ... Identifier for the release, usually the release effective time preceded with a `v`.
     + sctid (required, number, `105997008`) ... SNOMED CT Identifier of the concept to retrieve.
     + limit (optional, number, `5`) ... Number of concepts to retrieve on this call (page size).
     + page (optional, number, `1`) ... Page number to retrieve.
@@ -436,72 +600,113 @@ The concept details describe all the reference sets where a concept is member in
 
     + Body
 
-            {  
-               "members":[  
-                  {  
-                     "_id":"540f65b12ae8860193e41f1b",
-                     "isLeafInferred":true,
-                     "isLeafStated":true,
-                     "conceptId":"427912008",
-                     "defaultTerm":"1 Deoxynojirimycin (product)",
-                     "definitionStatus":"Primitive",
-                     "active":true,
-                     "module":"900000000000207008"
-                  },
-                  {  
-                     "_id":"540f65b42ae8860193e43ec8",
-                     "isLeafInferred":false,
-                     "isLeafStated":false,
-                     "conceptId":"359393000",
-                     "defaultTerm":"2-octyl-cyanoacrylate (product)",
-                     "definitionStatus":"Primitive",
-                     "active":true,
-                     "module":"900000000000207008"
-                  },
-                  {  
-                     "_id":"540f65712ae8860193e219e4",
-                     "isLeafInferred":true,
-                     "isLeafStated":true,
-                     "conceptId":"428013003",
-                     "defaultTerm":"3'-Deoxyadenosine (product)",
-                     "definitionStatus":"Primitive",
-                     "active":true,
-                     "module":"900000000000207008"
-                  },
-                  {  
-                     "_id":"540f65672ae8860193e1c993",
-                     "isLeafInferred":true,
-                     "isLeafStated":true,
-                     "conceptId":"425052006",
-                     "defaultTerm":"3,4-Diaminopyridine (product)",
-                     "definitionStatus":"Primitive",
-                     "active":true,
-                     "module":"900000000000207008"
-                  },
-                  {  
-                     "_id":"540f65232ae8860193dfc36c",
-                     "isLeafInferred":false,
-                     "isLeafStated":false,
-                     "conceptId":"413355004",
-                     "defaultTerm":"4-Aminopyridine (product)",
-                     "definitionStatus":"Primitive",
-                     "active":true,
-                     "module":"900000000000207008"
-                  }
-               ],
-               "details":{  
-                  "total":3234,
-                  "refsetId":447565001
-               }
+            {
+                "members": [
+                    {
+                        "_id": "598bfc7da0e6f2e8979db4ab",
+                        "isLeafInferred": false,
+                        "isLeafStated": false,
+                        "v": "2",
+                        "conceptId": "441935006",
+                        "preferredTerm": "Acquired absence of all teeth (disorder)",
+                        "definitionStatus": {
+                            "conceptId": "900000000000074008",
+                            "preferredTerm": "Necessary but not sufficient concept definition status (core metadata concept)"
+                        },
+                        "statedDescendants": 19,
+                        "active": true,
+                        "module": {
+                            "conceptId": "900000000000207008",
+                            "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                        }
+                    },
+                    {
+                        "_id": "598bfc7ea0e6f2e8979dba03",
+                        "isLeafInferred": true,
+                        "isLeafStated": true,
+                        "v": "2",
+                        "conceptId": "234973008",
+                        "preferredTerm": "Submerging tooth (disorder)",
+                        "definitionStatus": {
+                            "conceptId": "900000000000074008",
+                            "preferredTerm": "Necessary but not sufficient concept definition status (core metadata concept)"
+                        },
+                        "statedDescendants": 0,
+                        "active": true,
+                        "module": {
+                            "conceptId": "900000000000207008",
+                            "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                        }
+                    },
+                    {
+                        "_id": "598bfc7ea0e6f2e8979dbc83",
+                        "isLeafInferred": false,
+                        "isLeafStated": false,
+                        "v": "2",
+                        "conceptId": "367534004",
+                        "preferredTerm": "Supernumerary tooth (disorder)",
+                        "definitionStatus": {
+                            "conceptId": "900000000000073002",
+                            "preferredTerm": "Sufficiently defined concept definition status (core metadata concept)"
+                        },
+                        "statedDescendants": 7,
+                        "active": true,
+                        "module": {
+                            "conceptId": "900000000000207008",
+                            "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                        }
+                    },
+                    {
+                        "_id": "598bfc7fa0e6f2e8979dc3ad",
+                        "isLeafInferred": true,
+                        "isLeafStated": true,
+                        "v": "2",
+                        "conceptId": "710783007",
+                        "preferredTerm": "Removable partial denture with loss of occlusal relationship (finding)",
+                        "definitionStatus": {
+                            "conceptId": "900000000000074008",
+                            "preferredTerm": "Necessary but not sufficient concept definition status (core metadata concept)"
+                        },
+                        "statedDescendants": 0,
+                        "active": true,
+                        "module": {
+                            "conceptId": "900000000000207008",
+                            "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                        }
+                    },
+                    {
+                        "_id": "598bfc80a0e6f2e8979dc99c",
+                        "isLeafInferred": true,
+                        "isLeafStated": true,
+                        "v": "2",
+                        "conceptId": "718070001",
+                        "preferredTerm": "Normal oral mucous membrane and osseointegrated bone tissue surrounding dental implant (finding)",
+                        "definitionStatus": {
+                            "conceptId": "900000000000074008",
+                            "preferredTerm": "Necessary but not sufficient concept definition status (core metadata concept)"
+                        },
+                        "statedDescendants": 0,
+                        "active": true,
+                        "module": {
+                            "conceptId": "900000000000207008",
+                            "preferredTerm": "SNOMED CT core module (core metadata concept)"
+                        }
+                    }
+                ],
+                "details": {
+                    "total": 226,
+                    "refsetId": "721144007"
+                }
             }
-        
+
+
 ## Search [/snomed/{edition}/{release}/descriptions?query={query}&searchMode={mode}&lang={language}&statusFilter={statusFilter}&skipTo={skipTo}&returnLimit={returnLimit}&normalize={normalize}&semanticFilter={semanticFilter}&moduleFilter={moduleFilter}&langFilter={langFilter}&refsetFilter={refsetFilter}]
 Performs a text search over the database, selecting mode and other limits.
 The search results include the matching descriptions plus a filter descriptor object, allowing to further refining the search by providing new limits.
 
 + Parameters
     + edition (required, string, `en-edition`) ... Identifier for the SNOMED CT Edition to browse, for example `en-edition` for the International Edition
-    + release (required, string, `v20140731`) ... Identifier for the release, usually the release effective time preceded with a `v`.
+    + release (required, string, `v20170731`) ... Identifier for the release, usually the release effective time preceded with a `v`.
     + query (required, string, `asthma`) ... String terms to use a query.
     + mode (optional, string, `partialMatching`) ... Search mode, either `partialMatching`, `fullText` or `regex`.
     + language (optional, string, `english`) ... Languge for the search, only required for `fullText` mode.
@@ -518,10 +723,10 @@ The search results include the matching descriptions plus a filter descriptor ob
 + Response 200 (application/json)
 
     + Body
-    
-            {  
-               "matches":[  
-                  {  
+
+            {
+               "matches":[
+                  {
                      "term":"Asthma",
                      "conceptId":"195967001",
                      "active":true,
@@ -530,7 +735,7 @@ The search results include the matching descriptions plus a filter descriptor ob
                      "module":"900000000000207008",
                      "definitionStatus":"Primitive"
                   },
-                  {  
+                  {
                      "term":"Asthmatic",
                      "conceptId":"195967001",
                      "active":true,
@@ -539,7 +744,7 @@ The search results include the matching descriptions plus a filter descriptor ob
                      "module":"900000000000207008",
                      "definitionStatus":"Primitive"
                   },
-                  {  
+                  {
                      "term":"FH: Asthma",
                      "conceptId":"160377001",
                      "active":true,
@@ -548,7 +753,7 @@ The search results include the matching descriptions plus a filter descriptor ob
                      "module":"900000000000207008",
                      "definitionStatus":"Fully defined"
                   },
-                  {  
+                  {
                      "term":"Wood asthma",
                      "conceptId":"56968009",
                      "active":true,
@@ -557,7 +762,7 @@ The search results include the matching descriptions plus a filter descriptor ob
                      "module":"900000000000207008",
                      "definitionStatus":"Fully defined"
                   },
-                  {  
+                  {
                      "term":"Asthma care",
                      "conceptId":"406162001",
                      "active":true,
@@ -567,16 +772,16 @@ The search results include the matching descriptions plus a filter descriptor ob
                      "definitionStatus":"Primitive"
                   }
                ],
-               "details":{  
+               "details":{
                   "total":379,
                   "skipTo":0,
                   "returnLimit":5
                },
-               "filters":{  
-                  "lang":{  
+               "filters":{
+                  "lang":{
                      "english":379
                   },
-                  "semTag":{  
+                  "semTag":{
                      "disorder":175,
                      "situation":19,
                      "regime/therapy":31,
@@ -589,95 +794,16 @@ The search results include the matching descriptions plus a filter descriptor ob
                      "qualifier value":2,
                      "product":2
                   },
-                  "module":{  
+                  "module":{
                      "900000000000207008":379
                   },
-                  "refsetId":{  
+                  "refsetId":{
                      "900000000000497000":379,
                      "900000000000498005":379
                   }
                }
             }
 
-## Parse Expressions [/expressions/{edition}/{release}/parse/brief]
-Parses a brief syntax expression based on the official IHTSDO Expression constraint language.
-
-+ Parameters
-    + edition (required, string, `en-edition`) ... Identifier for the SNOMED CT Edition to browse, for example `en-edition` for the International Edition
-    + release (required, string, `v20140731`) ... Identifier for the release, usually the release effective time preceded with a `v`.
-    
-### Parse Expression [POST]
-
-+ Request (application/json)
-
-        {
-            "expression": "< 233604007|Pneumonia (disorder)|"
-        }
-
-
-+ Response 200 (application/json)
-
-    + Body
-    
-            {
-                "validation":true,
-                 "ast":{},
-                 "treeHtml":"",
-                 "simpleTree": {}
-            }
-        
-## Execute Expressions [/expressions/{edition}/{release}/execute/brief]
-Executes a brief syntax expression based on the official IHTSDO Expression constraint language.
-
-+ Parameters
-    + edition (required, string, `en-edition`) ... Identifier for the SNOMED CT Edition to browse, for example `en-edition` for the International Edition
-    + release (required, string, `v20140731`) ... Identifier for the release, usually the release effective time preceded with a `v`.
-    
-### Execute Expression [POST]
-
-+ Request (application/json)
-
-        {
-            "expression": "< 233604007|Pneumonia (disorder)|",
-            "limit": 50,
-            "skip": 0,
-            "form": "inferred"
-        }
-
-
-+ Response 200 (application/json)
-
-    + Body
-    
-            {
-                "paserResponse": {
-                    "validation":true,
-                    "ast":{},
-                    "treeHtml":"",
-                    "simpleTree": {}
-                },
-                "computeResponse":{
-                    "total":221,
-                    "limit":"1",
-                    "skip":"0",
-                    "matches":[
-                         {
-                            "_id":"56bb6a9842a8f25c3b6cd771",
-                            "conceptId":"41381004",
-                            "defaultTerm":"neumonía por Pseudomonas (trastorno)"
-                         }
-                    ],
-                    "query":{
-                        "$and":[
-                            {
-                            "inferredAncestors":"233604007"
-                            }
-                        ]
-                    }
-                }
-            }
-s
-            
 # Group Releases
 
 ## Release Information [/server/releases]
@@ -688,7 +814,7 @@ Provides information on the releases available on the given host
 + Response 200 (application/json)
 
     + Body
-    
+
             [
               {
                 "_id": "56c42cfc7df006c561178579",

@@ -30,7 +30,7 @@ Once you have the SNOMED CT Files in RF2 format (standard release files) you can
 
 <https://github.com/IHTSDO/rf2-to-json-conversion>
 
-**NOTE** ensure you are using versions > v1.3 of the rf2 to json conversion tool to create the JSON files. Older versions will not work.
+**NOTE** ensure you are using versions 1.3 and above of the conversion tool to create the JSON files. Older versions will not work.
 
 ## Access the server
 
