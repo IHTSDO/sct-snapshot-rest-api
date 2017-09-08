@@ -1,4 +1,6 @@
-# SNOMED CT Snapshot REST API [![Build Status](https://travis-ci.org/IHTSDO/sct-snapshot-rest-api.svg?branch=master)](https://travis-ci.org/IHTSDO/sct-snapshot-rest-api) [![Code Climate](https://codeclimate.com/github/IHTSDO/sct-snapshot-rest-api/badges/gpa.svg)](https://codeclimate.com/github/IHTSDO/sct-snapshot-rest-api) [![Join the chat at https://gitter.im/IHTSDO/sct-snapshot-rest-api](https://badges.gitter.im/IHTSDO/sct-snapshot-rest-api.svg)](https://gitter.im/IHTSDO/sct-snapshot-rest-api?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
+# SNOMED CT Snapshot REST API 
+
+[![Build Status](https://travis-ci.org/IHTSDO/sct-snapshot-rest-api.svg?branch=master)](https://travis-ci.org/IHTSDO/sct-snapshot-rest-api) [![Code Climate](https://codeclimate.com/github/IHTSDO/sct-snapshot-rest-api/badges/gpa.svg)](https://codeclimate.com/github/IHTSDO/sct-snapshot-rest-api) [![Join the chat at https://gitter.im/IHTSDO/sct-snapshot-rest-api](https://badges.gitter.im/IHTSDO/sct-snapshot-rest-api.svg)](https://gitter.im/IHTSDO/sct-snapshot-rest-api?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![license](https://img.shields.io/badge/license-Apache2-blue.svg)]()
 
 Lightweight mongo server with a rest API for SNOMED CT Snapshot views, powered by the MEAN stack, <http://mean.io/>, (Node.js, Express & MongoDB).
 
