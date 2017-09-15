@@ -44,9 +44,9 @@ This call will retrieve the data for the concept Clinical Finding (finding), ide
 
 ## REST API docs
 
-Browse the interactive documentation of the REST API here:
+Browse the REST API documentation of here:
 
-<http://docs.snomedctsnapshotapi.apiary.io/>
+<http://browser.ihtsdotools.org/api.html>
 
 ## NOTES:
 

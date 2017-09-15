@@ -9,7 +9,7 @@ This API has been developed by SNOMED International to support lightweight deplo
 # Group Concepts
 Concepts allows access to **SNOMED CT Concepts**
 
-## Concept [/snomed/{edition}/{release}/concepts/{sctid}]
+## Concept [/v2/snomed/{edition}/{release}/concepts/{sctid}]
 A single Concept with all its details
 
 + Parameters
@@ -365,7 +365,7 @@ A single Concept with all its details
                 }
             }
 
-## Children [/snomed/{edition}/{release}/concepts/{sctid}/children?form={form}]
+## Children [/v2/snomed/{edition}/{release}/concepts/{sctid}/children?form={form}]
 Lists all children of a concept, in the SNOMED CT hierarchy. Each child is retrieved in a summary form, called Concept Descriptor.
 
 + Parameters
@@ -509,7 +509,7 @@ Lists all children of a concept, in the SNOMED CT hierarchy. Each child is retri
             ]
 
 
-## Parents [/snomed/{edition}/{release}/concepts/{sctid}/parents?form={form}]
+## Parents [/v2/snomed/{edition}/{release}/concepts/{sctid}/parents?form={form}]
 Lists all parents of a concept, in the SNOMED CT hierarchy. Each parent is retrieved in a summary form, called Concept Descriptor.
 
 + Parameters
@@ -583,7 +583,7 @@ Lists all parents of a concept, in the SNOMED CT hierarchy. Each parent is retri
             ]
 
 
-## Members [/snomed/{edition}/{release}/concepts/{sctid}/members?limit={limit}&paginate={page}]
+## Members [/v2/snomed/{edition}/{release}/concepts/{sctid}/members?limit={limit}&paginate={page}]
 Lists all reference set members of a concept. Each member is retrieved in a summary form, called Concept Descriptor.
 Only concepts that are reference sets will include members.
 The concept details describe all the reference sets where a concept is member in, called memberships, and can be retrieved with the /concepts/id call.
@@ -700,7 +700,7 @@ The concept details describe all the reference sets where a concept is member in
             }
 
 
-## Search [/snomed/{edition}/{release}/descriptions?query={query}&searchMode={mode}&lang={language}&statusFilter={statusFilter}&skipTo={skipTo}&returnLimit={returnLimit}&normalize={normalize}&semanticFilter={semanticFilter}&moduleFilter={moduleFilter}&langFilter={langFilter}&refsetFilter={refsetFilter}]
+## Search [/v2/snomed/{edition}/{release}/descriptions?query={query}&searchMode={mode}&lang={language}&statusFilter={statusFilter}&skipTo={skipTo}&returnLimit={returnLimit}&normalize={normalize}&semanticFilter={semanticFilter}&moduleFilter={moduleFilter}&langFilter={langFilter}&refsetFilter={refsetFilter}]
 Performs a text search over the database, selecting mode and other limits.
 The search results include the matching descriptions plus a filter descriptor object, allowing to further refining the search by providing new limits.
 
