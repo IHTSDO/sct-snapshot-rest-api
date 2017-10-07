@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var winston = require('winston');
 var MongoClient = require('mongodb').MongoClient;
-var snomedLib = require("../lib/snomedv2");
+var snomedLib = require("../lib/snomed");
 var transform = require("../lib/transform");
 var apiModelUtility = require("../lib/apiModelUtility");
 
