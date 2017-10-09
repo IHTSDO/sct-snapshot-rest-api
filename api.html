@@ -6,14 +6,14 @@
 </dd><dt>release</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>v20170731</span></span><p>Identifier for the release, usually the release effective time preceded with a <code>v</code>.</p>
 </dd><dt>sctid</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>79859009</span></span><p>SNOMED CT Identifier of the concept to retrieve.</p>
 </dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-  "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"598bfd01a0e6f2e897a164fc"</span></span>,
+  "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"59d8cf1ee63829a42851a1ca"</span></span>,
   "<span class="hljs-attribute">memberships</span>": <span class="hljs-value">[
     {
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"SIMPLEMAP"</span></span>,
       "<span class="hljs-attribute">referencedComponentId</span>": <span class="hljs-value"><span class="hljs-string">"79859009"</span></span>,
       "<span class="hljs-attribute">refset</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000497000"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"CTV3 simple map reference set (foundation metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"CTV3 simple map"</span>
       </span>}</span>,
       "<span class="hljs-attribute">otherValue</span>": <span class="hljs-value"><span class="hljs-string">"02B3."</span></span>,
       "<span class="hljs-attribute">uuid</span>": <span class="hljs-value"><span class="hljs-string">"92ca1e61-fff8-51d2-a11c-545d83797bbc"</span></span>,
@@ -21,7 +21,7 @@
       "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
       "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
       </span>}
     </span>}
   ]</span>,
@@ -31,50 +31,50 @@
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"79859009"</span></span>,
       "<span class="hljs-attribute">type</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000013009"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Synonym (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Synonym"</span>
       </span>}</span>,
       "<span class="hljs-attribute">languageCode</span>": <span class="hljs-value"><span class="hljs-string">"en"</span></span>,
       "<span class="hljs-attribute">term</span>": <span class="hljs-value"><span class="hljs-string">"Computer programmer"</span></span>,
       "<span class="hljs-attribute">length</span>": <span class="hljs-value"><span class="hljs-number">19</span></span>,
       "<span class="hljs-attribute">caseSignificance</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000448009"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Entire term case insensitive (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Case insensitive"</span>
       </span>}</span>,
       "<span class="hljs-attribute">acceptability</span>": <span class="hljs-value">[
         {
           "<span class="hljs-attribute">descriptionId</span>": <span class="hljs-value"><span class="hljs-string">"132493010"</span></span>,
           "<span class="hljs-attribute">languageReferenceSet</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000508004"</span></span>,
-            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Great Britain English language reference set (foundation metadata concept)"</span>
+            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"GB English"</span>
           </span>}</span>,
           "<span class="hljs-attribute">acceptability</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000548007"</span></span>,
-            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Preferred (foundation metadata concept)"</span>
+            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Preferred"</span>
           </span>}</span>,
           "<span class="hljs-attribute">uuid</span>": <span class="hljs-value"><span class="hljs-string">"599edffd-9492-57c2-a615-212f9916e23d"</span></span>,
           "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
           "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
           "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
           </span>}
         </span>},
         {
           "<span class="hljs-attribute">descriptionId</span>": <span class="hljs-value"><span class="hljs-string">"132493010"</span></span>,
           "<span class="hljs-attribute">languageReferenceSet</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000509007"</span></span>,
-            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"United States of America English language reference set (foundation metadata concept)"</span>
+            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"US English"</span>
           </span>}</span>,
           "<span class="hljs-attribute">acceptability</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000548007"</span></span>,
-            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Preferred (foundation metadata concept)"</span>
+            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Preferred"</span>
           </span>}</span>,
           "<span class="hljs-attribute">uuid</span>": <span class="hljs-value"><span class="hljs-string">"63ea720a-e2c4-5e85-9758-4536606ad0b3"</span></span>,
           "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
           "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20080131"</span></span>,
           "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
           </span>}
         </span>}
       ]</span>,
@@ -82,7 +82,7 @@
       "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20170731"</span></span>,
       "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
       </span>}
     </span>},
     {
@@ -90,20 +90,20 @@
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"79859009"</span></span>,
       "<span class="hljs-attribute">type</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000013009"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Synonym (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Synonym"</span>
       </span>}</span>,
       "<span class="hljs-attribute">languageCode</span>": <span class="hljs-value"><span class="hljs-string">"en"</span></span>,
       "<span class="hljs-attribute">term</span>": <span class="hljs-value"><span class="hljs-string">"Computer programr"</span></span>,
       "<span class="hljs-attribute">length</span>": <span class="hljs-value"><span class="hljs-number">17</span></span>,
       "<span class="hljs-attribute">caseSignificance</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000020002"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Only initial character case insensitive (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Initial character case insensitive"</span>
       </span>}</span>,
       "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
       "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20080131"</span></span>,
       "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
       </span>}
     </span>},
     {
@@ -111,50 +111,50 @@
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"79859009"</span></span>,
       "<span class="hljs-attribute">type</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000003001"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Fully specified name (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Fully specified name"</span>
       </span>}</span>,
       "<span class="hljs-attribute">languageCode</span>": <span class="hljs-value"><span class="hljs-string">"en"</span></span>,
       "<span class="hljs-attribute">term</span>": <span class="hljs-value"><span class="hljs-string">"Computer programmer (occupation)"</span></span>,
       "<span class="hljs-attribute">length</span>": <span class="hljs-value"><span class="hljs-number">32</span></span>,
       "<span class="hljs-attribute">caseSignificance</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000448009"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Entire term case insensitive (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Case insensitive"</span>
       </span>}</span>,
       "<span class="hljs-attribute">acceptability</span>": <span class="hljs-value">[
         {
           "<span class="hljs-attribute">descriptionId</span>": <span class="hljs-value"><span class="hljs-string">"820955016"</span></span>,
           "<span class="hljs-attribute">languageReferenceSet</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000508004"</span></span>,
-            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Great Britain English language reference set (foundation metadata concept)"</span>
+            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"GB English"</span>
           </span>}</span>,
           "<span class="hljs-attribute">acceptability</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000548007"</span></span>,
-            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Preferred (foundation metadata concept)"</span>
+            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Preferred"</span>
           </span>}</span>,
           "<span class="hljs-attribute">uuid</span>": <span class="hljs-value"><span class="hljs-string">"26b45dfb-3d13-52c4-b6c5-f3cab43b5ad6"</span></span>,
           "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
           "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
           "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
           </span>}
         </span>},
         {
           "<span class="hljs-attribute">descriptionId</span>": <span class="hljs-value"><span class="hljs-string">"820955016"</span></span>,
           "<span class="hljs-attribute">languageReferenceSet</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000509007"</span></span>,
-            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"United States of America English language reference set (foundation metadata concept)"</span>
+            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"US English"</span>
           </span>}</span>,
           "<span class="hljs-attribute">acceptability</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000548007"</span></span>,
-            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Preferred (foundation metadata concept)"</span>
+            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Preferred"</span>
           </span>}</span>,
           "<span class="hljs-attribute">uuid</span>": <span class="hljs-value"><span class="hljs-string">"772accf1-7627-5366-b1b8-1f246416521e"</span></span>,
           "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
           "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
           "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
             "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+            "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
           </span>}
         </span>}
       ]</span>,
@@ -162,7 +162,7 @@
       "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20170731"</span></span>,
       "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
       </span>}
     </span>}
   ]</span>,
@@ -171,15 +171,15 @@
       "<span class="hljs-attribute">relationshipId</span>": <span class="hljs-value"><span class="hljs-string">"4076360022"</span></span>,
       "<span class="hljs-attribute">type</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"116680003"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Is a (attribute)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Is a"</span>
       </span>}</span>,
       "<span class="hljs-attribute">destination</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"106297009"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Statistician, mathematician, systems analyst/related technician (occupation)"</span></span>,
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Statistician, mathematician, systems analyst AND/OR related technician"</span></span>,
         "<span class="hljs-attribute">fullySpecifiedName</span>": <span class="hljs-value"><span class="hljs-string">"Statistician, mathematician, systems analyst/related technician (occupation)"</span></span>,
         "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span></span>,
-          "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Necessary but not sufficient concept definition status (core metadata concept)"</span>
+          "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span>
         </span>}</span>,
         "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">13</span></span>,
         "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">13</span></span>,
@@ -187,39 +187,39 @@
         "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
         "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-          "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+          "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
         </span>}
       </span>}</span>,
       "<span class="hljs-attribute">sourceId</span>": <span class="hljs-value"><span class="hljs-string">"79859009"</span></span>,
       "<span class="hljs-attribute">relationshipGroup</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
       "<span class="hljs-attribute">characteristicType</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000010007"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Stated relationship (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Stated relationship"</span>
       </span>}</span>,
       "<span class="hljs-attribute">modifier</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000451002"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Existential restriction modifier (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Some"</span>
       </span>}</span>,
       "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
       "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20080731"</span></span>,
       "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
       </span>}
     </span>},
     {
       "<span class="hljs-attribute">relationshipId</span>": <span class="hljs-value"><span class="hljs-string">"4076361021"</span></span>,
       "<span class="hljs-attribute">type</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"116680003"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Is a (attribute)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Is a"</span>
       </span>}</span>,
       "<span class="hljs-attribute">destination</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"158832009"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Systems analyst/computer programmer (occupation)"</span></span>,
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Systems analyst/computer programmer"</span></span>,
         "<span class="hljs-attribute">fullySpecifiedName</span>": <span class="hljs-value"><span class="hljs-string">"Systems analyst/computer programmer (occupation)"</span></span>,
         "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span></span>,
-          "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Necessary but not sufficient concept definition status (core metadata concept)"</span>
+          "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span>
         </span>}</span>,
         "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">4</span></span>,
         "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">4</span></span>,
@@ -227,39 +227,39 @@
         "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
         "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-          "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+          "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
         </span>}
       </span>}</span>,
       "<span class="hljs-attribute">sourceId</span>": <span class="hljs-value"><span class="hljs-string">"79859009"</span></span>,
       "<span class="hljs-attribute">relationshipGroup</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
       "<span class="hljs-attribute">characteristicType</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000010007"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Stated relationship (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Stated relationship"</span>
       </span>}</span>,
       "<span class="hljs-attribute">modifier</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000451002"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Existential restriction modifier (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Some"</span>
       </span>}</span>,
       "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
       "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20080731"</span></span>,
       "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
       </span>}
     </span>},
     {
       "<span class="hljs-attribute">relationshipId</span>": <span class="hljs-value"><span class="hljs-string">"277869024"</span></span>,
       "<span class="hljs-attribute">type</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"116680003"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Is a (attribute)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Is a"</span>
       </span>}</span>,
       "<span class="hljs-attribute">destination</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"158832009"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Systems analyst/computer programmer (occupation)"</span></span>,
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Systems analyst/computer programmer"</span></span>,
         "<span class="hljs-attribute">fullySpecifiedName</span>": <span class="hljs-value"><span class="hljs-string">"Systems analyst/computer programmer (occupation)"</span></span>,
         "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span></span>,
-          "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Necessary but not sufficient concept definition status (core metadata concept)"</span>
+          "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span>
         </span>}</span>,
         "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">4</span></span>,
         "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">4</span></span>,
@@ -267,39 +267,39 @@
         "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
         "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-          "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+          "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
         </span>}
       </span>}</span>,
       "<span class="hljs-attribute">sourceId</span>": <span class="hljs-value"><span class="hljs-string">"79859009"</span></span>,
       "<span class="hljs-attribute">relationshipGroup</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
       "<span class="hljs-attribute">characteristicType</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000011006"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Inferred relationship (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Inferred relationship"</span>
       </span>}</span>,
       "<span class="hljs-attribute">modifier</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000451002"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Existential restriction modifier (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Some"</span>
       </span>}</span>,
       "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
       "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
       "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
       </span>}
     </span>},
     {
       "<span class="hljs-attribute">relationshipId</span>": <span class="hljs-value"><span class="hljs-string">"277870020"</span></span>,
       "<span class="hljs-attribute">type</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"116680003"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Is a (attribute)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Is a"</span>
       </span>}</span>,
       "<span class="hljs-attribute">destination</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"106297009"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Statistician, mathematician, systems analyst/related technician (occupation)"</span></span>,
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Statistician, mathematician, systems analyst AND/OR related technician"</span></span>,
         "<span class="hljs-attribute">fullySpecifiedName</span>": <span class="hljs-value"><span class="hljs-string">"Statistician, mathematician, systems analyst/related technician (occupation)"</span></span>,
         "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span></span>,
-          "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Necessary but not sufficient concept definition status (core metadata concept)"</span>
+          "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span>
         </span>}</span>,
         "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">13</span></span>,
         "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">13</span></span>,
@@ -307,24 +307,24 @@
         "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
         "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-          "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+          "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
         </span>}
       </span>}</span>,
       "<span class="hljs-attribute">sourceId</span>": <span class="hljs-value"><span class="hljs-string">"79859009"</span></span>,
       "<span class="hljs-attribute">relationshipGroup</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
       "<span class="hljs-attribute">characteristicType</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000011006"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Inferred relationship (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Inferred relationship"</span>
       </span>}</span>,
       "<span class="hljs-attribute">modifier</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000451002"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Existential restriction modifier (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Some"</span>
       </span>}</span>,
       "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
       "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
       "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
       </span>}
     </span>}
   ]</span>,
@@ -332,11 +332,11 @@
   "<span class="hljs-attribute">isLeafStated</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
   "<span class="hljs-attribute">v</span>": <span class="hljs-value"><span class="hljs-string">"2"</span></span>,
   "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"79859009"</span></span>,
-  "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Computer programmer (occupation)"</span></span>,
+  "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Computer programmer"</span></span>,
   "<span class="hljs-attribute">fullySpecifiedName</span>": <span class="hljs-value"><span class="hljs-string">"Computer programmer (occupation)"</span></span>,
   "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span></span>,
-    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Necessary but not sufficient concept definition status (core metadata concept)"</span>
+    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span>
   </span>}</span>,
   "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
   "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
@@ -344,7 +344,7 @@
   "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
   "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
   </span>}
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="concepts-children" class="resource"><h3 class="resource-heading">Children <a href="#concepts-children" class="permalink">&nbsp;&para;</a></h3><p>Lists all children of a concept, in the SNOMED CT hierarchy. Each child is retrieved in a summary form, called Concept Descriptor.</p>
 <div id="concepts-children-get" class="action get"><h4 class="action-heading"><div class="name">Retrieve Children</div><a href="#concepts-children-get" class="method get">GET</a><code class="uri">/v2/snomed/{edition}/{release}/concepts/{sctid}/children?form={form}</code></h4><h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://browser.ihtsdotools.org/api</span>/v2/snomed/<span class="hljs-attribute" title="edition">en-edition</span>/<span class="hljs-attribute" title="release">v20170731</span>/concepts/<span class="hljs-attribute" title="sctid">123037004</span>/children?form=<span class="hljs-attribute" title="form">inferred</span></span></div><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>edition</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>en-edition</span></span><p>Identifier for the SNOMED CT Edition to browse, for example <code>en-edition</code> for the International Edition</p>
@@ -353,129 +353,147 @@
 </dd><dt>form</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>inferred</span></span><p>Characteristic type of the Is-a hierarchy, either <code>stated</code> or <code>inferred</code>.</p>
 </dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
   {
-    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"598bfcdca0e6f2e897a06874"</span></span>,
-    "<span class="hljs-attribute">isLeafInferred</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-    "<span class="hljs-attribute">isLeafStated</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"59d8ceaae63829a4284df164"</span></span>,
+    "<span class="hljs-attribute">isLeafInferred</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+    "<span class="hljs-attribute">isLeafStated</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
     "<span class="hljs-attribute">v</span>": <span class="hljs-value"><span class="hljs-string">"2"</span></span>,
-    "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"159054003"</span></span>,
-    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Process description writer (occupation)"</span></span>,
+    "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"442083009"</span></span>,
+    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Anatomical or acquired body structure"</span></span>,
     "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Necessary but not sufficient concept definition status (core metadata concept)"</span>
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span>
     </span>}</span>,
-    "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">32818</span></span>,
     "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
     </span>}
   </span>},
   {
-    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"598bfce3a0e6f2e897a0996b"</span></span>,
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"59d8ceb2e63829a4284e300d"</span></span>,
     "<span class="hljs-attribute">isLeafInferred</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">isLeafStated</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">v</span>": <span class="hljs-value"><span class="hljs-string">"2"</span></span>,
-    "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"159053009"</span></span>,
-    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Instruction writer (occupation)"</span></span>,
+    "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"87100004"</span></span>,
+    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Topography unknown"</span></span>,
     "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Necessary but not sufficient concept definition status (core metadata concept)"</span>
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span>
     </span>}</span>,
     "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
     "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
     </span>}
   </span>},
   {
-    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"598bfcf4a0e6f2e897a10ee0"</span></span>,
-    "<span class="hljs-attribute">isLeafInferred</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-    "<span class="hljs-attribute">isLeafStated</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"59d8cef5e63829a4285050fd"</span></span>,
+    "<span class="hljs-attribute">isLeafInferred</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+    "<span class="hljs-attribute">isLeafStated</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
     "<span class="hljs-attribute">v</span>": <span class="hljs-value"><span class="hljs-string">"2"</span></span>,
-    "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"159055002"</span></span>,
-    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Program writer (occupation)"</span></span>,
+    "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"258331007"</span></span>,
+    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Anatomical site notations for tumor staging"</span></span>,
     "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Necessary but not sufficient concept definition status (core metadata concept)"</span>
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span>
     </span>}</span>,
-    "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">17</span></span>,
     "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
     </span>}
   </span>},
   {
-    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"598bfcf7a0e6f2e897a12382"</span></span>,
-    "<span class="hljs-attribute">isLeafInferred</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-    "<span class="hljs-attribute">isLeafStated</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"59d8cf15e63829a42851575f"</span></span>,
+    "<span class="hljs-attribute">isLeafInferred</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+    "<span class="hljs-attribute">isLeafStated</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
     "<span class="hljs-attribute">v</span>": <span class="hljs-value"><span class="hljs-string">"2"</span></span>,
-    "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"159059008"</span></span>,
-    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Trainee writer (occupation)"</span></span>,
+    "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"118956008"</span></span>,
+    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Morphologically altered structure"</span></span>,
     "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Necessary but not sufficient concept definition status (core metadata concept)"</span>
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span>
     </span>}</span>,
-    "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">4952</span></span>,
     "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
     </span>}
   </span>},
   {
-    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"598bfd17a0e6f2e897a1fe1c"</span></span>,
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"59d8cf1be63829a42851855a"</span></span>,
     "<span class="hljs-attribute">isLeafInferred</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">isLeafStated</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">v</span>": <span class="hljs-value"><span class="hljs-string">"2"</span></span>,
-    "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"67790005"</span></span>,
-    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Publicity writer (occupation)"</span></span>,
+    "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"361083003"</span></span>,
+    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Normal anatomy"</span></span>,
     "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Necessary but not sufficient concept definition status (core metadata concept)"</span>
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span>
     </span>}</span>,
     "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
     "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
     </span>}
   </span>},
   {
-    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"598bfd25a0e6f2e897a26215"</span></span>,
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"59d8cf27e63829a42851e77c"</span></span>,
     "<span class="hljs-attribute">isLeafInferred</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">isLeafStated</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">v</span>": <span class="hljs-value"><span class="hljs-string">"2"</span></span>,
-    "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"89007006"</span></span>,
-    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Technical writer (occupation)"</span></span>,
+    "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"21229009"</span></span>,
+    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Topography not assigned"</span></span>,
     "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Necessary but not sufficient concept definition status (core metadata concept)"</span>
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span>
     </span>}</span>,
     "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
     "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
     </span>}
   </span>},
   {
-    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"598bfd41a0e6f2e897a32952"</span></span>,
-    "<span class="hljs-attribute">isLeafInferred</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-    "<span class="hljs-attribute">isLeafStated</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"59d8cf28e63829a42851ef13"</span></span>,
+    "<span class="hljs-attribute">isLeafInferred</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+    "<span class="hljs-attribute">isLeafStated</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
     "<span class="hljs-attribute">v</span>": <span class="hljs-value"><span class="hljs-string">"2"</span></span>,
-    "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"47667004"</span></span>,
-    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Advertising copywriter (occupation)"</span></span>,
+    "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"91832008"</span></span>,
+    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Anatomical organizational pattern"</span></span>,
     "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Necessary but not sufficient concept definition status (core metadata concept)"</span>
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span>
     </span>}</span>,
-    "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">35</span></span>,
     "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
     "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
+    </span>}
+  </span>},
+  {
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"59d8cf79e63829a428546fa3"</span></span>,
+    "<span class="hljs-attribute">isLeafInferred</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+    "<span class="hljs-attribute">isLeafStated</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+    "<span class="hljs-attribute">v</span>": <span class="hljs-value"><span class="hljs-string">"2"</span></span>,
+    "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"278001007"</span></span>,
+    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Nonspecific site"</span></span>,
+    "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span></span>,
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+    "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
     </span>}
   </span>}
 ]</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="concepts-parents" class="resource"><h3 class="resource-heading">Parents <a href="#concepts-parents" class="permalink">&nbsp;&para;</a></h3><p>Lists all parents of a concept, in the SNOMED CT hierarchy. Each parent is retrieved in a summary form, called Concept Descriptor.</p>
@@ -485,159 +503,131 @@
 </dd><dt>form</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>inferred</span></span><p>Characteristic type of the Is-a hierarchy, either <code>stated</code> or <code>inferred</code>.</p>
 </dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
   {
-    "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"106297009"</span></span>,
-    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Statistician, mathematician, systems analyst/related technician (occupation)"</span></span>,
-    "<span class="hljs-attribute">fullySpecifiedName</span>": <span class="hljs-value"><span class="hljs-string">"Statistician, mathematician, systems analyst/related technician (occupation)"</span></span>,
-    "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Necessary but not sufficient concept definition status (core metadata concept)"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">13</span>
-  </span>},
-  {
     "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"158832009"</span></span>,
-    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Systems analyst/computer programmer (occupation)"</span></span>,
+    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Systems analyst/computer programmer"</span></span>,
     "<span class="hljs-attribute">fullySpecifiedName</span>": <span class="hljs-value"><span class="hljs-string">"Systems analyst/computer programmer (occupation)"</span></span>,
     "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Necessary but not sufficient concept definition status (core metadata concept)"</span>
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span>
     </span>}</span>,
     "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">4</span>
-  </span>},
-  {
-    "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"158832009"</span></span>,
-    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Systems analyst/computer programmer (occupation)"</span></span>,
-    "<span class="hljs-attribute">fullySpecifiedName</span>": <span class="hljs-value"><span class="hljs-string">"Systems analyst/computer programmer (occupation)"</span></span>,
-    "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Necessary but not sufficient concept definition status (core metadata concept)"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
     </span>}</span>,
     "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">4</span>
   </span>},
   {
     "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"106297009"</span></span>,
-    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Statistician, mathematician, systems analyst/related technician (occupation)"</span></span>,
+    "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Statistician, mathematician, systems analyst AND/OR related technician"</span></span>,
     "<span class="hljs-attribute">fullySpecifiedName</span>": <span class="hljs-value"><span class="hljs-string">"Statistician, mathematician, systems analyst/related technician (occupation)"</span></span>,
     "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Necessary but not sufficient concept definition status (core metadata concept)"</span>
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span>
     </span>}</span>,
     "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
     </span>}</span>,
     "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">13</span>
   </span>}
 ]</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="concepts-members" class="resource"><h3 class="resource-heading">Members <a href="#concepts-members" class="permalink">&nbsp;&para;</a></h3><p>Lists all reference set members of a concept. Each member is retrieved in a summary form, called Concept Descriptor.
 Only concepts that are reference sets will include members.
 The concept details describe all the reference sets where a concept is member in, called memberships, and can be retrieved with the /concepts/id call.</p>
-<div id="concepts-members-get" class="action get"><h4 class="action-heading"><div class="name">Retrieve Reference set members</div><a href="#concepts-members-get" class="method get">GET</a><code class="uri">/v2/snomed/{edition}/{release}/concepts/{sctid}/members?limit={limit}&amp;paginate={page}</code></h4><h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://browser.ihtsdotools.org/api</span>/v2/snomed/<span class="hljs-attribute" title="edition">en-edition</span>/<span class="hljs-attribute" title="release">v20170731</span>/concepts/<span class="hljs-attribute" title="sctid">105997008</span>/members?limit=<span class="hljs-attribute" title="limit">5</span>&paginate=<span class="hljs-attribute" title="page">1</span></span></div><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>edition</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>en-edition</span></span><p>Identifier for the SNOMED CT Edition to browse, for example <code>en-edition</code> for the International Edition</p>
+<div id="concepts-members-get" class="action get"><h4 class="action-heading"><div class="name">Retrieve Reference set members</div><a href="#concepts-members-get" class="method get">GET</a><code class="uri">/v2/snomed/{edition}/{release}/concepts/{sctid}/members?limit={limit}&amp;paginate={page}</code></h4><h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://browser.ihtsdotools.org/api</span>/v2/snomed/<span class="hljs-attribute" title="edition">en-edition</span>/<span class="hljs-attribute" title="release">v20170731</span>/concepts/<span class="hljs-attribute" title="sctid">721144007</span>/members?limit=<span class="hljs-attribute" title="limit">5</span>&paginate=<span class="hljs-attribute" title="page">1</span></span></div><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>edition</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>en-edition</span></span><p>Identifier for the SNOMED CT Edition to browse, for example <code>en-edition</code> for the International Edition</p>
 </dd><dt>release</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>v20170731</span></span><p>Identifier for the release, usually the release effective time preceded with a <code>v</code>.</p>
-</dd><dt>sctid</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>105997008</span></span><p>SNOMED CT Identifier of the concept to retrieve.</p>
+</dd><dt>sctid</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>721144007</span></span><p>SNOMED CT Identifier of the concept to retrieve.</p>
 </dd><dt>limit</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>5</span></span><p>Number of concepts to retrieve on this call (page size).</p>
 </dd><dt>page</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Page number to retrieve.</p>
 </dd></dl></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">members</span>": <span class="hljs-value">[
     {
-      "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"598bfc7da0e6f2e8979db4ab"</span></span>,
+      "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"59d8ceaae63829a4284df177"</span></span>,
       "<span class="hljs-attribute">isLeafInferred</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
       "<span class="hljs-attribute">isLeafStated</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
       "<span class="hljs-attribute">v</span>": <span class="hljs-value"><span class="hljs-string">"2"</span></span>,
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"441935006"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Acquired absence of all teeth (disorder)"</span></span>,
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Acquired absence of all teeth"</span></span>,
       "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Necessary but not sufficient concept definition status (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span>
       </span>}</span>,
       "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">19</span></span>,
       "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
       "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
       </span>}
     </span>},
     {
-      "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"598bfc7ea0e6f2e8979dba03"</span></span>,
+      "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"59d8ceabe63829a4284df6d2"</span></span>,
       "<span class="hljs-attribute">isLeafInferred</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
       "<span class="hljs-attribute">isLeafStated</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
       "<span class="hljs-attribute">v</span>": <span class="hljs-value"><span class="hljs-string">"2"</span></span>,
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"234973008"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Submerging tooth (disorder)"</span></span>,
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Submerging tooth"</span></span>,
       "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Necessary but not sufficient concept definition status (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span>
       </span>}</span>,
       "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
       "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
       "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
       </span>}
     </span>},
     {
-      "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"598bfc7ea0e6f2e8979dbc83"</span></span>,
+      "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"59d8ceabe63829a4284df953"</span></span>,
       "<span class="hljs-attribute">isLeafInferred</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
       "<span class="hljs-attribute">isLeafStated</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
       "<span class="hljs-attribute">v</span>": <span class="hljs-value"><span class="hljs-string">"2"</span></span>,
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"367534004"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Supernumerary tooth (disorder)"</span></span>,
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Supernumerary tooth"</span></span>,
       "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000073002"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Sufficiently defined concept definition status (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Defined"</span>
       </span>}</span>,
       "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">7</span></span>,
       "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
       "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
       </span>}
     </span>},
     {
-      "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"598bfc7fa0e6f2e8979dc3ad"</span></span>,
+      "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"59d8ceace63829a4284e0079"</span></span>,
       "<span class="hljs-attribute">isLeafInferred</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
       "<span class="hljs-attribute">isLeafStated</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
       "<span class="hljs-attribute">v</span>": <span class="hljs-value"><span class="hljs-string">"2"</span></span>,
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"710783007"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Removable partial denture with loss of occlusal relationship (finding)"</span></span>,
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Removable partial denture with loss of occlusal relationship"</span></span>,
       "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Necessary but not sufficient concept definition status (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span>
       </span>}</span>,
       "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
       "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
       "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
       </span>}
     </span>},
     {
-      "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"598bfc80a0e6f2e8979dc99c"</span></span>,
+      "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"59d8ceade63829a4284e066b"</span></span>,
       "<span class="hljs-attribute">isLeafInferred</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
       "<span class="hljs-attribute">isLeafStated</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
       "<span class="hljs-attribute">v</span>": <span class="hljs-value"><span class="hljs-string">"2"</span></span>,
       "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"718070001"</span></span>,
-      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Normal oral mucous membrane and osseointegrated bone tissue surrounding dental implant (finding)"</span></span>,
+      "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Normal oral mucous membrane and osseointegrated bone tissue surrounding dental implant"</span></span>,
       "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Necessary but not sufficient concept definition status (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span>
       </span>}</span>,
       "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
       "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
       "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span>
+        "<span class="hljs-attribute">preferredTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span>
       </span>}
     </span>}
   ]</span>,
@@ -647,16 +637,15 @@ The concept details describe all the reference sets where a concept is member in
   </span>}
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="concepts-search" class="resource"><h3 class="resource-heading">Search <a href="#concepts-search" class="permalink">&nbsp;&para;</a></h3><p>Performs a text search over the database, selecting mode and other limits.
 The search results include the matching descriptions plus a filter descriptor object, allowing to further refining the search by providing new limits.</p>
-<div id="concepts-search-get" class="action get"><h4 class="action-heading"><div class="name">Search descriptions</div><a href="#concepts-search-get" class="method get">GET</a><code class="uri">/v2/snomed/{edition}/{release}/descriptions?query={query}&amp;searchMode={mode}&amp;lang={language}&amp;statusFilter={statusFilter}&amp;skipTo={skipTo}&amp;returnLimit={returnLimit}&amp;normalize={normalize}&amp;semanticFilter={semanticFilter}&amp;moduleFilter={moduleFilter}&amp;langFilter={langFilter}&amp;refsetFilter={refsetFilter}</code></h4><h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://browser.ihtsdotools.org/api</span>/v2/snomed/<span class="hljs-attribute" title="edition">en-edition</span>/<span class="hljs-attribute" title="release">v20170731</span>/descriptions?query=<span class="hljs-attribute" title="query">asthma</span>&searchMode=<span class="hljs-attribute" title="mode">partialMatching</span>&lang=<span class="hljs-attribute" title="language">english</span>&statusFilter=<span class="hljs-attribute" title="statusFilter">english</span>&skipTo=<span class="hljs-attribute" title="skipTo">0</span>&returnLimit=<span class="hljs-attribute" title="returnLimit">5</span>&normalize=<span class="hljs-attribute" title="normalize">true</span>&semanticFilter=<span class="hljs-attribute" title="semanticFilter">findng</span>&moduleFilter=<span class="hljs-attribute" title="moduleFilter">900000000000207008</span>&langFilter=<span class="hljs-attribute" title="langFilter">en</span>&refsetFilter=<span class="hljs-attribute" title="refsetFilter">450970008</span></span></div><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>edition</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>en-edition</span></span><p>Identifier for the SNOMED CT Edition to browse, for example <code>en-edition</code> for the International Edition</p>
+<div id="concepts-search-get" class="action get"><h4 class="action-heading"><div class="name">Search descriptions</div><a href="#concepts-search-get" class="method get">GET</a><code class="uri">/v2/snomed/{edition}/{release}/descriptions?query={query}&amp;searchMode={mode}&amp;lang={language}&amp;statusFilter={statusFilter}&amp;skipTo={skipTo}&amp;returnLimit={returnLimit}&amp;normalize={normalize}&amp;semanticFilter={semanticFilter}&amp;moduleFilter={moduleFilter}&amp;refsetFilter={refsetFilter}</code></h4><h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://browser.ihtsdotools.org/api</span>/v2/snomed/<span class="hljs-attribute" title="edition">en-edition</span>/<span class="hljs-attribute" title="release">v20170731</span>/descriptions?query=<span class="hljs-attribute" title="query">asthma</span>&searchMode=<span class="hljs-attribute" title="mode">partialMatching</span>&lang=<span class="hljs-attribute" title="language">english</span>&statusFilter=<span class="hljs-attribute" title="statusFilter">english</span>&skipTo=<span class="hljs-attribute" title="skipTo">0</span>&returnLimit=<span class="hljs-attribute" title="returnLimit">5</span>&normalize=<span class="hljs-attribute" title="normalize">true</span>&semanticFilter=<span class="hljs-attribute" title="semanticFilter">finding</span>&moduleFilter=<span class="hljs-attribute" title="moduleFilter">900000000000207008</span>&refsetFilter=<span class="hljs-attribute" title="refsetFilter">450970008</span></span></div><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>edition</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>en-edition</span></span><p>Identifier for the SNOMED CT Edition to browse, for example <code>en-edition</code> for the International Edition</p>
 </dd><dt>release</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>v20170731</span></span><p>Identifier for the release, usually the release effective time preceded with a <code>v</code>.</p>
 </dd><dt>query</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>asthma</span></span><p>String terms to use a query.</p>
 </dd><dt>mode</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>partialMatching</span></span><p>Search mode, either <code>partialMatching</code>, <code>fullText</code> or <code>regex</code>.</p>
-</dd><dt>language</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>english</span></span><p>Languge for the search, only required for <code>fullText</code> mode.</p>
+</dd><dt>language</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>english</span></span><p>Language for the search, only required for <code>fullText</code> mode.</p>
 </dd><dt>statusFilter</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>english</span></span><p>Value to filter out undesired status, possible values are <code>activeOnly</code>, <code>inactiveOnly</code> or <code>activeAndInactive</code>.</p>
-</dd><dt>semanticFilter</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>findng</span></span><p>Value to restrict search results to specififc an semantic area, possible values are <code>finding</code>, <code>disorder</code>, <code>procedure</code>, etc.</p>
-</dd><dt>moduleFilter</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>900000000000207008</span></span><p>Value to restrict search results to an specififc module, possible values are any valid ModuleId.</p>
-</dd><dt>langFilter</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>en</span></span><p>Value to restrict search results to an specififc language code, possible values are any valid language code.</p>
-</dd><dt>refsetFilter</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>450970008</span></span><p>Value to restrict search results to an specififc reference set, possible values are any valid Reference Set conceptId.</p>
+</dd><dt>semanticFilter</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>finding</span></span><p>Value to restrict search results to specific an semantic area, possible values are <code>finding</code>, <code>disorder</code>, <code>procedure</code>, etc.</p>
+</dd><dt>moduleFilter</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>900000000000207008</span></span><p>Value to restrict search results to an specific module, possible values are any valid ModuleId.</p>
+</dd><dt>refsetFilter</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>450970008</span></span><p>Value to restrict search results to an specific reference set, possible values are any valid Reference Set conceptId.</p>
 </dd><dt>returnLimit</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>5</span></span><p>Number of results to retrieve in one call.</p>
 </dd><dt>skipTo</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>0</span></span><p>Number of results to skip, used along with limit to paginate.</p>
 </dd><dt>normalize</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>true</span></span><p>Wether to normalize search terms or not, should be aligned with index normalization option in the database.</p>
@@ -669,7 +658,7 @@ The search results include the matching descriptions plus a filter descriptor ob
       "<span class="hljs-attribute">conceptActive</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
       "<span class="hljs-attribute">fsn</span>": <span class="hljs-value"><span class="hljs-string">"Asthma (disorder)"</span></span>,
       "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-      "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span>
+      "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span>
     </span>},
     {
       "<span class="hljs-attribute">term</span>": <span class="hljs-value"><span class="hljs-string">"Asthmatic"</span></span>,
@@ -678,7 +667,7 @@ The search results include the matching descriptions plus a filter descriptor ob
       "<span class="hljs-attribute">conceptActive</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
       "<span class="hljs-attribute">fsn</span>": <span class="hljs-value"><span class="hljs-string">"Asthma (disorder)"</span></span>,
       "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-      "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span>
+      "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span>
     </span>},
     {
       "<span class="hljs-attribute">term</span>": <span class="hljs-value"><span class="hljs-string">"FH: Asthma"</span></span>,
@@ -687,16 +676,16 @@ The search results include the matching descriptions plus a filter descriptor ob
       "<span class="hljs-attribute">conceptActive</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
       "<span class="hljs-attribute">fsn</span>": <span class="hljs-value"><span class="hljs-string">"Family history: Asthma (situation)"</span></span>,
       "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-      "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Fully defined"</span>
+      "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"900000000000073002"</span>
     </span>},
     {
-      "<span class="hljs-attribute">term</span>": <span class="hljs-value"><span class="hljs-string">"Wood asthma"</span></span>,
-      "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"56968009"</span></span>,
+      "<span class="hljs-attribute">term</span>": <span class="hljs-value"><span class="hljs-string">"Mild asthma"</span></span>,
+      "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"370218001"</span></span>,
       "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
       "<span class="hljs-attribute">conceptActive</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-      "<span class="hljs-attribute">fsn</span>": <span class="hljs-value"><span class="hljs-string">"Wood asthma (disorder)"</span></span>,
+      "<span class="hljs-attribute">fsn</span>": <span class="hljs-value"><span class="hljs-string">"Mild asthma (disorder)"</span></span>,
       "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-      "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Fully defined"</span>
+      "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span>
     </span>},
     {
       "<span class="hljs-attribute">term</span>": <span class="hljs-value"><span class="hljs-string">"Asthma care"</span></span>,
@@ -705,245 +694,335 @@ The search results include the matching descriptions plus a filter descriptor ob
       "<span class="hljs-attribute">conceptActive</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
       "<span class="hljs-attribute">fsn</span>": <span class="hljs-value"><span class="hljs-string">"Asthma management (regime/therapy)"</span></span>,
       "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-      "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span>
+      "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"900000000000074008"</span>
     </span>}
   ]</span>,
   "<span class="hljs-attribute">details</span>": <span class="hljs-value">{
-    "<span class="hljs-attribute">total</span>": <span class="hljs-value"><span class="hljs-number">379</span></span>,
+    "<span class="hljs-attribute">total</span>": <span class="hljs-value"><span class="hljs-number">512</span></span>,
     "<span class="hljs-attribute">skipTo</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
     "<span class="hljs-attribute">returnLimit</span>": <span class="hljs-value"><span class="hljs-number">5</span>
   </span>}</span>,
   "<span class="hljs-attribute">filters</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">lang</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">english</span>": <span class="hljs-value"><span class="hljs-number">379</span>
+      "<span class="hljs-attribute">english</span>": <span class="hljs-value"><span class="hljs-number">512</span>
     </span>}</span>,
     "<span class="hljs-attribute">semTag</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">disorder</span>": <span class="hljs-value"><span class="hljs-number">175</span></span>,
-      "<span class="hljs-attribute">situation</span>": <span class="hljs-value"><span class="hljs-number">19</span></span>,
-      "<span class="hljs-attribute">regime/therapy</span>": <span class="hljs-value"><span class="hljs-number">31</span></span>,
+      "<span class="hljs-attribute">disorder</span>": <span class="hljs-value"><span class="hljs-number">272</span></span>,
+      "<span class="hljs-attribute">situation</span>": <span class="hljs-value"><span class="hljs-number">31</span></span>,
+      "<span class="hljs-attribute">regime/therapy</span>": <span class="hljs-value"><span class="hljs-number">27</span></span>,
       "<span class="hljs-attribute">environment</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
-      "<span class="hljs-attribute">finding</span>": <span class="hljs-value"><span class="hljs-number">90</span></span>,
-      "<span class="hljs-attribute">observable entity</span>": <span class="hljs-value"><span class="hljs-number">11</span></span>,
-      "<span class="hljs-attribute">procedure</span>": <span class="hljs-value"><span class="hljs-number">39</span></span>,
+      "<span class="hljs-attribute">finding</span>": <span class="hljs-value"><span class="hljs-number">110</span></span>,
+      "<span class="hljs-attribute">observable entity</span>": <span class="hljs-value"><span class="hljs-number">13</span></span>,
+      "<span class="hljs-attribute">procedure</span>": <span class="hljs-value"><span class="hljs-number">44</span></span>,
       "<span class="hljs-attribute">assessment scale</span>": <span class="hljs-value"><span class="hljs-number">6</span></span>,
+      "<span class="hljs-attribute">product</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
       "<span class="hljs-attribute">occupation</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
-      "<span class="hljs-attribute">qualifier value</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
-      "<span class="hljs-attribute">product</span>": <span class="hljs-value"><span class="hljs-number">2</span>
+      "<span class="hljs-attribute">qualifier value</span>": <span class="hljs-value"><span class="hljs-number">2</span>
     </span>}</span>,
     "<span class="hljs-attribute">module</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">900000000000207008</span>": <span class="hljs-value"><span class="hljs-number">379</span>
+      "<span class="hljs-attribute">900000000000207008</span>": <span class="hljs-value"><span class="hljs-number">512</span>
     </span>}</span>,
     "<span class="hljs-attribute">refsetId</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">900000000000497000</span>": <span class="hljs-value"><span class="hljs-number">379</span></span>,
-      "<span class="hljs-attribute">900000000000498005</span>": <span class="hljs-value"><span class="hljs-number">379</span>
+      "<span class="hljs-attribute">450970008</span>": <span class="hljs-value"><span class="hljs-number">35</span></span>,
+      "<span class="hljs-attribute">711112009</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+      "<span class="hljs-attribute">900000000000497000</span>": <span class="hljs-value"><span class="hljs-number">512</span>
     </span>}
   </span>}
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section><section id="releases" class="resource-group"><h2 class="group-heading">Releases <a href="#releases" class="permalink">&para;</a></h2><div id="releases-release-information" class="resource"><h3 class="resource-heading">Release Information <a href="#releases-release-information" class="permalink">&nbsp;&para;</a></h3><p>Provides information on the releases available on the given host</p>
 <div id="releases-release-information-get" class="action get"><h4 class="action-heading"><div class="name">Releases</div><a href="#releases-release-information-get" class="method get">GET</a><code class="uri">/server/releases</code></h4><h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">http://browser.ihtsdotools.org/api</span>/server/releases</span></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
   {
-    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"56c42cfc7df006c561178579"</span></span>,
+    "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"59d8cfbae63829a428693d60"</span></span>,
     "<span class="hljs-attribute">resourceSetName</span>": <span class="hljs-value"><span class="hljs-string">"International Edition"</span></span>,
-    "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20160131"</span></span>,
     "<span class="hljs-attribute">databaseName</span>": <span class="hljs-value"><span class="hljs-string">"en-edition"</span></span>,
-    "<span class="hljs-attribute">collectionName</span>": <span class="hljs-value"><span class="hljs-string">"20160131"</span></span>,
-    "<span class="hljs-attribute">expirationDate</span>": <span class="hljs-value"><span class="hljs-string">"20170801"</span></span>,
+    "<span class="hljs-attribute">collectionName</span>": <span class="hljs-value"><span class="hljs-string">"20170731"</span></span>,
+    "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20170731"</span></span>,
     "<span class="hljs-attribute">modules</span>": <span class="hljs-value">[
       {
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
-        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT model component module (core metadata concept)"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT model component"</span></span>,
         "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
-        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
         "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
-        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span>
+        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"715151008"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"International Classification for Nursing Practice and SNOMED CT equivalency mapping module"</span></span>,
+        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
+        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20160131"</span></span>,
+        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"715152001"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"International Health Terminology Standards Development Organisation general and family practitioner module"</span></span>,
+        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
+        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20160131"</span></span>,
+        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span>
       </span>},
       {
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000207008"</span></span>,
-        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core module (core metadata concept)"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED CT core"</span></span>,
         "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
-        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
         "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
-        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span>
+        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"718292005"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"International Health Terminology Standards Development Organisation general dentistry diagnostic module"</span></span>,
+        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
+        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20170131"</span></span>,
+        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span>
       </span>}
     ]</span>,
     "<span class="hljs-attribute">languageRefsets</span>": <span class="hljs-value">[
       {
-        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000508004"</span></span>,
-        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"Great Britain English language reference set (foundation metadata concept)"</span></span>,
+        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000509007"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"US English"</span></span>,
         "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
-        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
         "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
-        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span>
+        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span>
       </span>},
       {
-        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000509007"</span></span>,
-        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"United States of America English language reference set (foundation metadata concept)"</span></span>,
+        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000508004"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"GB English"</span></span>,
         "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
-        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
         "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
-        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span>
+        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span>
       </span>}
     ]</span>,
     "<span class="hljs-attribute">refsets</span>": <span class="hljs-value">[
       {
-        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">16992</span></span>,
-        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"ASSOCIATION"</span></span>,
-        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000524003"</span></span>,
-        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"MOVED TO association reference set (foundation metadata concept)"</span></span>,
-        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
-        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
-        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span>
-      </span>},
-      {
-        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">24015</span></span>,
-        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"SIMPLEMAP"</span></span>,
-        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"446608001"</span></span>,
-        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"ICD-O simple map reference set (foundation metadata concept)"</span></span>,
-        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
-        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
-        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span>
-      </span>},
-      {
-        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">5558</span></span>,
-        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"ASSOCIATION"</span></span>,
-        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000526001"</span></span>,
-        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"REPLACED BY association reference set (foundation metadata concept)"</span></span>,
-        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
-        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
-        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span>
-      </span>},
-      {
-        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">424758</span></span>,
-        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"SIMPLEMAP"</span></span>,
-        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000498005"</span></span>,
-        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"SNOMED RT identifier simple map (foundation metadata concept)"</span></span>,
-        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
-        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
-        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span>
-      </span>},
-      {
-        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">424758</span></span>,
-        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"SIMPLEMAP"</span></span>,
-        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000497000"</span></span>,
-        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"CTV3 simple map reference set (foundation metadata concept)"</span></span>,
-        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
-        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
-        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span>
-      </span>},
-      {
-        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">258304</span></span>,
-        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"ATTRIBUTE_VALUE"</span></span>,
-        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000490003"</span></span>,
-        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"Description inactivation indicator attribute value reference set (foundation metadata concept)"</span></span>,
-        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
-        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
-        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span>
-      </span>},
-      {
-        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">21402</span></span>,
-        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"ASSOCIATION"</span></span>,
-        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000528000"</span></span>,
-        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"WAS A association reference set (foundation metadata concept)"</span></span>,
-        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
-        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
-        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span>
-      </span>},
-      {
-        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">44606</span></span>,
-        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"ASSOCIATION"</span></span>,
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000527005"</span></span>,
-        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"SAME AS association reference set (foundation metadata concept)"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"SAME AS association reference set"</span></span>,
         "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
+        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
+        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
         "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
         "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
-        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span>
+        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">44877</span></span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"ASSOCIATION"</span>
       </span>},
       {
-        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">177</span></span>,
-        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"ASSOCIATION"</span></span>,
+        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000490003"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"Description inactivation indicator reference set"</span></span>,
+        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
+        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
+        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">274157</span></span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"ATTRIBUTE_VALUE"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000524003"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"MOVED TO association reference set"</span></span>,
+        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
+        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
+        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">17046</span></span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"ASSOCIATION"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"734139008"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"Anatomy structure and part association reference set"</span></span>,
+        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
+        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20170731"</span></span>,
+        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">317</span></span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"ASSOCIATION"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"450970008"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"General Practice / Family Practice reference set"</span></span>,
+        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
+        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20120731"</span></span>,
+        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">4327</span></span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"SIMPLE_REFSET"</span>
+      </span>},
+      {
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000530003"</span></span>,
-        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"ALTERNATIVE association reference set (foundation metadata concept)"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"ALTERNATIVE association reference set"</span></span>,
         "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
+        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
+        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
         "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
         "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
-        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span>
+        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">177</span></span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"ASSOCIATION"</span>
       </span>},
       {
-        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">31957</span></span>,
-        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"ASSOCIATION"</span></span>,
-        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000523009"</span></span>,
-        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"POSSIBLY EQUIVALENT TO association reference set (foundation metadata concept)"</span></span>,
-        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
-        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
-        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span>
-      </span>},
-      {
-        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">97372</span></span>,
-        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"ATTRIBUTE_VALUE"</span></span>,
-        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000489007"</span></span>,
-        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"Concept inactivation indicator attribute value reference set (foundation metadata concept)"</span></span>,
-        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
-        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
-        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span>
-      </span>},
-      {
-        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">833</span></span>,
-        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"ASSOCIATION"</span></span>,
         "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000531004"</span></span>,
-        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"REFERS TO concept association reference set (foundation metadata concept)"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"REFERS TO concept association reference set"</span></span>,
         "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
+        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
+        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
         "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
         "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">817</span></span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"ASSOCIATION"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"734138000"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"Anatomy structure and entire association reference set"</span></span>,
+        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
+        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20170731"</span></span>,
         "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">14062</span></span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"ASSOCIATION"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"723264001"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"Lateralizable body structure reference set"</span></span>,
+        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
+        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20170131"</span></span>,
+        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">19683</span></span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"SIMPLE_REFSET"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000489007"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"Concept inactivation indicator reference set"</span></span>,
+        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
         "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
-        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span>
+        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">98399</span></span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"ATTRIBUTE_VALUE"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000523009"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"POSSIBLY EQUIVALENT TO association reference set"</span></span>,
+        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
+        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
+        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">32121</span></span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"ASSOCIATION"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"721144007"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"General dentistry diagnostic reference set"</span></span>,
+        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
+        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20170131"</span></span>,
+        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">226</span></span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"SIMPLE_REFSET"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"446608001"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"ICD-O simple map reference set"</span></span>,
+        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
+        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
+        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">24373</span></span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"SIMPLEMAP"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000497000"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"CTV3 simple map"</span></span>,
+        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
+        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
+        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">443236</span></span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"SIMPLEMAP"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"711112009"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"ICNP diagnoses simple map reference set"</span></span>,
+        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
+        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20150731"</span></span>,
+        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">488</span></span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"SIMPLEMAP"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000526001"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"REPLACED BY association reference set"</span></span>,
+        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
+        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
+        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">5689</span></span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"ASSOCIATION"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">conceptId</span>": <span class="hljs-value"><span class="hljs-string">"900000000000528000"</span></span>,
+        "<span class="hljs-attribute">defaultTerm</span>": <span class="hljs-value"><span class="hljs-string">"WAS A association reference set"</span></span>,
+        "<span class="hljs-attribute">definitionStatus</span>": <span class="hljs-value"><span class="hljs-string">"Primitive"</span></span>,
+        "<span class="hljs-attribute">module</span>": <span class="hljs-value"><span class="hljs-string">"900000000000012004"</span></span>,
+        "<span class="hljs-attribute">effectiveTime</span>": <span class="hljs-value"><span class="hljs-string">"20020131"</span></span>,
+        "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">statedDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">inferredDescendants</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+        "<span class="hljs-attribute">count</span>": <span class="hljs-value"><span class="hljs-number">21581</span></span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"ASSOCIATION"</span>
       </span>}
     ]</span>,
     "<span class="hljs-attribute">languageRefsetsAbbrev</span>": <span class="hljs-value">{}</span>,
     "<span class="hljs-attribute">defaultTermLangCode</span>": <span class="hljs-value"><span class="hljs-string">"en"</span></span>,
-    "<span class="hljs-attribute">defaultTermType</span>": <span class="hljs-value"><span class="hljs-string">"900000000000003001"</span></span>,
+    "<span class="hljs-attribute">defaultTermType</span>": <span class="hljs-value"><span class="hljs-string">"900000000000013009"</span></span>,
     "<span class="hljs-attribute">defaultTermLangRefset</span>": <span class="hljs-value"><span class="hljs-string">"900000000000509007"</span></span>,
     "<span class="hljs-attribute">textIndexNormalized</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
   </span>}
-]</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 15 Sep 2017</p><script>/* eslint-env browser */
+]</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 09 Oct 2017</p><script>/* eslint-env browser */
 /* eslint quotes: [2, "single"] */
 'use strict';
 
