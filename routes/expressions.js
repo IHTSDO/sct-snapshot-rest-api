@@ -499,4 +499,3 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         });
     });
 };
-
