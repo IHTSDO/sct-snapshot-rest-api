@@ -1,7 +1,9 @@
-SNOMED CT Snapshot REST API
+SNOMED CT Snapshot REST API [![Build Status](https://travis-ci.org/IHTSDO/sct-snapshot-rest-api.svg?branch=master)](https://travis-ci.org/IHTSDO/sct-snapshot-rest-api) [![Code Climate](https://codeclimate.com/github/IHTSDO/sct-snapshot-rest-api/badges/gpa.svg)](https://codeclimate.com/github/IHTSDO/sct-snapshot-rest-api) [![Join the chat at https://gitter.im/IHTSDO/sct-snapshot-rest-api](https://badges.gitter.im/IHTSDO/sct-snapshot-rest-api.svg)](https://gitter.im/IHTSDO/sct-snapshot-rest-api?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ===========================
 
-Rest API for SNOMED CT Snapshot views, powered by Node.js, Express &amp; MongoDB.
+Lightweight mongo server with a rest API for SNOMED CT Snapshot views, powered by the MEAN stack, http://mean.io/, (Node.js, Express &amp; MongoDB). 
+
+The minimum version of Node.js to be used is v4.4.2 onwards and has been tested on v5 and v7.10.0.
 
 How to install
 --------------
@@ -22,7 +24,7 @@ sct-snapshot-rest-api: $ node app.js
 ```
 
 IMPORTANT: This API needs to have local access to the MongoDB server where the terminology data has been loaded into.
-The data for the mongo instance is obtained via the National Library of Medicine (info in www.ihtsdo.org).
+The SNOMED CT data for the mongo instance can be obtained via your local National Resource Center (info in http://www.ihtsdo.org/members).
 
 Once you have the SNOMED CT Files in RF2 format (standard release files) you can create a JSON file for importing into Mongo using this project:
 
@@ -34,16 +36,16 @@ Access the server
 
 The server will start listening automatically on port 3000. You can test a REST call by goint to a Web Browser and navigating to this link:
 
-http://127.0.0.1:3000/snomed/en-edition/v20140731/concepts/404684003
+http://127.0.0.1:3000/snomed/en-edition/v20160131/concepts/404684003
 
-This call will retrieve the data for the concept Clinical Finding (finding), idenfied by the SCTID 404684003, in the International edition (en-edition) for the July 2014 release (v20140731).
+This call will retrieve the data for the concept Clinical Finding (finding), idenfied by the SCTID 404684003, in the International edition (en-edition) for the January 2016 release (v20160131).
 
 REST API docs
 -------------
 
 Browse the interactive documentation of the REST API here:
 
-http://docs.sctsnapshotrestapi.apiary.io
+http://docs.snomedctsnapshotapi.apiary.io/
 
 NOTES:
 -------------
