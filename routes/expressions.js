@@ -24,13 +24,15 @@ var logger = new (winston.Logger)({
 
 var databases = {};
 
+var mongoConnection = process.env['MONGO_DB_CONN'] || "localhost:27017";
+
 var performMongoDbRequest = function(databaseName, callback) {
     if (databases[databaseName]) {
         //console.log("Using cache");
         callback(databases[databaseName]);
     } else {
         //console.log("Connecting");
-        MongoClient.connect("mongodb://localhost:27017/"+databaseName, function(err, db) {
+        MongoClient.connect("mongodb://" + mongoConnection + "/ca-edition", function(err, db) {
             if (err) {
                 res.status(500);
                 res.send(err.message);
