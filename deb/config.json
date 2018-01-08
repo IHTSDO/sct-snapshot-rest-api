@@ -4,7 +4,7 @@
 		"host": "localhost"
 	},
 	"server": {
-		"port": 3000,
+		"port": 9999,
 		"address": "0.0.0.0"
 	},
 	"accessControl": {

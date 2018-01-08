@@ -32,7 +32,7 @@ Extract the snomed data somewhere on you machine and go to that folder in a term
 ```
 (Note the last argument may change from time to time and should be consistent with the 'effectiveTime' of the dataset.)
 
-Once that's run (will take several minutes) you can test out the install by going to http://127.0.0.1:3000/snomed/ca-edition/v20171031/descriptions?query=heart%20attack which should show you some JSON formatted information about heart attacks, which are bad I guess? I don't know, I'm not a heart doctor.
+Once that's run (will take several minutes) you can test out the install by going to http://127.0.0.1:9999/snomed/ca-edition/v20171031/descriptions?query=heart%20attack which should show you some JSON formatted information about heart attacks, which are bad I guess? I don't know, I'm not a heart doctor.
 
 NOTES:
 -------------

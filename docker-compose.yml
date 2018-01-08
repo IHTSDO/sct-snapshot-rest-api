@@ -5,7 +5,7 @@ services:
     links:
      - db
     ports:
-     - "3000:3000"
+     - "9999:9999"
      - "35729:35729"
     environment:
      - NODE_ENV=development

@@ -14,7 +14,7 @@ WORKDIR /app/sct-snapshot-rest-api
 RUN npm install
 
 # Expose the port the app runs in
-EXPOSE 3000
+EXPOSE 9999
 
 # Serve the app
 CMD ["node", "app.js"]

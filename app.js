@@ -115,7 +115,7 @@ app.use(function(err, req, res, next) {
 });
 
 var cluster = require('cluster');
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 9999;
 
 if(cluster.isMaster) {
     var numWorkers = require('os').cpus().length;
