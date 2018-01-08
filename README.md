@@ -26,9 +26,14 @@ This will start a container called 'web' (for the node.js app) and a container c
 
 Next you'll need to stuff all the exciting snomed data into your mongo database. You can download the data in JSON format here: https://drive.google.com/file/d/1cDWc5tE0fp8BehxREFxfISYE3ZJl9Jku/view?usp=sharing (bug Paul if it's not working)
 
-Extract the snomed data somewhere on you machine and go to that folder in a terminal and run 
+Install mongodb client (via MongoDB Community Edition) on your OS X Machine with homebrew:
 ```
-./import.sh localhost ca-edition 20171031
+brew install mongodb
+```
+
+Extract the snomed data somewhere on your machine and go to that folder in a terminal and run 
+```
+{path to sct-snapshot-rest-api}/data-scripts/import.sh localhost ca-edition 20171031
 ```
 (Note the last argument may change from time to time and should be consistent with the 'effectiveTime' of the dataset.)
 
