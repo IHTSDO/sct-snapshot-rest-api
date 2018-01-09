@@ -8,7 +8,9 @@ var ObjectID = require('mongodb').ObjectID;
 var serverDb;
 var resourcesCol;
 
-MongoClient.connect("mongodb://localhost:27017/server", function(err, db) {
+var mongoConnection = process.env['MONGO_DB_CONN'] || "localhost:27017";
+
+MongoClient.connect("mongodb://" + mongoConnection + "/ca-edition", function(err, db) {
     if (err) {
         console.warn(err.message);
         process.exit();
