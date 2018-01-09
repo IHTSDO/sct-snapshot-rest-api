@@ -6,16 +6,16 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
 var fs = require('fs');
-var pidFile = process.env.PID_FILE || "/var/sct-snapshot-rest-api.pid";
-
-
-fs.writeFile(pidFile, process.pid);
+var pidFile = process.env.PID_FILE || "mongodb-rest.pid";
 
 var routes = require('./routes/index');
 var snomed = require('./routes/snomed');
+var snomedv1 = require('./routes/snomedv1');
 var util = require('./routes/util');
 var server = require('./routes/server');
+var serverv1 = require('./routes/serverv1');
 var expressions = require('./routes/expressions');
+var expressionsv1 = require('./routes/expressionsv1');
 
 var accessControlConfig = {
     "allowOrigin": "*",
@@ -65,10 +65,18 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', routes);
-app.use('/snomed', snomed);
+app.use('/snomed', snomedv1);
+app.use('/v2/snomed',snomed);
+app.use('/v1/snomed',snomedv1);
 app.use('/util', util);
-app.use('/server', server);
-app.use("/expressions", expressions);
+app.use('/server', serverv1);
+app.use("/expressions", expressionsv1);
+app.use('/v2/util', util);
+app.use('/v2/server', server);
+app.use("/v2/expressions", expressions);
+app.use('/v1/util', util);
+app.use('/v1/server', serverv1);
+app.use("/v1/expressions", expressionsv1);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -84,7 +92,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
-        res.send({
+        res.send('error', {
             message: err.message,
             error: err
         });
@@ -95,8 +103,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 // Adding raw body support
 app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.send({
+    res.status(err.status || 500).send({
         message: err.message,
         error: {}
     });
@@ -115,9 +122,10 @@ app.use(function(err, req, res, next) {
 });
 
 var cluster = require('cluster');
-var port = process.env.PORT || 9999;
+var port = process.env.PORT || 3000;
 
 if(cluster.isMaster) {
+    fs.writeFile(pidFile, process.pid);
     var numWorkers = require('os').cpus().length;
 
     console.log('Master cluster setting up ' + numWorkers + ' workers...');
