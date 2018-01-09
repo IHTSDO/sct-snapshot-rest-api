@@ -34,9 +34,8 @@ var performMongoDbRequest = function(databaseName, callback) {
         //console.log("Connecting");
         MongoClient.connect("mongodb://" + mongoConnection + "/ca-edition", function(err, db) {
             if (err) {
-                res.status(500);
-                res.send(err.message);
-                return;
+                console.warn(err.message);
+                process.exit();
             }
             //console.log("Connection OK")
             databases[databaseName] = db;

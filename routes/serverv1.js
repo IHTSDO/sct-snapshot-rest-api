@@ -10,10 +10,8 @@ var resourcesCol;
 
 MongoClient.connect("mongodb://localhost:27017/server", function(err, db) {
     if (err) {
-        console.warn(getTime() + " - " + err.message);
-        res.status(500);
-        res.send(err.message);
-        return;
+        console.warn(err.message);
+        process.exit();
     }
     serverDb = db;
     resourcesCol = db.collection("resources");
