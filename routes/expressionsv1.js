@@ -8,6 +8,7 @@ var MongoClient = require('mongodb').MongoClient;
 var connectTimeout = require('connect-timeout');
 //var winston = require('winston');
 var path = require('path');
+var transform = require("../lib/transform");
 // find the first module to be loaded
 var topModule = module;
 while(topModule.parent)
@@ -24,15 +25,13 @@ var appDir = path.dirname(topModule.filename);
 
 var databases = {};
 
-var mongoConnection = process.env['MONGO_DB_CONN'] || "localhost:27017";
-
 var performMongoDbRequest = function(databaseName, callback) {
     if (databases[databaseName]) {
         //console.log("Using cache");
         callback(databases[databaseName]);
     } else {
         //console.log("Connecting");
-        MongoClient.connect("mongodb://" + mongoConnection + "/ca-edition", function(err, db) {
+        MongoClient.connect("mongodb://localhost:27017/"+databaseName, function(err, db) {
             if (err) {
                 res.status(500);
                 res.send(err.message);
@@ -489,7 +488,8 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
                 cursor.toArray(function (err, docs) {
                     if (docs) {
                         //var page = docs.slice(parseInt(skip), parseInt(skip) + parseInt(limit));
-                        returnData.matches = docs;
+                        var results=transform.getExpressionResultsV1(docs);
+                        returnData.matches = results;
                         callback(null, returnData);
                     } else {
                         returnData.total = 0;
@@ -501,3 +501,4 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         });
     });
 };
+
