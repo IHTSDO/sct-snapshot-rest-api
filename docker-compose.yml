@@ -2,24 +2,16 @@ version: '2'
 services:
   web:
     build: .
-    links:
-     - db
     ports:
-     - "9999:9999"
-     - "35729:35729"
+      - "9999:9999"
+      - "35729:35729"
     environment:
-     - NODE_ENV=development
-     - MONGO_DB_CONN=db:27017
-    networks:
-        - snomed
-  db:
-    image: mongo:latest
-    ports:
-     - "27017:27017"
+      - NODE_ENV=development
+      - MONGO_DB_CONN=web:27017
     volumes_from:
-        - db-data
+      - db-data
     networks:
-        - snomed
+      - snomed
   db-data:
     image: mongo:latest
     volumes:
