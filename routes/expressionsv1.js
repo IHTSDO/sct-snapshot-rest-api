@@ -8,6 +8,7 @@ var MongoClient = require('mongodb').MongoClient;
 var connectTimeout = require('connect-timeout');
 //var winston = require('winston');
 var path = require('path');
+var transform = require("../lib/transform");
 // find the first module to be loaded
 var topModule = module;
 while(topModule.parent)
@@ -487,7 +488,8 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
                 cursor.toArray(function (err, docs) {
                     if (docs) {
                         //var page = docs.slice(parseInt(skip), parseInt(skip) + parseInt(limit));
-                        returnData.matches = docs;
+                        var results=transform.getExpressionResultsV1(docs);
+                        returnData.matches = results;
                         callback(null, returnData);
                     } else {
                         returnData.total = 0;
@@ -499,3 +501,4 @@ var computeGrammarQuery3 = function(parserResults, form, databaseName, collectio
         });
     });
 };
+
