@@ -8,12 +8,12 @@ var ObjectID = require('mongodb').ObjectID;
 var serverDb;
 var resourcesCol;
 
-MongoClient.connect("mongodb://localhost:27017/server", function(err, db) {
+var mongoConnection = process.env['MONGO_DB_CONN'] || "localhost:27017";
+
+MongoClient.connect("mongodb://" + mongoConnection + "/server", function(err, db) {
     if (err) {
-        console.warn(getTime() + " - " + err.message);
-        res.status(500);
-        res.send(err.message);
-        return;
+        console.warn(err.message);
+        process.exit();
     }
     serverDb = db;
     resourcesCol = db.collection("resources");
