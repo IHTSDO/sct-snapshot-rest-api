@@ -1,10 +1,15 @@
-SNOMED CT Snapshot REST API
-===========================
+# SNOMED CT Snapshot REST API
 
 Lightweight mongo server with a rest API for SNOMED CT Snapshot views, powered by the MEAN stack, http://mean.io/, (Node.js, Express &amp; MongoDB).
 
-How to install
---------------
+## API docs
+
+The API documentation can be found here:
+
+<http://ihtsdo.github.io/sct-snapshot-rest-api/api.html>
+
+
+## How to install
 
 Clone this project
 ```
@@ -39,8 +44,7 @@ Extract the snomed data somewhere on your machine and go to that folder in a ter
 
 Once that's run (will take several minutes) you can test out the install by going to http://127.0.0.1:3000/snomed/en-edition/v20180131/descriptions?query=heart%20attack which should show you some JSON formatted information about heart attacks, which are bad I guess? I don't know, I'm not a heart doctor.
 
-NOTES:
--------------
+## NOTES:
 ```docker-compose down``` will cause you to lose the data you loaded into the mongodb. Use ```docker-compose stop``` instead
 
 The server will attempt to write a pid file at:
