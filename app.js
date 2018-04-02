@@ -92,10 +92,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
-        res.status('error').send({
-            message: err.message,
-            error: err
-        });
+        res.status(err.status >= 100 && err.status < 600 ? err.code : 500).send(err.message);
     });
 }
 
@@ -103,22 +100,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 // Adding raw body support
 app.use(function(err, req, res, next) {
-    res.status(err.status || 500).send({
-        message: err.message,
-        error: {}
-    });
-
-//    var data='';
-//    req.setEncoding('utf8');
-//    req.on('data', function(chunk) {
-//        data += chunk;
-//    });
-//
-//    req.on('end', function() {
-//        req.body = data;
-//        next();
-//    });
-
+    res.status(err.status >= 100 && err.status < 600 ? err.code : 500).send(err.message);
 });
 
 var cluster = require('cluster');
