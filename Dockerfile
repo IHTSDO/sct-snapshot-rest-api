@@ -8,8 +8,9 @@ WORKDIR /app
 
 # RUN git clone https://github.com/IHTSDO/sct-snapshot-rest-api.git
 COPY . /app/sct-snapshot-rest-api
-
 WORKDIR /app/sct-snapshot-rest-api
+
+RUN chmod u+x wait-for-it.sh
 
 RUN npm install
 

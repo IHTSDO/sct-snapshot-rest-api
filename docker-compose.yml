@@ -1,6 +1,26 @@
-version: '2'
+version: '2.1'
 services:
-  web:
+  db:
+    image: mongo:latest
+    ports:
+     - "27017:27017"
+    volumes_from:
+        - db-data
+    networks:
+      snomed:
+        aliases:
+         - db
+
+
+  db-data:
+    image: mongo:latest
+    volumes:
+      - ~/mongo/data:/data/db
+      - ~/mongo/lib:/var/lib/mongodb
+      - ~/mongo/log:/var/log/mongodb
+    entrypoint: /bin/true
+
+  snomed-api:
     build: .
     links:
      - db
@@ -12,21 +32,9 @@ services:
      - MONGO_DB_CONN=db:27017
     networks:
         - snomed
-  db:
-    image: mongo:latest
-    ports:
-     - "27017:27017"
-    volumes_from:
-        - db-data
-    networks:
-        - snomed
-  db-data:
-    image: mongo:latest
-    volumes:
-      - /data/db
-      - /var/lib/mongodb
-      - /var/log/mongodb
-    entrypoint: /bin/true
+    command: ["./wait-for-it.sh", "db:27017", "--", "node", "app.js"]
+
+
 networks:
   snomed:
     driver: bridge

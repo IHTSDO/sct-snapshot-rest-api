@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 
-# a script which copies import scripts to the json dir, zips the json directory and then scp's it 
+# a script which copies import scripts to the json dir, zips the json directory and then scp's it
 # to dest_url
 # The following variables should be set by editing this script before running it:
 # The json dir
-json_dir="./json"
+json_dir="/Users/rory/releases/intl/20180131-api2"
 # The import script
 import_script="import.sh"
 # The tgz file name
-zip_fn="json.tgz"
+zip_fn="Archive.zip"
 # The edition e.g. au-edition
-edition=""
+edition="en-edition"
 #The import date e.g. 20150531
-importDate=""
+importDate="20180131"
 
 # Prints a message to stdout with the current date and time.
 echo_date() {
@@ -46,12 +46,12 @@ check_arguments() {
 
 }
 
-untargzip() { 
+untargzip() {
 echo "untar and unzipping json folder"
 tar -zxvf $zip_fn
 }
 
-importmongo() { 
+importmongo() {
 echo "Importing into mongo with  $scpvar"
 $json_dir/$import_script $edition $importDate
 }
