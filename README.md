@@ -32,7 +32,7 @@ If you want to create the JSON yourself follow the instructions here once you ha
 
 <https://github.com/IHTSDO/rf2-to-json-conversion>
 
-**NOTE** ensure you are using versions 1.3 and above of the conversion tool to create the JSON files. Older versions will not work.
+**NOTE** ensure you are using versions 1.3, <https://github.com/IHTSDO/rf2-to-json-conversion/releases/tag/1.3> and above of the conversion tool to create the JSON files. Older versions will not work.
 
 Once that's you have it all up and running, you can test out the install by going to
  http://localhost:3000/snomed/en-edition/v20180131/descriptions?query=heart%20attack
