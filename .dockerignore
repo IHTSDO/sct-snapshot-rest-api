@@ -1,0 +1,6 @@
+.git
+.DS_Store
+api.html
+public/svg2pngTemp/*.png
+public/svg2pngTemp/*.svg
+target/

@@ -26,13 +26,15 @@ This will start a few containersone of which is a volume called db-data attached
 
 (Note, you might have to create the paths ```/data/db```, ```/var/lib/mongodb```, and ```/var/log/mongodb``` and ensure that they are writable by the user running your mongo container.)
 
-Next you'll need to get SNOMED CT data into your mongo database. You can get access to download the data in JSON format from SNOMED International by contacting [techsupport@snomed.org)](mailto:techsupport@snomed.org).
+Next you'll need to get SNOMED CT data into your mongo database. You can get access to download the data already generated ready for the MongoDB from SNOMED International by contacting [techsupport@snomed.org)](mailto:techsupport@snomed.org).
 
 If you want to create the JSON yourself follow the instructions here once you have the SNOMED CT Files in RF2 format (standard release files). You can then create the JSON files for importing into Mongo using this project:
 
 <https://github.com/IHTSDO/rf2-to-json-conversion>
 
 **NOTE** ensure you are using versions 1.3, <https://github.com/IHTSDO/rf2-to-json-conversion/releases/tag/1.3> and above of the conversion tool to create the JSON files. Older versions will not work.
+
+Instructions on how to then import into the MongoDB are also in that repository.
 
 Once that's you have it all up and running, you can test out the install by going to
  http://localhost:3000/snomed/en-edition/v20180131/descriptions?query=heart%20attack
@@ -65,6 +67,8 @@ Once you have the SNOMED CT Files in RF2 format (standard release files) you can
 <https://github.com/IHTSDO/rf2-to-json-conversion>
 
 **NOTE** ensure you are using versions 1.3 and above of the conversion tool to create the JSON files. Older versions will not work.
+
+Instructions on how to then import into the MongoDB are also in that repository.
 
 ## Access the server
 

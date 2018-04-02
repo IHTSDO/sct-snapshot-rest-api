@@ -66,10 +66,10 @@ module.exports = router;
 var sampleManifest = {
     id: "4b7865c0-18e0-11e4-8c21-0800200c9a66",
     resourceSetName: "International Edition",
-    effectiveTime: "20180131",
+    effectiveTime: process.env['SCT_VERSION'] || "20180131",
     databaseName: "en-edition",
-    collectionName: "20180131",
-    expirationDate: "20191031",
+    collectionName: process.env['SCT_VERSION'] || "20180131",
+    expirationDate: "20200131",
     modules: [
         {sctid: 900000000000207008, defaultTerm: "SNOMED CT core module"},
         {sctid: 900000000000012004, defaultTerm: "SNOMED CT model component module"}

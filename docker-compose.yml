@@ -30,6 +30,7 @@ services:
     environment:
      - NODE_ENV=development
      - MONGO_DB_CONN=db:27017
+     - SCT_VERSION=20180131
     networks:
         - snomed
     command: ["./wait-for-it.sh", "db:27017", "--", "node", "app.js"]
