@@ -21,8 +21,7 @@ services:
     entrypoint: /bin/true
 
   snomed-api:
-    build: ./
-    image: snomedinternational/snomed-snapshot-api:latest
+    image: snomedinternational/snomed-snapshot-api:2.0
     links:
      - db
     ports:
