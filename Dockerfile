@@ -1,4 +1,6 @@
-FROM node:9
+FROM node:alpine
+
+RUN apk add --update bash && rm -rf /var/cache/apk/*
 
 # Create a directory where our app will be placed
 RUN mkdir -p /app
