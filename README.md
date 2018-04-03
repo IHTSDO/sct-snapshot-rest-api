@@ -12,6 +12,7 @@ The API documentation can be found here:
 
 
 ## How to run using Docker
+[![](https://images.microbadger.com/badges/image/snomedinternational/snomed-snapshot-api:2.0.svg)](https://microbadger.com/images/snomedinternational/snomed-snapshot-api:2.0 "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/snomedinternational/snomed-snapshot-api:2.0.svg)](https://microbadger.com/images/snomedinternational/snomed-snapshot-api:2.0 "Get your own version badge on microbadger.com")
 
 Clone this project
 ```
