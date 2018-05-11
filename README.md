@@ -1,4 +1,5 @@
 # SNOMED CT Snapshot REST API
+[![Build Status](https://travis-ci.org/IHTSDO/sct-snapshot-rest-api.svg?branch=master)](https://travis-ci.org/IHTSDO/sct-snapshot-rest-api)
 
 Lightweight mongo server with a rest API for SNOMED CT Snapshot views, powered by the MEAN stack, http://mean.io/, (Node.js, Express &amp; MongoDB).
 
@@ -12,6 +13,7 @@ The API documentation can be found here:
 
 
 ## How to run using Docker
+[![](https://images.microbadger.com/badges/image/snomedinternational/snomed-snapshot-api:2.0.svg)](https://microbadger.com/images/snomedinternational/snomed-snapshot-api:2.0 "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/snomedinternational/snomed-snapshot-api:2.0.svg)](https://microbadger.com/images/snomedinternational/snomed-snapshot-api:2.0 "Get your own version badge on microbadger.com")
 
 Clone this project
 ```
@@ -74,7 +76,7 @@ Instructions on how to then import into the MongoDB are also in that repository.
 
 The server will start listening automatically on port 3000\. You can test a REST call by goint to a Web Browser and navigating to this link:
 
-<http://127.0.0.1:3000/snomed/en-edition/v20160131/concepts/404684003>
+<http://127.0.0.1:3000/snomed/en-edition/v20180131/concepts/404684003>
 
 This call will retrieve the data for the concept Clinical Finding (finding), idenfied by the SCTID 404684003, in the International edition (en-edition) for the January 2016 release (v20160131).
 ```
