@@ -70,13 +70,13 @@ app.use('/v2/snomed',snomed);
 app.use('/v1/snomed',snomedv1);
 app.use('/util', util);
 app.use('/server', serverv1);
-app.use("/expressions", expressionsv1);
+//app.use("/expressions", expressionsv1);
 app.use('/v2/util', util);
 app.use('/v2/server', server);
-app.use("/v2/expressions", expressions);
+//app.use("/v2/expressions", expressions);
 app.use('/v1/util', util);
 app.use('/v1/server', serverv1);
-app.use("/v1/expressions", expressionsv1);
+//app.use("/v1/expressions", expressionsv1);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
