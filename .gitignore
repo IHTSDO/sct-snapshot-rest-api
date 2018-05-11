@@ -14,6 +14,7 @@ results
 node_modules
 npm-debug.log
 .idea
+.vscode
 .DS_Store
 api.html
 public/svg2pngTemp/*.png

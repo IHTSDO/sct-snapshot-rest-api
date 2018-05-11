@@ -19,7 +19,7 @@ var expressionsv1 = require('./routes/expressionsv1');
 
 var accessControlConfig = {
     "allowOrigin": "*",
-        "allowMethods": "GET,POST,PUT,DELETE,HEAD,OPTIONS"
+    "allowMethods": "GET,POST,PUT,DELETE,HEAD,OPTIONS"
 };
 
 //  ************************
@@ -33,50 +33,49 @@ app.set('view engine', 'pug');
 // app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req, res, next) {
     var oneof = false;
-    if(req.headers.origin) {
+    if (req.headers.origin) {
         res.header('Access-Control-Allow-Origin', req.headers.origin);
         oneof = true;
     }
-    if(req.headers['access-control-request-method']) {
+    if (req.headers['access-control-request-method']) {
         res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
         oneof = true;
     }
-    if(req.headers['access-control-request-headers']) {
+    if (req.headers['access-control-request-headers']) {
         res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
         oneof = true;
     }
-    if(oneof) {
+    if (oneof) {
         res.header('Access-Control-Max-Age', 60 * 60 * 24 * 365);
     }
 
     // intercept OPTIONS method
     if (oneof && req.method == 'OPTIONS') {
         res.send(200);
-    }
-    else {
+    } else {
         next();
     }
 });
 
 app.use('/', routes);
 app.use('/snomed', snomed);
-app.use('/v2/snomed',snomed);
-app.use('/v1/snomed',snomedv1);
+app.use('/v2/snomed', snomed);
+app.use('/v1/snomed', snomedv1);
 app.use('/util', util);
 app.use('/server', serverv1);
-//app.use("/expressions", expressionsv1);
+app.use("/expressions", expressionsv1);
 app.use('/v2/util', util);
 app.use('/v2/server', server);
-//app.use("/v2/expressions", expressions);
+app.use("/v2/expressions", expressions);
 app.use('/v1/util', util);
 app.use('/v1/server', serverv1);
-//app.use("/v1/expressions", expressionsv1);
+app.use("/v1/expressions", expressionsv1);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -106,13 +105,13 @@ app.use(function(err, req, res, next) {
 var cluster = require('cluster');
 var port = process.env.PORT || 3000;
 
-if(cluster.isMaster) {
+if (cluster.isMaster) {
     fs.writeFile(pidFile, process.pid);
     var numWorkers = require('os').cpus().length;
 
     console.log('Master cluster setting up ' + numWorkers + ' workers...');
 
-    for(var i = 0; i < numWorkers; i++) {
+    for (var i = 0; i < numWorkers; i++) {
         cluster.fork();
     }
 
