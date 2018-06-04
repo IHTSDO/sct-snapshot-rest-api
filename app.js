@@ -68,7 +68,7 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', routes);
-app.use('/snomed', snomed);
+app.use('/snomed', snomedv1);
 app.use('/v2/snomed',snomed);
 app.use('/v1/snomed',snomedv1);
 app.use('/util', util);
