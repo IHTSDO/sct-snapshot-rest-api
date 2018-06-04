@@ -43,7 +43,7 @@ app.use(function(req, res, next) {
         res.header('Access-Control-Allow-Origin', req.headers.origin);
         oneof = true;
     }else if (req.headers['Access-Control-Allow-Origin']) {
-        res.header('Access-Control-Allow-Origin', req.headers['Access-Control-Allow-Origin']);
+        res.header('Access-Control-Allow-Origin',  req.headers['Access-Control-Allow-Origin']);
         oneof = true;
     }
     if(req.headers['access-control-request-method']) {
