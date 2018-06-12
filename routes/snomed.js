@@ -196,6 +196,7 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
             options[o] = JSON.parse(req.query[o]);
         }
     }
+    console.log("step 0");
     options["fields"] = {"preferredTerm": 1, "conceptId": 1, "active": 1, "definitionStatus": 1, "module": 1, "isLeafInferred": 1,"isLeafStated": 1, "statedDescendants":1, "v":1};
     if (!options.limit) {
         options.limit = 100;
@@ -203,7 +204,10 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
     if (!options.skip) {
         options.skip = 0;
     }
+    console.log("step 1");
     snomedLib.getMembers(req.params.db, req.params.collection, req.params.sctid, options, function(err, docs){
+
+        console.log("step 2");
         if (err){
             res.status(400);
             if (typeof err == 'boolean'){
@@ -212,6 +216,7 @@ router.get('/:db/:collection/concepts/:sctid/members?', function(req, res) {
                 res.send("Error: " + err);
             }
         }else{
+            console.log("step 3");
             res.status(200);
             res.send(docs);
         }
