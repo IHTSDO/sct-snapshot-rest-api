@@ -311,9 +311,14 @@ router.get('/:db/:collection/descriptions/:sctid?', function(req, res) {
     if (req.query["groupByConcept"])
         groupByConcept = req.query["groupByConcept"];
 
+    var exclDefinitions = false;
+    if (req.query["exclDefinitions"])
+        exclDefinitions = req.query["exclDefinitions"];
+
     var filters = {
         idParamStr: idParamStr,
         groupByConcept: groupByConcept,
+        exclDefinitions: exclDefinitions,
         searchMode: searchMode,
         lang: lang,
         semanticFilter: semanticFilter,
