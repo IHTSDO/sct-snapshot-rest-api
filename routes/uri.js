@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var winston = require('winston');
-
-var logger = new (winston.Logger)({
-    transports: [
-        new (winston.transports.File)({ filename: '/root/concepts-json/node_modules/sct-snapshot-rest-api/search.log' })
-    ]
-});
+// var winston = require('winston');
+//
+// var logger = new (winston.Logger)({
+//     transports: [
+//         new (winston.transports.File)({ filename: '/root/concepts-json/node_modules/sct-snapshot-rest-api/search.log' })
+//     ]
+// });
 
 router.get('/', function(req, res) {
     var uri=req.query.uri;
