@@ -32,9 +32,9 @@ router.get('/', function(req, res,next) {
         res.redirect("http://ihmi.termspace.com/api/snomed/" + db + "/" + collection + "/concepts/" + id);
         return
     }else{
-        req.url="http://ihmi.termspace.com/?perspective=full&conceptId1=" + id + "&edition=en-edition&release=v20180731&langRefset=900000000000509007";
+        res.redirect("http://ihmi.termspace.com/?perspective=full&conceptId1=" + id + "&edition=en-edition&release=v20180731&langRefset=900000000000509007";
 
-        return router.handle(req, res, next);
+        return ;
     }
 
 });
