@@ -9,7 +9,7 @@ var logger = new (winston.Logger)({
 });
 
 router.get('/', function(req, res) {
-    // var uri=req.query.uri;
+    var uri=req.query.uri;
     console.log("uri:" + uri);
     // var bar=req.query.uri.lastIndexOf("/");
     // var id=uristr.substring(bar + 1);
