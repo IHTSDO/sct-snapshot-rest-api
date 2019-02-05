@@ -16,6 +16,7 @@ var server = require('./routes/server');
 var serverv1 = require('./routes/serverv1');
 var expressions = require('./routes/expressions');
 var expressionsv1 = require('./routes/expressionsv1');
+var uri = require('./routes/uri');
 
 var accessControlConfig = {
     "allowOrigin": "*",
@@ -80,6 +81,7 @@ app.use("/v2/expressions", expressions);
 app.use('/v1/util', util);
 app.use('/v1/server', serverv1);
 app.use("/v1/expressions", expressionsv1);
+app.use("/uri", uri);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
