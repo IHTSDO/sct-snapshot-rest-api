@@ -29,7 +29,7 @@ router.get('/', function(req, res,next) {
         var db=process.env.TS_MONGO_DB;
         var collection=process.env.TS_MONGO_COLLECTION;
         console.log("db:" + db + " , collection:" + collection);
-        req.url="/" + db + "/" + collection + "/concepts/" + id;
+        req.url="http://ihmi.termspace.com/api/snomed/" + db + "/" + collection + "/concepts/" + id;
         return router.handle(req, res, next);
     }else{
         req.url="http://ihmi.termspace.com/?perspective=full&conceptId1=" + id + "&edition=en-edition&release=v20180731&langRefset=900000000000509007";
