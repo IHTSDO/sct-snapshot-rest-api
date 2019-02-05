@@ -30,11 +30,11 @@ router.get('/', function(req, res) {
         var collection=process.env.TS_MONGO_COLLECTION;
         console.log("db:" + db + " , collection:" + collection);
         req.url="/" + db + "/" + collection + "/concepts/" + id;
-        return app._router.handle(req, res, next);
+        return router.handle(req, res, next);
     }else{
         req.url="http://ihmi.termspace.com/?perspective=full&conceptId1=" + id + "&edition=en-edition&release=v20180731&langRefset=900000000000509007";
 
-        return app._router.handle(req, res, next);
+        return router.handle(req, res, next);
     }
 
 });
