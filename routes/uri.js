@@ -11,10 +11,10 @@ var logger = new (winston.Logger)({
     ]
 });
 
-router.get('/:uristr', function(req, res) {
-    var uri=req.params.uristr;
+router.get('/', function(req, res) {
+    var uri=req.query.uri;
     console.log("uri:" + uri);
-    var bar=req.params.uristr.lastIndexOf("/");
+    var bar=req.query.uri.lastIndexOf("/");
     var id=uristr.substring(bar + 1);
     var format="json";
     if (req.query.format) {
