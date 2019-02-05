@@ -17,8 +17,8 @@ router.get('/', function(req, res) {
         res.send("{Error:400, message:'system not found'}");
         return ;
     }
-    var bar=req.query.uri.lastIndexOf("/");
-    var id=uristr.substring(bar + 1);
+    var bar=uri.lastIndexOf("/");
+    var id=uri.substring(bar + 1);
     var format="json";
     if (req.query.format) {
         format = req.query.format.toLowerCase();
