@@ -25,14 +25,20 @@ router.get('/', function(req, res,next) {
     }
     console.log("format:" + format);
     console.log("id:" + id);
+    var db=process.env.TS_MONGO_DB;
+    var collection=process.env.TS_MONGO_COLLECTION;
+
+    var os = require('os');
+    var hostname=os.hostname();
+    console.log("hostname:" + hostname);
     if (format=="json"){
         var db=process.env.TS_MONGO_DB;
         var collection=process.env.TS_MONGO_COLLECTION;
         console.log("db:" + db + " , collection:" + collection);
-        res.redirect("http://ihmi.termspace.com/api/snomed/" + db + "/" + collection + "/concepts/" + id);
+        res.redirect("http://" + hostname + "/api/snomed/" + db + "/" + collection + "/concepts/" + id);
         return
     }else{
-        res.redirect("http://ihmi.termspace.com/?perspective=full&conceptId1=" + id + "&edition=en-edition&release=v20180731&langRefset=900000000000509007");
+        res.redirect("http://" + hostname + "/?perspective=full&conceptId1=" + id + "&edition=" + db+ "&release=" + collection + "&langRefset=900000000000509007&acceptLicense=true");
 
         return ;
     }
