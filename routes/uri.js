@@ -35,10 +35,10 @@ router.get('/', function(req, res,next) {
         var db=process.env.TS_MONGO_DB;
         var collection=process.env.TS_MONGO_COLLECTION;
         console.log("db:" + db + " , collection:" + collection);
-        res.redirect("http://" + hostname + "/api/snomed/" + db + "/" + collection + "/concepts/" + id);
+        res.redirect("http://ihmi.termspace.com/api/snomed/" + db + "/" + collection + "/concepts/" + id);
         return
     }else{
-        res.redirect("http://" + hostname + "/?perspective=full&conceptId1=" + id + "&edition=" + db+ "&release=" + collection + "&langRefset=900000000000509007&acceptLicense=true");
+        res.redirect("http://ihmi.termspace.com/?perspective=full&conceptId1=" + id + "&edition=" + db+ "&release=" + collection + "&langRefset=900000000000509007&acceptLicense=true");
 
         return ;
     }
