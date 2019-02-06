@@ -28,7 +28,7 @@ router.get('/', function(req, res,next) {
     var db=process.env.TS_MONGO_DB;
     var collection=process.env.TS_MONGO_COLLECTION;
 
-    var hostname=req.headers.host;
+    var hostname=req.hostname;
     console.log("hostname:" + hostname);
     if (format=="json"){
         var db=process.env.TS_MONGO_DB;
