@@ -1,6 +1,8 @@
 # SNOMED CT Snapshot REST API
 [![Build Status](https://travis-ci.org/IHTSDO/sct-snapshot-rest-api.svg?branch=master)](https://travis-ci.org/IHTSDO/sct-snapshot-rest-api)
 
+A small change.
+
 Lightweight mongo server with a rest API for SNOMED CT Snapshot views, powered by the MEAN stack, http://mean.io/, (Node.js, Express &amp; MongoDB).
 
 This repository also now provides Docker config to make it easier to use and install.
