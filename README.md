@@ -1,6 +1,8 @@
 # SNOMED CT Snapshot REST API
 [![Build Status](https://travis-ci.org/IHTSDO/sct-snapshot-rest-api.svg?branch=master)](https://travis-ci.org/IHTSDO/sct-snapshot-rest-api)
 
+### **This API will soon be deprecated and no longer supported or used by SNOMED International. We recommend using the organization's open source [Snowstorm Terminology Server](https://github.com/IHTSDO/snowstorm)**
+
 Lightweight mongo server with a rest API for SNOMED CT Snapshot views, powered by the MEAN stack, http://mean.io/, (Node.js, Express &amp; MongoDB).
 
 This repository also now provides Docker config to make it easier to use and install.
